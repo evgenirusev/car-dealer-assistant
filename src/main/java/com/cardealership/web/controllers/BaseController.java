@@ -4,9 +4,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 public abstract class BaseController {
     private static final String LAYOUT_VIEW_NAME = "layout";
-    private static final String DEFAULT_APP_TITLE = "Car Dealer";
+    private static final String DEFAULT_APP_TITLE = "Car Dealership";
     private static final String KEY_VIEW_NAME = "viewName";
     private static final String KEY_TITLE_NAME = "title";
+    private static final String SPRING_REDIRECT_KETWORD = "redirect:";
 
     protected BaseController() {
     }
@@ -31,7 +32,7 @@ public abstract class BaseController {
     public ModelAndView redirect(String redirectUrl) {
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("redirect:" + redirectUrl);
+        modelAndView.setViewName(SPRING_REDIRECT_KETWORD + redirectUrl);
 
         return modelAndView;
     }
