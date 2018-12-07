@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/navbar-guest}"/>
+</header>
+<main class="mt-5">
+    <th:block th:include="~{${viewName}}"/>
+</main>
+</body>
+</html>
