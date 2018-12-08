@@ -49,12 +49,8 @@ public class UserServiceImpl implements UserService {
 
         Set<UserRole> authorities = new HashSet<>();
 
-        if (this.userRepository.findAll().isEmpty()) {
-            authorities.add(userRoleFactory.createUserRole("ADMIN"));
-        } else {
-            UserRole authority = this.userRoleRepository.getUserRoleByAuthority("USER");
-            authorities.add(authority);
-        }
+        UserRole authority = this.userRoleRepository.getUserRoleByAuthority("USER");
+        authorities.add(authority);
 
         user.setAuthorities(authorities);
 

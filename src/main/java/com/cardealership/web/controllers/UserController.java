@@ -29,12 +29,12 @@ public class UserController extends BaseController {
 
     @GetMapping("/login")
     public ModelAndView login() {
-        return super.view("view/users/login");
+        return super.view("views/users/login");
     }
 
     @GetMapping("/register")
     public ModelAndView register() {
-        return super.view("view/users/register");
+        return super.view("views/users/register");
     }
 
     @PostMapping("/register")
