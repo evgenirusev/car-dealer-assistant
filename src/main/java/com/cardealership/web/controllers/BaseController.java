@@ -19,15 +19,15 @@ public abstract class BaseController {
     public ModelAndView view(String viewName, Object viewModel, String title) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(LAYOUT_VIEW_NAME);
+        modelAndView.addObject("viewName", viewName);
 
         if (viewModel != null) {
-            modelAndView.addObject("viewName", viewName);
             String viewModelName = String.valueOf(viewModel.getClass().getSimpleName().charAt(0)).toLowerCase() +
                     viewModel.getClass().getSimpleName().substring(1);
             modelAndView.addObject(viewModelName, viewModel);
         }
 
-        title = title == null ? "Car dealership" : title;
+        title = title == null ? "Car Dealership" : title;
 
         modelAndView.addObject("title", title);
         return modelAndView;
