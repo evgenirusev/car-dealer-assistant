@@ -1,4 +1,4 @@
-package com.cardealership.domain.model.binding;
+package com.cardealership.domain.model.binding.users;
 
 public class CreateUserRoleBindingModel {
     private String authority;

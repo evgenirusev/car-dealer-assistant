@@ -4,21 +4,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public abstract class BaseController {
     private static final String LAYOUT_VIEW_NAME = "layout";
-    private static final String DEFAULT_APP_TITLE = "Car Dealership";
-    private static final String KEY_VIEW_NAME = "viewName";
-    private static final String KEY_TITLE_NAME = "title";
-    private static final String SPRING_REDIRECT_KETWORD = "redirect:";
 
     protected BaseController() {
-    }
-
-    public ModelAndView view(String viewName, Object viewModel, String title) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(LAYOUT_VIEW_NAME);
-        modelAndView.addObject(KEY_VIEW_NAME, viewName);
-        title = title == null ? DEFAULT_APP_TITLE : title;
-        modelAndView.addObject(KEY_TITLE_NAME, title);
-        return modelAndView;
     }
 
     public ModelAndView view(String viewName) {
@@ -29,10 +16,27 @@ public abstract class BaseController {
         return this.view(viewName, viewModel, null);
     }
 
+    public ModelAndView view(String viewName, Object viewModel, String title) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(LAYOUT_VIEW_NAME);
+
+        if (viewModel != null) {
+            modelAndView.addObject("viewName", viewName);
+            String viewModelName = String.valueOf(viewModel.getClass().getSimpleName().charAt(0)).toLowerCase() +
+                    viewModel.getClass().getSimpleName().substring(1);
+            modelAndView.addObject(viewModelName, viewModel);
+        }
+
+        title = title == null ? "Car dealership" : title;
+
+        modelAndView.addObject("title", title);
+        return modelAndView;
+    }
+
     public ModelAndView redirect(String redirectUrl) {
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName(SPRING_REDIRECT_KETWORD + redirectUrl);
+        modelAndView.setViewName("redirect:" + redirectUrl);
 
         return modelAndView;
     }
