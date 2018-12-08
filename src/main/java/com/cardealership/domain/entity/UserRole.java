@@ -1,41 +1,32 @@
-package com.cardealership.domain.entities;
+package com.cardealership.domain.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_roles")
+@Table(name = "roles")
 public class UserRole implements GrantedAuthority {
+    private Long id;
+
+    private String authority;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-
-    @Column(nullable = false)
-    private String authority;
-
-    public UserRole() {
-    }
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
+    @Override
     public String getAuthority() {
         return this.authority;
     }
 
     public void setAuthority(String authority) {
         this.authority = authority;
-    }
-
-    @Override
-    public String toString() {
-        return this.authority;
     }
 }

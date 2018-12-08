@@ -1,4 +1,4 @@
-package com.cardealership.domain.entities;
+package com.cardealership.domain.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
