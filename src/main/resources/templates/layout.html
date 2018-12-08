@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:include="~{fragments/head}"/>
 </head>
 <body>
 <header>
-    <th:block th:include="~{fragments/navbar-guest}"/>
+    <div sec:authorize="isAnonymous()">
+        <th:block th:include="~{fragments/navbar-guest}"/>
+    </div>
+    <div sec:authorize="hasAuthority('USER')">
+        <th:block th:include="~{fragments/navbar-user}"/>
+    </div>
 </header>
 <main class="mt-5">
     <th:block th:include="~{${viewName}}"/>
