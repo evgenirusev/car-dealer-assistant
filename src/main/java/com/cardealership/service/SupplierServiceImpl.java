@@ -7,6 +7,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class SupplierServiceImpl implements SupplierService {
 
@@ -24,5 +28,19 @@ public class SupplierServiceImpl implements SupplierService {
     public void createSupplier(SupplierServiceModel supplierServiceModel) {
         Supplier supplierEntity = this.modelMapper.map(supplierServiceModel, Supplier.class);
         this.supplierRepository.save(supplierEntity);
+    }
+
+    @Override
+    public Set<SupplierServiceModel> findAllByImporter(boolean isImporter) {
+        List<Supplier> supplierEntities = this.supplierRepository.findAllSuppliersByImporter(isImporter);
+        Set<SupplierServiceModel> supplierServiceSet = new LinkedHashSet<>();
+
+        for (Supplier supplierEntity : supplierEntities) {
+            SupplierServiceModel supplierService = new SupplierServiceModel();
+            supplierService.setId(supplierEntity.getId());
+            supplierService.setName(supplierEntity.getName());
+            supplierServiceSet.add(supplierService);
+        }
+        return supplierServiceSet;
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Set;
+
 @Controller
 @RequestMapping("/suppliers")
 public class SupplierController extends BaseController {
@@ -34,5 +36,17 @@ public class SupplierController extends BaseController {
         SupplierServiceModel supplierServiceModel = this.modelMapper.map(createSupplierBindingModel, SupplierServiceModel.class);
         this.supplierService.createSupplier(supplierServiceModel);
         return super.redirect("/");
+    }
+
+    @GetMapping("/local")
+    public ModelAndView localSuppliers() {
+        Set<SupplierServiceModel> suppliers = this.supplierService.findAllByImporter(false);
+        return super.view("views/suppliers/all", suppliers);
+    }
+
+    @GetMapping("/importers")
+    public ModelAndView importerSuppliers() {
+        Set<SupplierServiceModel> suppliers = this.supplierService.findAllByImporter(true);
+        return super.view("views/suppliers/all", suppliers);
     }
 }

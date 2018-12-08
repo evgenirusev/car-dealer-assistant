@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Suppliers</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="supplier : ${viewModel}">
+            <tr>
+                <th th:text="${supplier.id}"></th>
+                <td th:text="${supplier.name}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+
+        </tbody>
+    </table>
+</div>

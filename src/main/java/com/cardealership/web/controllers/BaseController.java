@@ -1,47 +1,48 @@
 package com.cardealership.web.controllers;
 
 import org.springframework.web.servlet.ModelAndView;
+abstract class BaseController {
 
-public abstract class BaseController {
-    private static final String LAYOUT_VIEW_NAME = "layout";
-    private static final String DEFAULT_APP_TITLE = "Car Dealership";
-    private static final String VIEW_NAME_TEMPLATE_LAYOUT_ATTRIBUTE = "viewName";
-    private static final String TITLE_TEMPLATE_LAYOUT_ATTRIBUTE = "title";
-    private static final String SPRING_REDIRECT_KETWORD = "redirect:";
+    private static final String APPLICATION_TITLE = "Car Dealership";
+    private static final String BASE_PAGE_LAYOUT = "layout";
+    private static final String PROPERTY_VIEW_NAME = "viewName";
+    private static final String PROPERTY_VIEW_MODEL = "viewModel";
+    private static final String PROPERTY_TITLE = "title";
+    private static final String REDIRECT_KEYWORD = "redirect:";
 
-    protected BaseController() {
+    final ModelAndView view(final String viewName, final Object viewModel, String title) {
+
+        title = title == null ? APPLICATION_TITLE : title;
+
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(BASE_PAGE_LAYOUT);
+        modelAndView.addObject(PROPERTY_VIEW_NAME, viewName);
+        modelAndView.addObject(PROPERTY_VIEW_MODEL, viewModel);
+        modelAndView.addObject(PROPERTY_TITLE, title);
+
+        return modelAndView;
     }
 
-    public ModelAndView view(String viewName) {
-        return this.view(viewName, null, null);
+    final ModelAndView view(final String viewName, final String title) {
+        return this.view(viewName, null, title);
     }
 
-    public ModelAndView view(String viewName, Object viewModel) {
+    final ModelAndView view(final String viewName, final Object viewModel) {
         return this.view(viewName, viewModel, null);
     }
 
-    public ModelAndView view(String viewName, Object viewModel, String title) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(LAYOUT_VIEW_NAME);
-        modelAndView.addObject(VIEW_NAME_TEMPLATE_LAYOUT_ATTRIBUTE , viewName);
+    final ModelAndView view(final String viewName) {
+        return this.view(viewName, null, null);
+    }
 
-        if (viewModel != null) {
-            String viewModelName = String.valueOf(viewModel.getClass().getSimpleName().charAt(0)).toLowerCase() +
-                    viewModel.getClass().getSimpleName().substring(1);
-            modelAndView.addObject(viewModelName, viewModel);
-        }
-
-        title = title == null ? DEFAULT_APP_TITLE : title;
-
-        modelAndView.addObject(TITLE_TEMPLATE_LAYOUT_ATTRIBUTE, title);
+    final ModelAndView redirect(final String redirectUrl, final Object viewModel) {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject(PROPERTY_VIEW_MODEL, viewModel);
+        modelAndView.setViewName(REDIRECT_KEYWORD + redirectUrl);
         return modelAndView;
     }
 
-    public ModelAndView redirect(String redirectUrl) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        modelAndView.setViewName(SPRING_REDIRECT_KETWORD + redirectUrl);
-
-        return modelAndView;
+    final ModelAndView redirect(final String redirectUrl) {
+        return this.redirect(redirectUrl, null);
     }
 }
