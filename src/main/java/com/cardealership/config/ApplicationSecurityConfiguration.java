@@ -22,7 +22,7 @@ public class ApplicationSecurityConfiguration
                     .loginPage("/users/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/home");
+                    .defaultSuccessUrl("/");
         ;
     }
 }

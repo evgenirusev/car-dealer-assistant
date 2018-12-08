@@ -46,6 +46,10 @@ public class UserServiceImpl implements UserService {
         User user = this.modelMapper.map(userServiceModel, User.class);
 
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEnabled(true);
 
         Set<UserRole> authorities = new HashSet<>();
 
@@ -53,12 +57,6 @@ public class UserServiceImpl implements UserService {
         authorities.add(authority);
 
         user.setAuthorities(authorities);
-
-        try {
-            this.userRepository.save(user);
-        } catch (Exception ignored) {
-            return false;
-        }
 
         return this.userRepository.save(user) != null;
     }

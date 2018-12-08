@@ -1,6 +1,6 @@
 package com.cardealership.domain.model.binding;
 
-public class RegisterUserBindingModel {
+public class CreateUserBindingModel {
 
     private String username;
 
@@ -8,7 +8,7 @@ public class RegisterUserBindingModel {
 
     private String email;
 
-    public RegisterUserBindingModel() {
+    public CreateUserBindingModel() {
     }
 
     public String getUsername() {

@@ -1,6 +1,6 @@
 package com.cardealership.web.controllers;
 
-import com.cardealership.domain.model.binding.RegisterUserBindingModel;
+import com.cardealership.domain.model.binding.CreateUserBindingModel;
 import com.cardealership.domain.model.service.UserServiceModel;
 import com.cardealership.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -38,8 +38,8 @@ public class UserController extends BaseController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerConfirm(@ModelAttribute RegisterUserBindingModel registerUserBindingModel) {
-        UserServiceModel userServiceModel = this.modelMapper.map(registerUserBindingModel, UserServiceModel.class);
+    public ModelAndView registerConfirm(@ModelAttribute CreateUserBindingModel createUserBindingModel) {
+        UserServiceModel userServiceModel = this.modelMapper.map(createUserBindingModel, UserServiceModel.class);
         this.userService.registerUser(userServiceModel);
         return super.redirect("login");
     }
