@@ -1,7 +1,7 @@
 package com.cardealership.config;
 
 import com.cardealership.domain.model.binding.users.CreateUserRoleBindingModel;
-import com.cardealership.domain.model.service.UserRoleServiceModel;
+import com.cardealership.domain.model.service.users.UserRoleServiceModel;
 import com.cardealership.service.UserRoleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

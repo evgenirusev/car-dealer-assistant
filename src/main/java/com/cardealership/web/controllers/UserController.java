@@ -1,7 +1,7 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.users.CreateUserBindingModel;
-import com.cardealership.domain.model.service.UserServiceModel;
+import com.cardealership.domain.model.service.users.UserServiceModel;
 import com.cardealership.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

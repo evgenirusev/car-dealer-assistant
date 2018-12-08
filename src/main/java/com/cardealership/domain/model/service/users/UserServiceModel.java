@@ -1,4 +1,4 @@
-package com.cardealership.domain.model.service;
+package com.cardealership.domain.model.service.users;
 
 public class UserServiceModel {
 

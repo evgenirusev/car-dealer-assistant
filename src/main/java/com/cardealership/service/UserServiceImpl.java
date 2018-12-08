@@ -2,7 +2,7 @@ package com.cardealership.service;
 
 import com.cardealership.domain.entity.User;
 import com.cardealership.domain.entity.UserRole;
-import com.cardealership.domain.model.service.UserServiceModel;
+import com.cardealership.domain.model.service.users.UserServiceModel;
 import com.cardealership.factories.UserRoleFactory;
 import com.cardealership.repository.UserRepository;
 import com.cardealership.repository.UserRoleRepository;

@@ -1,6 +1,6 @@
 package com.cardealership.service;
 
-import com.cardealership.domain.model.service.UserRoleServiceModel;
+import com.cardealership.domain.model.service.users.UserRoleServiceModel;
 
 public interface UserRoleService {
 
