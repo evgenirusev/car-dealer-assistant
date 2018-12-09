@@ -6,6 +6,7 @@ import com.cardealership.service.SupplierService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,8 +23,14 @@ public class PartController extends BaseController {
     }
 
     @GetMapping("/create")
-    public ModelAndView create(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
+    public ModelAndView createPart(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
         Set<SupplierForCreatingPartModel> suppliers = this.supplierService.findAllSuppliers();
-        return super.view("/parts/create", suppliers);
+        return super.view("/views/parts/create", suppliers);
+    }
+
+    @PostMapping("create")
+    public ModelAndView confirmCreatePart(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
+        // TODO: Persist part
+        return super.redirect("/");
     }
 }
