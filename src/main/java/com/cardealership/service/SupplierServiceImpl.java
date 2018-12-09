@@ -2,6 +2,7 @@ package com.cardealership.service;
 
 import com.cardealership.domain.entity.Supplier;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
+import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 import com.cardealership.repository.SupplierRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,16 @@ public class SupplierServiceImpl implements SupplierService {
             supplierServiceSet.add(supplierService);
         }
         return supplierServiceSet;
+    }
+
+    @Override
+    public Set<SupplierForCreatingPartModel> findAllSuppliers() {
+        Set<SupplierForCreatingPartModel> supplierForCreatingPartModels = new LinkedHashSet<>();
+        this.supplierRepository.findAll().forEach(supplier -> {
+            SupplierForCreatingPartModel supplierForCreatingPartModel = new SupplierForCreatingPartModel();
+            supplierForCreatingPartModel.setName(supplier.getName());
+            supplierForCreatingPartModels.add(supplierForCreatingPartModel);
+        });
+        return supplierForCreatingPartModels;
     }
 }
