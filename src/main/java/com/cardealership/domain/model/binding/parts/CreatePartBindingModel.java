@@ -5,7 +5,7 @@ public class CreatePartBindingModel {
 
     private Double price;
 
-    private String supplier;
+    private String supplierId;
 
     public CreatePartBindingModel() {
     }
@@ -26,11 +26,11 @@ public class CreatePartBindingModel {
         this.price = price;
     }
 
-    public String getSupplier() {
-        return supplier;
+    public String getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
+    public void setSupplierId(String supplierId) {
+        this.supplierId = supplierId;
     }
 }

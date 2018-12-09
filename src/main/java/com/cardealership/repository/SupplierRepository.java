@@ -10,9 +10,10 @@ import java.util.List;
 
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier, Long> {
-
     @Query(value = "SELECT *\n" +
             "  FROM suppliers AS s\n" +
             "WHERE s.is_importer = :isImporter", nativeQuery = true)
     List<Supplier> findAllSuppliersByImporter(@Param("isImporter") boolean isImporter);
+
+    Supplier findSupplierById(Long id);
 }

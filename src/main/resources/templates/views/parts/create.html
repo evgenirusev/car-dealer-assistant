@@ -14,9 +14,9 @@
                 </div>
                 <div class="form-group row">
                     <label for="supplier" class="col-sm-3">Supplier</label>
-                    <select class="form-control col-sm-9" id="supplier" th:field="*{supplier}">
+                    <select class="form-control col-sm-9" id="supplier" th:field="*{supplierId}">
                         <option th:each="supplier : ${viewModel}"
-                                th:value="${supplier.name}"
+                                th:value="${supplier.supplierId}"
                                 th:text="${supplier.name}">
                         </option>
                     </select>

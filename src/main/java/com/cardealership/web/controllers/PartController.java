@@ -1,8 +1,11 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.parts.CreatePartBindingModel;
+import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
+import com.cardealership.service.PartService;
 import com.cardealership.service.SupplierService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,8 +21,14 @@ public class PartController extends BaseController {
 
     private final SupplierService supplierService;
 
-    public PartController(SupplierService supplierService) {
+    private final PartService partService;
+
+    private final ModelMapper modelMapper;
+
+    public PartController(SupplierService supplierService, PartService partService, ModelMapper modelMapper) {
         this.supplierService = supplierService;
+        this.partService = partService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/create")
@@ -30,7 +39,9 @@ public class PartController extends BaseController {
 
     @PostMapping("create")
     public ModelAndView confirmCreatePart(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
-        // TODO: Persist part
+        PartServiceModel partServiceModel = this.modelMapper.map(createPartBindingModel, PartServiceModel.class);
+        partServiceModel.setId(Long.parseLong(createPartBindingModel.getSupplierId()));
+        this.partService.createPart(partServiceModel);
         return super.redirect("/");
     }
 }

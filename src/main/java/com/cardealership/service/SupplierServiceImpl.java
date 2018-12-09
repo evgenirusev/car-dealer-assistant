@@ -51,8 +51,14 @@ public class SupplierServiceImpl implements SupplierService {
         this.supplierRepository.findAll().forEach(supplier -> {
             SupplierForCreatingPartModel supplierForCreatingPartModel = new SupplierForCreatingPartModel();
             supplierForCreatingPartModel.setName(supplier.getName());
+            supplierForCreatingPartModel.setSupplierId(supplier.getId());
             supplierForCreatingPartModels.add(supplierForCreatingPartModel);
         });
         return supplierForCreatingPartModels;
+    }
+
+    @Override
+    public Supplier findSupplierById(Long id) {
+        return this.supplierRepository.findSupplierById(id);
     }
 }
