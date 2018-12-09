@@ -3,6 +3,7 @@ package com.cardealership.service;
 import com.cardealership.domain.entity.Part;
 import com.cardealership.domain.entity.Supplier;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
+import com.cardealership.domain.model.view.cars.PartsForCreatingCarModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.repository.PartRepository;
 import org.modelmapper.ModelMapper;
@@ -38,12 +39,22 @@ public class PartServiceImpl implements PartService {
     @Override
     public List<PartViewModel> findAllParts() {
         List<PartViewModel> partViewModels = new ArrayList<>();
-
         this.partRepository.findAll().forEach(part -> {
             PartViewModel partViewModel = this.modelMapper.map(part, PartViewModel.class);
             partViewModels.add(partViewModel);
         });
-
         return partViewModels;
+    }
+
+    @Override
+    public List<PartsForCreatingCarModel> findAllPartsForCreatingCar() {
+        List<PartsForCreatingCarModel> partsForCreatingCarModels = new ArrayList<>();
+        this.partRepository.findAll().forEach(part -> {
+            PartsForCreatingCarModel supplierForCreatingPartModel = new PartsForCreatingCarModel();
+            supplierForCreatingPartModel.setName(part.getName());
+            supplierForCreatingPartModel.setPartId(part.getId());
+            partsForCreatingCarModels.add(supplierForCreatingPartModel);
+        });
+        return partsForCreatingCarModels;
     }
 }
