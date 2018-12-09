@@ -2,6 +2,8 @@ package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.customers.CreateCustomerBindingModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
+import com.cardealership.domain.model.view.customers.CustomerOrderViewModel;
+import com.cardealership.domain.model.view.customers.CustomerViewModel;
 import com.cardealership.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/customers")
@@ -36,5 +39,23 @@ public class CustomerController extends BaseController {
         CustomerServiceModel customerServiceModel = this.modelMapper.map(createCustomerBindingModel, CustomerServiceModel.class);
         this.customerService.createCustomer(customerServiceModel);
         return super.redirect("/");
+    }
+
+    @GetMapping("/all/ascending")
+    public ModelAndView customersAscending() {
+        CustomerOrderViewModel customerOrderViewModel = new CustomerOrderViewModel();
+        customerOrderViewModel.setOrder("ascending");
+        List<CustomerViewModel> customerViewModels = this.customerService.getAllCustomersOrderByBirthDateAscendingOrder();
+        customerOrderViewModel.setCustomerViewModels(customerViewModels);
+        return super.view("/views/customers/all", customerOrderViewModel);
+    }
+
+    @GetMapping("/all/descending")
+    public ModelAndView customersDescending() {
+        CustomerOrderViewModel customerOrderViewModel = new CustomerOrderViewModel();
+        customerOrderViewModel.setOrder("descending");
+        List<CustomerViewModel> customerViewModels = this.customerService.getAllCustomersOrderByBirthDateDescendingOrder();
+        customerOrderViewModel.setCustomerViewModels(customerViewModels);
+        return super.view("/views/customers/all", customerOrderViewModel);
     }
 }
