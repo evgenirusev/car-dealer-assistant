@@ -28,7 +28,7 @@ public class SupplierController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView create(@ModelAttribute CreateSupplierBindingModel createSupplierBindingModel) {
-        return super.view("/views/suppliers/create", createSupplierBindingModel);
+        return super.view("/views/suppliers/create");
     }
 
     @PostMapping("/create")

@@ -1,28 +1,15 @@
-package com.cardealership.domain.entity;
+package com.cardealership.domain.model.service.cars;
 
-import javax.persistence.*;
-import java.util.Set;
-
-@Entity
-@Table(name = "cars")
-public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CarServiceModel {
     private Long id;
 
-    @Column(name = "brand")
     private String brand;
 
-    @Column(name = "model")
     private String model;
 
-    @Column(name = "traveled_distance")
     private Long travelledDistance;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "cars")
-    private Set<Part> parts;
-
-    public Car() {
+    public CarServiceModel() {
     }
 
     public Long getId() {
@@ -55,13 +42,5 @@ public class Car {
 
     public void setTravelledDistance(Long travelledDistance) {
         this.travelledDistance = travelledDistance;
-    }
-
-    public Set<Part> getParts() {
-        return parts;
-    }
-
-    public void setParts(Set<Part> parts) {
-        this.parts = parts;
     }
 }
