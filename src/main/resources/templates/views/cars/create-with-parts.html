@@ -5,8 +5,8 @@
         <div class="col-sm-8">
             <form th:object="${createCarWithPartsBindingModel}" th:method="post" th:action="@{/cars/create-with-parts}">
                 <div class="form-group row">
-                    <label for="make" class="col-sm-3">Make</label>
-                    <input type="text" class="form-control col-sm-9" id="make" th:field="*{brand}" placeholder="Enter make">
+                    <label for="brand" class="col-sm-3">Brand</label>
+                    <input type="text" class="form-control col-sm-9" id="brand" th:field="*{brand}" placeholder="Enter brand">
                 </div>
                 <div class="form-group row">
                     <label for="model" class="col-sm-3">Model</label>

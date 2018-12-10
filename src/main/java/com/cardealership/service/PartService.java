@@ -12,4 +12,6 @@ public interface PartService {
     List<PartViewModel> findAllParts();
 
     List<PartsForCreatingCarModel> findAllPartsForCreatingCar();
+
+    PartServiceModel findPartById(Long id);
 }

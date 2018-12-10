@@ -1,7 +1,6 @@
 package com.cardealership.service;
 
-import com.cardealership.domain.entity.Supplier;
-import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
+import com.cardealership.domain.entity.SupplierServiceModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 import com.cardealership.repository.SupplierRepository;
 import org.modelmapper.ModelMapper;
@@ -26,18 +25,18 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public void createSupplier(SupplierServiceModel supplierServiceModel) {
-        Supplier supplierEntity = this.modelMapper.map(supplierServiceModel, Supplier.class);
+    public void createSupplier(com.cardealership.domain.model.service.suppliers.SupplierServiceModel supplierServiceModel) {
+        SupplierServiceModel supplierEntity = this.modelMapper.map(supplierServiceModel, SupplierServiceModel.class);
         this.supplierRepository.save(supplierEntity);
     }
 
     @Override
-    public Set<SupplierServiceModel> findAllByImporter(boolean isImporter) {
-        List<Supplier> supplierEntities = this.supplierRepository.findAllSuppliersByImporter(isImporter);
-        Set<SupplierServiceModel> supplierServiceSet = new LinkedHashSet<>();
+    public Set<com.cardealership.domain.model.service.suppliers.SupplierServiceModel> findAllByImporter(boolean isImporter) {
+        List<SupplierServiceModel> supplierEntities = this.supplierRepository.findAllSuppliersByImporter(isImporter);
+        Set<com.cardealership.domain.model.service.suppliers.SupplierServiceModel> supplierServiceSet = new LinkedHashSet<>();
 
-        for (Supplier supplierEntity : supplierEntities) {
-            SupplierServiceModel supplierService = new SupplierServiceModel();
+        for (SupplierServiceModel supplierEntity : supplierEntities) {
+            com.cardealership.domain.model.service.suppliers.SupplierServiceModel supplierService = new com.cardealership.domain.model.service.suppliers.SupplierServiceModel();
             supplierService.setId(supplierEntity.getId());
             supplierService.setName(supplierEntity.getName());
             supplierServiceSet.add(supplierService);
@@ -58,7 +57,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Supplier findSupplierById(Long id) {
+    public SupplierServiceModel findSupplierById(Long id) {
         return this.supplierRepository.findSupplierById(id);
     }
 }

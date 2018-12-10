@@ -7,6 +7,8 @@ public class PartServiceModel {
 
     private String price;
 
+    private Long quantity;
+
     private Long supplierId;
 
     public PartServiceModel() {
@@ -42,5 +44,13 @@ public class PartServiceModel {
 
     public void setSupplierId(Long supplierId) {
         this.supplierId = supplierId;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 }

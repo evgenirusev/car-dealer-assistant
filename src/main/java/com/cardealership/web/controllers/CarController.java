@@ -3,6 +3,7 @@ package com.cardealership.web.controllers;
 import com.cardealership.domain.model.binding.cars.CreateCarBindingModel;
 import com.cardealership.domain.model.binding.cars.CreateCarWithPartsBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
+import com.cardealership.domain.model.service.cars.CarWithPartsServiceModel;
 import com.cardealership.domain.model.view.cars.PartsForCreatingCarModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
@@ -50,5 +51,14 @@ public class CarController extends BaseController {
     public ModelAndView createCarWithParts(@ModelAttribute CreateCarWithPartsBindingModel createCarWithPartsBindingModel) {
         List<PartsForCreatingCarModel> partsForCreatingCarModels = this.partService.findAllPartsForCreatingCar();
         return super.view("/views/cars/create-with-parts", partsForCreatingCarModels);
+    }
+
+
+
+    @PostMapping("/create-with-parts")
+    public ModelAndView confirmCreateCarWithParts(@ModelAttribute CreateCarWithPartsBindingModel createCarWithPartsBindingModel) {
+        CarWithPartsServiceModel carWithPartsServiceModel = this.modelMapper.map(createCarWithPartsBindingModel, CarWithPartsServiceModel.class);
+        this.carService.createCar(carWithPartsServiceModel);
+        return super.redirect("/");
     }
 }

@@ -1,7 +1,6 @@
 package com.cardealership.domain.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,23 +19,17 @@ public class Part {
     @Column(name = "quantity")
     private Long quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
+    private SupplierServiceModel supplier;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "parts_cars",
             joinColumns = @JoinColumn(name = "part_id"),
             inverseJoinColumns = @JoinColumn(name = "car_id"))
-    private Set<Car> cars = new HashSet<>();
+    private Set<Car> cars;
 
     public Part() { }
-
-    public Part(String name, Double price, Long quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
 
     public Long getId() {
         return id;
@@ -70,11 +63,11 @@ public class Part {
         this.quantity = quantity;
     }
 
-    public Supplier getSupplier() {
+    public SupplierServiceModel getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(Supplier supplier) {
+    public void setSupplier(SupplierServiceModel supplier) {
         this.supplier = supplier;
     }
 
@@ -84,5 +77,9 @@ public class Part {
 
     public void setCars(Set<Car> cars) {
         this.cars = cars;
+    }
+
+    public void addCar(Car car) {
+        this.cars.add(car);
     }
 }

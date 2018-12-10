@@ -1,7 +1,7 @@
 package com.cardealership.service;
 
 import com.cardealership.domain.entity.Part;
-import com.cardealership.domain.entity.Supplier;
+import com.cardealership.domain.entity.SupplierServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.cars.PartsForCreatingCarModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
@@ -29,7 +29,7 @@ public class PartServiceImpl implements PartService {
 
     @Override
     public void createPart(PartServiceModel partServiceModel) {
-        Supplier supplier = this.supplierService.findSupplierById(partServiceModel.getId());
+        SupplierServiceModel supplier = this.supplierService.findSupplierById(partServiceModel.getId());
         Part part = this.modelMapper.map(partServiceModel, Part.class);
         part.setId(supplier.getId());
         part.setQuantity(1L);
@@ -56,5 +56,12 @@ public class PartServiceImpl implements PartService {
             partsForCreatingCarModels.add(supplierForCreatingPartModel);
         });
         return partsForCreatingCarModels;
+    }
+
+    @Override
+    public PartServiceModel findPartById(Long id) {
+        Part part = this.partRepository.findPartById(id);
+        PartServiceModel partServiceModel = this.modelMapper.map(part, PartServiceModel.class);
+        return partServiceModel;
     }
 }
