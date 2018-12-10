@@ -36,7 +36,6 @@ public class CarServiceImpl implements CarService {
         this.partRepository = partRepository;
     }
 
-
     @Override
     public void createCar(CarServiceModel carServiceModel) {
         Car carEntity = this.modelMapper.map(carServiceModel, Car.class);
