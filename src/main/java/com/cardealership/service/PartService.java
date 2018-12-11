@@ -1,7 +1,7 @@
 package com.cardealership.service;
 
 import com.cardealership.domain.model.service.parts.PartServiceModel;
-import com.cardealership.domain.model.view.cars.PartsForCreatingCarModel;
+import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 
 import java.util.List;

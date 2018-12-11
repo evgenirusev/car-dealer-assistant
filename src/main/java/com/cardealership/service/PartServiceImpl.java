@@ -3,7 +3,7 @@ package com.cardealership.service;
 import com.cardealership.domain.entity.Part;
 import com.cardealership.domain.entity.SupplierServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
-import com.cardealership.domain.model.view.cars.PartsForCreatingCarModel;
+import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.repository.PartRepository;
 import org.modelmapper.ModelMapper;

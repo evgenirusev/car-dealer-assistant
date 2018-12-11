@@ -2,6 +2,7 @@ package com.cardealership.service;
 
 import com.cardealership.domain.entity.Customer;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
+import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
 import com.cardealership.domain.model.view.customers.CustomerViewModel;
 import com.cardealership.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
@@ -53,5 +54,17 @@ public class CustomerServiceImpl implements CustomerService {
                 }
         );
         return customerViewModels;
+    }
+
+    @Override
+    public List<CustomerForCreatingSaleModel> findAllCustomersForCreatingSale() {
+        List<Customer> customerEntities = this.customerRepository.findAll();
+        List<CustomerForCreatingSaleModel> customerModels = new ArrayList<>();
+        customerEntities.forEach(customerEntity -> {
+            CustomerForCreatingSaleModel customerModel
+                    = this.modelMapper.map(customerEntity, CustomerForCreatingSaleModel.class);
+            customerModels.add(customerModel);
+        });
+        return customerModels;
     }
 }

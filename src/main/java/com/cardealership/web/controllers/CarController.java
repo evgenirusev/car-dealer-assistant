@@ -4,7 +4,7 @@ import com.cardealership.domain.model.binding.cars.CreateCarBindingModel;
 import com.cardealership.domain.model.binding.cars.CreateCarWithPartsBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.cars.CarWithPartsServiceModel;
-import com.cardealership.domain.model.view.cars.PartsForCreatingCarModel;
+import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
 import org.modelmapper.ModelMapper;

@@ -1,4 +1,4 @@
-package com.cardealership.domain.model.view.cars;
+package com.cardealership.domain.model.view.parts;
 
 public class PartsForCreatingCarModel {
 
