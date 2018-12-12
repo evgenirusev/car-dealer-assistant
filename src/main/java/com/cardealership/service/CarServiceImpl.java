@@ -4,7 +4,7 @@ import com.cardealership.domain.entity.Car;
 import com.cardealership.domain.entity.Part;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.cars.CarWithPartsServiceModel;
-import com.cardealership.domain.model.view.cars.CarForCreatingSaleModel;
+import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
 import com.cardealership.repository.CarRepository;
 import com.cardealership.repository.PartRepository;
 import org.modelmapper.ModelMapper;
@@ -59,15 +59,20 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<CarForCreatingSaleModel> findAllCarModelsForCretingSale() {
+    public List<CarForCreatingSaleViewModel> findAllCarModelsForCretingSale() {
         List<Car> carEntities = this.carRepository.findAll();
-        List<CarForCreatingSaleModel> carModels =  new ArrayList<>();
+        List<CarForCreatingSaleViewModel> carModels =  new ArrayList<>();
 
         carEntities.forEach(carEntity -> {
-            CarForCreatingSaleModel carModel = this.modelMapper.map(carEntity, CarForCreatingSaleModel.class);
+            CarForCreatingSaleViewModel carModel = this.modelMapper.map(carEntity, CarForCreatingSaleViewModel.class);
             carModels.add(carModel);
         });
 
         return carModels;
+    }
+
+    @Override
+    public double GetCarPrice(Long id) {
+        return this.carRepository.getCarPrice(id);
     }
 }

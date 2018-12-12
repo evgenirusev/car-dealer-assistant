@@ -1,29 +1,29 @@
 package com.cardealership.domain.model.binding.sale;
 
 public class CreateSaleBindingModel {
-    private String customer;
+    private String customerId;
 
-    private String car;
+    private String carId;
 
     private Double discount;
 
     public CreateSaleBindingModel() {
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public String getCar() {
-        return car;
+    public String getCarId() {
+        return carId;
     }
 
-    public void setCar(String car) {
-        this.car = car;
+    public void setCarId(String carId) {
+        this.carId = carId;
     }
 
     public Double getDiscount() {

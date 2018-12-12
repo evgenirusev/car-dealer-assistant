@@ -1,13 +1,24 @@
-package com.cardealership.domain.model.view.sales;
+package com.cardealership.domain.model.view.cars;
 
-public class CarReviewViewModel {
+public class CarForCreatingSaleViewModel {
+
+    private Long id;
+
     private String brand;
 
     private String model;
 
     private Double price;
 
-    public CarReviewViewModel() {
+    public CarForCreatingSaleViewModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getBrand() {

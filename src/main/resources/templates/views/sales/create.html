@@ -5,8 +5,8 @@
         <div class="col-sm-8">
             <form th:method="post" th:action="@{/sales/create/review}" th:object="${createSaleBindingModel}">
                 <div class="form-group row">
-                    <label for="customer" class="col-sm-3">Customer</label>
-                    <select class="form-control col-sm-9" id="customer" th:field="*{customer}">
+                    <label for="customerId" class="col-sm-3">Customer</label>
+                    <select class="form-control col-sm-9" id="customerId" th:field="*{customerId}">
                         <option th:each="customerModel : ${viewModel.customersForCreatingSaleList}"
                                 th:value="${customerModel.id}"
                                 th:text="${customerModel.name}">
@@ -14,8 +14,8 @@
                     </select>
                 </div>
                 <div class="form-group row">
-                    <label for="car" class="col-sm-3">Car</label>
-                    <select class="form-control col-sm-9" id="car" th:field="*{car}">
+                    <label for="carId" class="col-sm-3">Car</label>
+                    <select class="form-control col-sm-9" id="carId" th:field="*{carId}">
                         <option th:each="carModel : ${viewModel.carsForCreatingSaleList}"
                                 th:value="${carModel.id}"
                                 th:text="|${carModel.brand} ${carModel.model}|">

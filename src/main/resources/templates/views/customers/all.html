@@ -9,13 +9,13 @@
             </tr>
         </thead>
         <tbody>
-        <tr th:each="customer: *{customerViewModels}">
-            <td th:text="${customer.name}"></td>
-            <td th:text="${customer.birthDate}"></td>
-            <td th:if="${customer.isDriverYoung()}">
+        <tr th:each="customerId: *{customerViewModels}">
+            <td th:text="${customerId.name}"></td>
+            <td th:text="${customerId.birthDate}"></td>
+            <td th:if="${customerId.isDriverYoung()}">
                 <div th:text="yes"></div>
             </td>
-            <td th:unless="${customer.isDriverYoung()}">
+            <td th:unless="${customerId.isDriverYoung()}">
                 <div th:text="no"></div>
             </td>
         </tr>
