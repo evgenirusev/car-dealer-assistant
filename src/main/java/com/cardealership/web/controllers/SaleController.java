@@ -3,12 +3,15 @@ package com.cardealership.web.controllers;
 import com.cardealership.domain.model.binding.sale.CreateSaleBindingModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleModel;
 import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
+import com.cardealership.domain.model.view.sales.CarReviewViewModel;
 import com.cardealership.domain.model.view.sales.CreateSaleViewModel;
+import com.cardealership.domain.model.view.sales.CustomerReviewViewModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,5 +42,10 @@ public class SaleController extends BaseController{
         createSaleViewModel.setCustomersForCreatingSaleList(customerModels);
 
         return super.view("/views/sales/create", createSaleViewModel);
+    }
+
+    @PostMapping("/create/review")
+    public ModelAndView createSaleReview(@ModelAttribute CreateSaleBindingModel createSaleBindingModel) {
+        return super.view("/views/sales/create-review");
     }
 }
