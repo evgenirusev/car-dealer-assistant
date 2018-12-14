@@ -16,13 +16,10 @@ public class PartServiceImpl implements PartService {
 
     private final PartRepository partRepository;
 
-    private final SupplierService supplierService;
-
     private final ModelMapper modelMapper;
 
-    public PartServiceImpl(PartRepository partRepository, SupplierService supplierService, ModelMapper modelMapper) {
+    public PartServiceImpl(PartRepository partRepository, ModelMapper modelMapper) {
         this.partRepository = partRepository;
-        this.supplierService = supplierService;
         this.modelMapper = modelMapper;
     }
 
@@ -65,11 +62,5 @@ public class PartServiceImpl implements PartService {
         });
         partModel.setCars(carServiceModels);
         return partModel;
-    }
-
-    @Override
-    public PartServiceModel findPartByName(String name) {
-        Part partEntity = this.partRepository.findPartByName(name);
-        return this.modelMapper.map(partEntity, PartServiceModel.class);
     }
 }

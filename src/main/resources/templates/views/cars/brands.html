@@ -4,14 +4,14 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="supplier : ${viewModel}">
+        <th:block th:each="car : ${viewModel}">
             <tr>
-                <th th:text="${supplier.id}"></th>
-                <td th:text="${supplier.name}"></td>
+                <th th:text="${car.id}"></th>
+                <td th:text="${car.name}"></td>
             </tr>
         </th:block>
         </tbody>

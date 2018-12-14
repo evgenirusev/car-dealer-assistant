@@ -6,7 +6,6 @@ import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
-import org.hibernate.collection.internal.PersistentSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,20 +43,20 @@ public class CarController extends BaseController {
     }
 
     @PostMapping("/create")
-    public ModelAndView confirmCreateCarWithParts(@ModelAttribute CreateCarBindingModel carServiceModel) {
-        CarServiceModel carWithPartsServiceModel = this.modelMapper.map(carServiceModel, CarServiceModel.class);
-
-        Set<PartServiceModel> parts = new HashSet<>();
-
-        carServiceModel.getPartIds().forEach(partId -> {
-            PartServiceModel partServiceModel = this.partService.findPartById(Long.valueOf(partId));
-            partServiceModel.addCar(carWithPartsServiceModel);
-            parts.add(partServiceModel);
+    public ModelAndView confirmCreateCarWithParts(@ModelAttribute CreateCarBindingModel carBindingModel) {
+        CarServiceModel carWithPartsServiceModel = this.modelMapper.map(carBindingModel, CarServiceModel.class);
+        Set<PartServiceModel> partModels = new HashSet<>();
+        carBindingModel.getPartIds().forEach(partId -> {
+            PartServiceModel partModel = this.partService.findPartById(partId);
+            partModels.add(partModel);
         });
-
-        carWithPartsServiceModel.setParts(parts);
-
+        carWithPartsServiceModel.setParts(partModels);
         this.carService.createCar(carWithPartsServiceModel);
         return super.redirect("/");
+    }
+
+    @GetMapping("/brands")
+    public ModelAndView carBrands() {
+        return null;
     }
 }

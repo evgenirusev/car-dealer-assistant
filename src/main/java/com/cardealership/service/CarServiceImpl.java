@@ -1,13 +1,10 @@
 package com.cardealership.service;
 
 import com.cardealership.domain.entity.Car;
-import com.cardealership.domain.entity.Part;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
-import com.cardealership.domain.model.service.parts.PartServiceModel;
+import com.cardealership.domain.model.view.cars.CarBrandsViewModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
 import com.cardealership.repository.CarRepository;
-import com.cardealership.repository.PartRepository;
-import org.hibernate.collection.internal.PersistentSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +18,10 @@ public class CarServiceImpl implements CarService {
 
     private final ModelMapper modelMapper;
 
-    // Decouple Repository Layer From Service Layer
-    private final PartRepository partRepository;
-
     @Autowired
-    public CarServiceImpl(CarRepository carRepository, PartService partService, ModelMapper modelMapper, SupplierService supplierService, PartRepository partRepository) {
+    public CarServiceImpl(CarRepository carRepository, PartService partService, ModelMapper modelMapper, SupplierService supplierService) {
         this.carRepository = carRepository;
         this.modelMapper = modelMapper;
-        this.partRepository = partRepository;
     }
 
     @Override
@@ -39,17 +32,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void createCar(CarServiceModel carServiceModel) {
-        Car car = this.modelMapper.map(carServiceModel, Car.class);
-
-        Set<Part> partEntities = new HashSet<>();
-
-        carServiceModel.getParts().forEach(part -> {
-            Part partEntity = this.partRepository.findPartById(part.getId());
-            partEntity.addCar(car);
-            partEntities.add(partEntity);
-        });
-
-        car.setParts(partEntities);
+        ModelMapper modelMapper = new ModelMapper();
+        Car car = modelMapper.map(carServiceModel, Car.class);
         this.carRepository.save(car);
     }
 
@@ -68,7 +52,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public double GetCarPrice(Long id) {
+    public double findCarPrice(Long id) {
         return this.carRepository.getCarPrice(id);
+    }
+
+    @Override
+    public List<CarBrandsViewModel> findAllCarBrands() {
+        List<CarBrandsViewModel> carBrandsViewModels = new ArrayList<>();
+        return null;
     }
 }

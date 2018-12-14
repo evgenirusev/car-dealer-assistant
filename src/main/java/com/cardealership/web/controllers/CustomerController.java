@@ -36,7 +36,9 @@ public class CustomerController extends BaseController {
 
     @PostMapping("/create")
     public ModelAndView confirmCreateCustomer(@ModelAttribute CreateCustomerBindingModel createCustomerBindingModel) {
-        CustomerServiceModel customerServiceModel = this.modelMapper.map(createCustomerBindingModel, CustomerServiceModel.class);
+        CustomerServiceModel customerServiceModel = new CustomerServiceModel();
+        customerServiceModel.setName(createCustomerBindingModel.getName());
+        customerServiceModel.setBirthDate(LocalDate.parse(createCustomerBindingModel.getBirthDate()));
         this.customerService.createCustomer(customerServiceModel);
         return super.redirect("/");
     }

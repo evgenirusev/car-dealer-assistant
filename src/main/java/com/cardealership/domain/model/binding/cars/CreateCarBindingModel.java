@@ -7,9 +7,9 @@ public class CreateCarBindingModel {
 
     private String model;
 
-    private String travelledDistance;
+    private Long travelledDistance;
 
-    private List<String> partIds;
+    private List<Long> partIds;
 
     public CreateCarBindingModel() {
     }
@@ -30,19 +30,19 @@ public class CreateCarBindingModel {
         this.model = model;
     }
 
-    public String getTravelledDistance() {
+    public Long getTravelledDistance() {
         return travelledDistance;
     }
 
-    public void setTravelledDistance(String travelledDistance) {
+    public void setTravelledDistance(Long travelledDistance) {
         this.travelledDistance = travelledDistance;
     }
 
-    public List<String> getPartIds() {
+    public List<Long> getPartIds() {
         return partIds;
     }
 
-    public void setPartIds(List<String> partIds) {
+    public void setPartIds(List<Long> partIds) {
         this.partIds = partIds;
     }
 }

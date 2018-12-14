@@ -26,12 +26,9 @@ public class PartController extends BaseController {
 
     private final PartService partService;
 
-    private final ModelMapper modelMapper;
-
-    public PartController(SupplierService supplierService, PartService partService, ModelMapper modelMapper) {
+    public PartController(SupplierService supplierService, PartService partService) {
         this.supplierService = supplierService;
         this.partService = partService;
-        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/create")

@@ -19,6 +19,9 @@ public class Customer {
     @Column(name = "is_driver_young")
     private boolean isDriverYoung;
 
+    @OneToOne(mappedBy = "customer")
+    private Sale sale;
+
     public Customer() {}
 
     public Long getId() {
@@ -51,5 +54,13 @@ public class Customer {
 
     public void setDriverYoung(boolean driverYoung) {
         isDriverYoung = driverYoung;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 
@@ -16,4 +18,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "ON p_c.part_id = p.id\n" +
             "WHERE c.id = :carId", nativeQuery = true)
     double getCarPrice(@Param("carId") Long carId);
+
 }

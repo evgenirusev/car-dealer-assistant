@@ -1,6 +1,5 @@
 package com.cardealership.web.controllers;
 
-import com.cardealership.domain.entity.Car;
 import com.cardealership.domain.model.binding.sale.CreateSaleBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +78,7 @@ public class SaleController extends BaseController{
                 .findFirst()
                 .orElse(null);
 
-        double carPrice = this.carService.GetCarPrice(carViewModel.getId());
+        double carPrice = this.carService.findCarPrice(carViewModel.getId());
         carViewModel.setPrice(carPrice);
 
         CreateReviewViewModel createReviewViewModel = new CreateReviewViewModel();

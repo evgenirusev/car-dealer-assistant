@@ -18,14 +18,6 @@ public class CarServiceModel {
     public CarServiceModel() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getBrand() {
         return brand;
     }
@@ -56,5 +48,13 @@ public class CarServiceModel {
 
     public void setParts(Set<PartServiceModel> parts) {
         this.parts = parts;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

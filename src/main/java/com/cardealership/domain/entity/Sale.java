@@ -17,7 +17,7 @@ public class Sale {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

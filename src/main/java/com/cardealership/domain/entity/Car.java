@@ -19,8 +19,14 @@ public class Car {
     @Column(name = "traveled_distance")
     private Long travelledDistance;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "cars")
+    @ManyToMany()
+    @JoinTable(name = "parts_cars",
+            joinColumns = @JoinColumn(name = "car_id"),
+            inverseJoinColumns = @JoinColumn(name = "part_id",referencedColumnName = "id"))
     private Set<Part> parts;
+
+    @OneToOne(mappedBy = "car")
+    private Sale sale;
 
     public Car() {
     }
@@ -63,5 +69,13 @@ public class Car {
 
     public void setParts(Set<Part> parts) {
         this.parts = parts;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 }
