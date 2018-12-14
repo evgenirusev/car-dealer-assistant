@@ -1,12 +1,14 @@
 package com.cardealership.domain.model.service.customers;
 
+import java.time.LocalDate;
+
 public class CustomerServiceModel {
 
     private Long id;
 
     private String name;
 
-    private String birthDate;
+    private LocalDate birthDate;
 
     private boolean isDriverYoung;
 
@@ -29,11 +31,11 @@ public class CustomerServiceModel {
         this.name = name;
     }
 
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

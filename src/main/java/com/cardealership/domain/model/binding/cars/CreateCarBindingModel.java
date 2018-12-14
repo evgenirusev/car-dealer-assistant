@@ -1,11 +1,15 @@
 package com.cardealership.domain.model.binding.cars;
 
+import java.util.List;
+
 public class CreateCarBindingModel {
     private String brand;
 
     private String model;
 
-    private Long travelledDistance;
+    private String travelledDistance;
+
+    private List<String> partIds;
 
     public CreateCarBindingModel() {
     }
@@ -26,11 +30,19 @@ public class CreateCarBindingModel {
         this.model = model;
     }
 
-    public Long getTravelledDistance() {
+    public String getTravelledDistance() {
         return travelledDistance;
     }
 
-    public void setTravelledDistance(Long travelledDistance) {
+    public void setTravelledDistance(String travelledDistance) {
         this.travelledDistance = travelledDistance;
+    }
+
+    public List<String> getPartIds() {
+        return partIds;
+    }
+
+    public void setPartIds(List<String> partIds) {
+        this.partIds = partIds;
     }
 }

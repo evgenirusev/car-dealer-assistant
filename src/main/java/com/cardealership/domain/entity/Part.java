@@ -1,6 +1,7 @@
 package com.cardealership.domain.entity;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -16,9 +17,6 @@ public class Part {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "quantity")
-    private Long quantity;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "supplier_id")
     private SupplierServiceModel supplier;
@@ -29,7 +27,8 @@ public class Part {
             inverseJoinColumns = @JoinColumn(name = "car_id"))
     private Set<Car> cars;
 
-    public Part() { }
+    public Part() {
+    }
 
     public Long getId() {
         return id;
@@ -55,14 +54,6 @@ public class Part {
         this.price = price;
     }
 
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     public SupplierServiceModel getSupplier() {
         return supplier;
     }
@@ -81,5 +72,9 @@ public class Part {
 
     public void addCar(Car car) {
         this.cars.add(car);
+    }
+
+    public void addCars(Set<Car> cars) {
+        this.cars.addAll(cars);
     }
 }

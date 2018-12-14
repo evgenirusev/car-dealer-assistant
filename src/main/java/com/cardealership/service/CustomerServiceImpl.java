@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void createCustomer(CustomerServiceModel customerServiceModel) {
         Customer customer = new Customer();
-        LocalDate customerBirthDate = LocalDate.parse(customerServiceModel.getBirthDate());
+        LocalDate customerBirthDate = customerServiceModel.getBirthDate();
         customer.setName(customerServiceModel.getName());
         customer.setBirthDate(customerBirthDate);
         customer.setDriverYoung(LocalDate.now().getYear() - customerBirthDate.getYear() < 19);
@@ -66,5 +66,12 @@ public class CustomerServiceImpl implements CustomerService {
             customerModels.add(customerModel);
         });
         return customerModels;
+    }
+
+    @Override
+    public CustomerServiceModel findCustomerById(Long id) {
+        Customer customerEntity = this.customerRepository.findById(id).orElse(null);
+        CustomerServiceModel customerServiceModel = this.modelMapper.map(customerEntity, CustomerServiceModel.class);
+        return customerServiceModel;
     }
 }

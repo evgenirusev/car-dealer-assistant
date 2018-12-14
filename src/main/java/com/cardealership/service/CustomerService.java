@@ -14,4 +14,6 @@ public interface CustomerService {
     List<CustomerViewModel> getAllCustomersOrderByBirthDateDescendingOrder();
 
     List<CustomerForCreatingSaleModel> findAllCustomersForCreatingSale();
+
+    CustomerServiceModel findCustomerById(Long id);
 }

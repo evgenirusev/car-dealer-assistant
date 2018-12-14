@@ -1,12 +1,12 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.cars.CreateCarBindingModel;
-import com.cardealership.domain.model.binding.cars.CreateCarWithPartsBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
-import com.cardealership.domain.model.service.cars.CarWithPartsServiceModel;
+import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
+import org.hibernate.collection.internal.PersistentSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/cars")
@@ -36,28 +38,25 @@ public class CarController extends BaseController {
     }
 
     @GetMapping("/create")
-    public ModelAndView createCar(@ModelAttribute CreateCarBindingModel createCarBindingModel) {
-        return super.view("/views/cars/create");
+    public ModelAndView createCarWithParts(@ModelAttribute CreateCarBindingModel createCarBindingModel) {
+        List<PartsForCreatingCarModel> partsForCreatingCarModels = this.partService.findAllPartsForCreatingCar();
+        return super.view("/views/cars/create", partsForCreatingCarModels);
     }
 
     @PostMapping("/create")
-    public ModelAndView confirmCreate(@ModelAttribute CreateCarBindingModel createCarBindingModel) {
-        CarServiceModel carServiceModel = this.modelMapper.map(createCarBindingModel, CarServiceModel.class);
-        this.carService.createCar(carServiceModel);
-        return super.redirect("/");
-    }
+    public ModelAndView confirmCreateCarWithParts(@ModelAttribute CreateCarBindingModel carServiceModel) {
+        CarServiceModel carWithPartsServiceModel = this.modelMapper.map(carServiceModel, CarServiceModel.class);
 
-    @GetMapping("/create-with-parts")
-    public ModelAndView createCarWithParts(@ModelAttribute CreateCarWithPartsBindingModel createCarWithPartsBindingModel) {
-        List<PartsForCreatingCarModel> partsForCreatingCarModels = this.partService.findAllPartsForCreatingCar();
-        return super.view("/views/cars/create-with-parts", partsForCreatingCarModels);
-    }
+        Set<PartServiceModel> parts = new HashSet<>();
 
+        carServiceModel.getPartIds().forEach(partId -> {
+            PartServiceModel partServiceModel = this.partService.findPartById(Long.valueOf(partId));
+            partServiceModel.addCar(carWithPartsServiceModel);
+            parts.add(partServiceModel);
+        });
 
+        carWithPartsServiceModel.setParts(parts);
 
-    @PostMapping("/create-with-parts")
-    public ModelAndView confirmCreateCarWithParts(@ModelAttribute CreateCarWithPartsBindingModel createCarWithPartsBindingModel) {
-        CarWithPartsServiceModel carWithPartsServiceModel = this.modelMapper.map(createCarWithPartsBindingModel, CarWithPartsServiceModel.class);
         this.carService.createCar(carWithPartsServiceModel);
         return super.redirect("/");
     }

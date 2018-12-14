@@ -1,15 +1,20 @@
 package com.cardealership.domain.model.service.parts;
 
+import com.cardealership.domain.entity.SupplierServiceModel;
+import com.cardealership.domain.model.service.cars.CarServiceModel;
+
+import java.util.Set;
+
 public class PartServiceModel {
     private Long id;
 
     private String name;
 
-    private String price;
+    private Double price;
 
-    private Long quantity;
+    private SupplierServiceModel supplier;
 
-    private Long supplierId;
+    private Set<CarServiceModel> cars;
 
     public PartServiceModel() {
     }
@@ -30,27 +35,31 @@ public class PartServiceModel {
         this.name = name;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Long getSupplierId() {
-        return supplierId;
+    public SupplierServiceModel getSupplier() {
+        return supplier;
     }
 
-    public void setSupplierId(Long supplierId) {
-        this.supplierId = supplierId;
+    public void setSupplier(SupplierServiceModel supplier) {
+        this.supplier = supplier;
     }
 
-    public Long getQuantity() {
-        return quantity;
+    public Set<CarServiceModel> getCars() {
+        return cars;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
+    public void setCars(Set<CarServiceModel> cars) {
+        this.cars = cars;
+    }
+
+    public void addCar(CarServiceModel carServiceModel) {
+        this.cars.add(carServiceModel);
     }
 }

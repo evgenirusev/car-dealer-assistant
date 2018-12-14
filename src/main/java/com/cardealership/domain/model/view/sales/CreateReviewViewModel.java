@@ -5,13 +5,29 @@ import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleMode
 
 public class CreateReviewViewModel {
 
-    CarForCreatingSaleViewModel carForCreatingSaleViewModel;
+    CarForCreatingSaleViewModel car;
 
-    CustomerForCreatingSaleModel customerForCreatingSaleModel;
+    CustomerForCreatingSaleModel customer;
 
     private double discount;
 
     public CreateReviewViewModel() {
+    }
+
+    public CarForCreatingSaleViewModel getCar() {
+        return car;
+    }
+
+    public void setCar(CarForCreatingSaleViewModel car) {
+        this.car = car;
+    }
+
+    public CustomerForCreatingSaleModel getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerForCreatingSaleModel customer) {
+        this.customer = customer;
     }
 
     public double getDiscount() {
@@ -20,21 +36,5 @@ public class CreateReviewViewModel {
 
     public void setDiscount(double discount) {
         this.discount = discount;
-    }
-
-    public CarForCreatingSaleViewModel getCarForCreatingSaleViewModel() {
-        return carForCreatingSaleViewModel;
-    }
-
-    public void setCarForCreatingSaleViewModel(CarForCreatingSaleViewModel carForCreatingSaleViewModel) {
-        this.carForCreatingSaleViewModel = carForCreatingSaleViewModel;
-    }
-
-    public CustomerForCreatingSaleModel getCustomerForCreatingSaleModel() {
-        return customerForCreatingSaleModel;
-    }
-
-    public void setCustomerForCreatingSaleModel(CustomerForCreatingSaleModel customerForCreatingSaleModel) {
-        this.customerForCreatingSaleModel = customerForCreatingSaleModel;
     }
 }

@@ -3,65 +3,61 @@ package com.cardealership.service;
 import com.cardealership.domain.entity.Car;
 import com.cardealership.domain.entity.Part;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
-import com.cardealership.domain.model.service.cars.CarWithPartsServiceModel;
+import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
 import com.cardealership.repository.CarRepository;
 import com.cardealership.repository.PartRepository;
+import org.hibernate.collection.internal.PersistentSet;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
 
-    private final PartService partService;
-
     private final ModelMapper modelMapper;
 
-    private final SupplierService supplierService;
-
-    // TODO: detach repository layer from service layer
+    // Decouple Repository Layer From Service Layer
     private final PartRepository partRepository;
 
     @Autowired
     public CarServiceImpl(CarRepository carRepository, PartService partService, ModelMapper modelMapper, SupplierService supplierService, PartRepository partRepository) {
         this.carRepository = carRepository;
-        this.partService = partService;
         this.modelMapper = modelMapper;
-        this.supplierService = supplierService;
         this.partRepository = partRepository;
     }
 
     @Override
-    public void createCar(CarServiceModel carServiceModel) {
-        Car carEntity = this.modelMapper.map(carServiceModel, Car.class);
-        this.carRepository.save(carEntity);
+    public CarServiceModel findCarByid(Long id) {
+        Car carEntity = this.carRepository.findById(id).orElse(null);
+        return this.modelMapper.map(carEntity, CarServiceModel.class);
     }
 
     @Override
-    public void createCar(CarWithPartsServiceModel carServiceModel) {
+    public void createCar(CarServiceModel carServiceModel) {
         Car car = this.modelMapper.map(carServiceModel, Car.class);
-        Set<Part> parts = new LinkedHashSet<>();
-        carServiceModel.getParts().forEach(partId -> {
-            Part part = this.partRepository.findPartById(Long.parseLong(partId));
-            part.addCar(car);
-            parts.add(part);
+
+        Set<Part> partEntities = new HashSet<>();
+
+        carServiceModel.getParts().forEach(part -> {
+            Part partEntity = this.partRepository.findPartById(part.getId());
+            partEntity.addCar(car);
+            partEntities.add(partEntity);
         });
-        car.setParts(parts);
+
+        car.setParts(partEntities);
         this.carRepository.save(car);
     }
 
     @Override
     public List<CarForCreatingSaleViewModel> findAllCarModelsForCretingSale() {
         List<Car> carEntities = this.carRepository.findAll();
-        List<CarForCreatingSaleViewModel> carModels =  new ArrayList<>();
+
+        List<CarForCreatingSaleViewModel> carModels = new ArrayList<>();
 
         carEntities.forEach(carEntity -> {
             CarForCreatingSaleViewModel carModel = this.modelMapper.map(carEntity, CarForCreatingSaleViewModel.class);

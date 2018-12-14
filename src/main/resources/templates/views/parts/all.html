@@ -5,7 +5,6 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
             <th scope="col">Supplier name</th>
         </tr>
         </thead>
@@ -13,8 +12,7 @@
         <th:block th:each="part : ${viewModel}" th:object="${part}">
             <tr>
                 <td th:text="*{name}"></td>
-                <td th:text="*{price}"></td>
-                <td th:text="*{quantity}"></td>
+                <td th:text="|$*{price}|"></td>
                 <td th:text="*{supplierName}"></td>
             </tr>
         </th:block>

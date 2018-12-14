@@ -1,7 +1,7 @@
 package com.cardealership.service;
 
 import com.cardealership.domain.entity.Part;
-import com.cardealership.domain.entity.SupplierServiceModel;
+import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
@@ -9,8 +9,7 @@ import com.cardealership.repository.PartRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class PartServiceImpl implements PartService {
@@ -29,10 +28,7 @@ public class PartServiceImpl implements PartService {
 
     @Override
     public void createPart(PartServiceModel partServiceModel) {
-        SupplierServiceModel supplier = this.supplierService.findSupplierById(partServiceModel.getId());
         Part part = this.modelMapper.map(partServiceModel, Part.class);
-        part.setId(supplier.getId());
-        part.setQuantity(1L);
         this.partRepository.save(part);
     }
 
@@ -61,7 +57,19 @@ public class PartServiceImpl implements PartService {
     @Override
     public PartServiceModel findPartById(Long id) {
         Part part = this.partRepository.findPartById(id);
-        PartServiceModel partServiceModel = this.modelMapper.map(part, PartServiceModel.class);
-        return partServiceModel;
+        PartServiceModel partModel = this.modelMapper.map(part, PartServiceModel.class);
+        Set<CarServiceModel> carServiceModels = new LinkedHashSet<>();
+        part.getCars().forEach(carEntity -> {
+            CarServiceModel carServiceModel = this.modelMapper.map(carEntity, CarServiceModel.class);
+            carServiceModels.add(carServiceModel);
+        });
+        partModel.setCars(carServiceModels);
+        return partModel;
+    }
+
+    @Override
+    public PartServiceModel findPartByName(String name) {
+        Part partEntity = this.partRepository.findPartByName(name);
+        return this.modelMapper.map(partEntity, PartServiceModel.class);
     }
 }

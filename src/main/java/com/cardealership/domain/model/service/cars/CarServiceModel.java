@@ -1,5 +1,9 @@
 package com.cardealership.domain.model.service.cars;
 
+import com.cardealership.domain.model.service.parts.PartServiceModel;
+
+import java.util.Set;
+
 public class CarServiceModel {
     private Long id;
 
@@ -8,6 +12,8 @@ public class CarServiceModel {
     private String model;
 
     private Long travelledDistance;
+
+    private Set<PartServiceModel> parts;
 
     public CarServiceModel() {
     }
@@ -42,5 +48,13 @@ public class CarServiceModel {
 
     public void setTravelledDistance(Long travelledDistance) {
         this.travelledDistance = travelledDistance;
+    }
+
+    public Set<PartServiceModel> getParts() {
+        return parts;
+    }
+
+    public void setParts(Set<PartServiceModel> parts) {
+        this.parts = parts;
     }
 }
