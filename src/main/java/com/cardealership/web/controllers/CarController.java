@@ -5,6 +5,7 @@ import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.cars.CarBrandsViewModel;
 import com.cardealership.domain.model.view.cars.CarViewModel;
+import com.cardealership.domain.model.view.cars.CarWithPartsViewModel;
 import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
@@ -73,7 +74,13 @@ public class CarController extends BaseController {
             CarViewModel carViewModel = this.modelMapper.map(serviceModel, CarViewModel.class);
             carViewModels.add(carViewModel);
         });
-
         return super.view("views/cars/by-brand", carViewModels);
+    }
+
+    @GetMapping("/{id}/parts")
+    public ModelAndView getCarWithParts(@PathVariable(name = "id") long id) {
+        CarServiceModel serviceModel = this.carService.findById(id);
+        CarWithPartsViewModel carWithPartsViewModel = this.modelMapper.map(serviceModel, CarWithPartsViewModel.class);
+        return super.view("/views/cars/car-with-parts", carWithPartsViewModel);
     }
 }
