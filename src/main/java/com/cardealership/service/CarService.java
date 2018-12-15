@@ -17,5 +17,5 @@ public interface CarService {
 
     List<CarServiceModel> findAsc();
 
-    List<CarServiceModel> findAllBrands(String make);
+    List<CarServiceModel> findCarsByBrandOrderedByModelAscAndDistanceDesc(String make);
 }

@@ -68,7 +68,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<CarServiceModel> findAllBrands(String brand) {
+    public List<CarServiceModel> findCarsByBrandOrderedByModelAscAndDistanceDesc(String brand) {
         List<CarServiceModel> carModels = new ArrayList<>();
         List<Car> carEntities = this.carRepository.getAllCarsByMakeOrderedByModelAscAndTravelledDistanceDesc(brand);
         carEntities.forEach(car -> {

@@ -66,7 +66,7 @@ public class CarController extends BaseController {
 
     @GetMapping("/{brand}")
     public ModelAndView getAllAscendingOrder(@PathVariable(name = "brand") String brand) {
-        List<CarServiceModel> cars = this.carService.findAllBrands(brand);
-        return super.view("views/cars/by-make", cars);
+        List<CarServiceModel> cars = this.carService.findCarsByBrandOrderedByModelAscAndDistanceDesc(brand);
+        return super.view("views/cars/by-brand", cars);
     }
 }
