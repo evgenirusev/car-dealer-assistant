@@ -1,6 +1,7 @@
 package com.cardealership.domain.entity;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class Part {
     @Column(name = "price")
     private Double price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 

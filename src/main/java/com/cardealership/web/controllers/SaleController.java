@@ -120,6 +120,6 @@ public class SaleController extends BaseController{
             saleViewModel.setDiscount(serviceModel.getDiscount());
             saleViewModels.add(saleViewModel);
         });
-        return super.view("/view/sales/all", saleViewModels);
+        return super.view("/views/sales/all", saleViewModels);
     }
 }

@@ -3,6 +3,7 @@ package com.cardealership.domain.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "suppliers")
@@ -15,17 +16,17 @@ public class Supplier {
     private String name;
 
     @Column(name = "is_importer")
-    private boolean isImporter;
+    private Boolean isImporter;
 
     @OneToMany
     @JoinColumn(name = "supplier_id")
-    private List<Part> parts = new ArrayList<>();
+    private Set<Part> parts;
 
-    public List<Part> getParts() {
+    public Set<Part> getParts() {
         return parts;
     }
 
-    public void setParts(List<Part> parts) {
+    public void setParts(Set<Part> parts) {
         this.parts = parts;
     }
 
@@ -48,11 +49,11 @@ public class Supplier {
         this.name = name;
     }
 
-    public boolean isImporter() {
+    public Boolean getImporter() {
         return isImporter;
     }
 
-    public void setImporter(boolean importer) {
+    public void setImporter(Boolean importer) {
         isImporter = importer;
     }
 }

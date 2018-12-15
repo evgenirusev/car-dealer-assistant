@@ -1,11 +1,12 @@
 package com.cardealership.web.controllers;
 
-import com.cardealership.domain.entity.Supplier;
 import com.cardealership.domain.model.binding.parts.CreatePartBindingModel;
+import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
+import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
 import com.cardealership.service.SupplierService;
 import org.springframework.stereotype.Controller;

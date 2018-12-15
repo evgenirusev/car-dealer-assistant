@@ -8,10 +8,12 @@ import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.repository.PartRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
 @Service
+@Transactional
 public class PartServiceImpl implements PartService {
 
     private final PartRepository partRepository;
