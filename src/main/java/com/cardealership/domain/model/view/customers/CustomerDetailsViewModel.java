@@ -1,27 +1,13 @@
-package com.cardealership.domain.model.service.customers;
+package com.cardealership.domain.model.view.customers;
 
 import java.math.BigInteger;
 
-public class CustomerSalesServiceModel {
-
-    private Long id;
-
+public class CustomerDetailsViewModel {
     private String name;
 
     private Double totalResources;
 
     private BigInteger totalCars;
-
-    public CustomerSalesServiceModel() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

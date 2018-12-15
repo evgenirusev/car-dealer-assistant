@@ -9,6 +9,7 @@ import com.cardealership.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,20 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerSalesServiceModel findCustomerSales(Long id) {
-        // TODO
-        return null;
+        CustomerSalesServiceModel customerModel = new CustomerSalesServiceModel();
+        Object salesByCustomerId = this.customerRepository.findSalesById(id);
+
+        Object[] objArray = (Object[]) salesByCustomerId;
+
+        String name = (String) objArray[0];
+        Double totalResources = (Double) objArray[1];
+        BigInteger carsBought = (BigInteger) objArray[2];
+        Double resourceMultiplier = 1 - ((Double) objArray[3] / 100);
+
+        customerModel.setName(name);
+        customerModel.setTotalResources(totalResources * resourceMultiplier);
+        customerModel.setTotalCars(carsBought);
+
+        return customerModel;
     }
 }

@@ -1,9 +1,12 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.customers.CreateCustomerBindingModel;
+import com.cardealership.domain.model.service.customers.CustomerSalesServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
+import com.cardealership.domain.model.view.customers.CustomerDetailsViewModel;
 import com.cardealership.domain.model.view.customers.CustomerOrderViewModel;
 import com.cardealership.domain.model.view.customers.CustomerViewModel;
+import com.cardealership.domain.model.view.sales.SaleViewModel;
 import com.cardealership.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -60,7 +63,8 @@ public class CustomerController extends BaseController {
 
     @GetMapping("/{id}")
     public ModelAndView getSalesByCustomer(@PathVariable(name = "id") long id) {
-        // TODO
-        return super.view("views/customers/sales");
+        CustomerSalesServiceModel serviceModel = this.customerService.findCustomerSales(id);
+        CustomerDetailsViewModel viewModel = this.modelMapper.map(serviceModel, CustomerDetailsViewModel.class);
+        return super.view("views/customers/sales", viewModel);
     }
 }
