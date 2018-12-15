@@ -75,4 +75,11 @@ public class CustomerController extends BaseController {
         EditCustomerBindingModel bindingModel = this.modelMapper.map(serviceModel, EditCustomerBindingModel.class);
         return super.view("/views/customers/edit", bindingModel);
     }
+
+    @PostMapping("/edit/{id}")
+    public ModelAndView editConfirm(@ModelAttribute EditCustomerBindingModel customerBindingModel, @PathVariable("id") Long id) {
+        CustomerServiceModel serviceModel = this.modelMapper.map(customerBindingModel, CustomerServiceModel.class);
+        this.customerService.editCustomer(serviceModel, id);
+        return super.redirect("/");
+    }
 }

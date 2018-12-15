@@ -20,4 +20,6 @@ public interface CustomerService {
     CustomerServiceModel findCustomerById(Long id);
 
     CustomerSalesServiceModel findCustomerSales(Long id);
+
+    void editCustomer(CustomerServiceModel customerServiceModel, Long id);
 }

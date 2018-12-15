@@ -98,4 +98,11 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customerModel;
     }
+
+    @Override
+    public void editCustomer(CustomerServiceModel customerServiceModel, Long id) {
+        Customer customer = this.customerRepository.findById(id).get();
+        this.modelMapper.map(customerServiceModel, customer);
+        this.customerRepository.save(customer);
+    }
 }
