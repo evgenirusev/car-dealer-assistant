@@ -4,6 +4,7 @@ import com.cardealership.domain.model.binding.cars.CreateCarBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.cars.CarBrandsViewModel;
+import com.cardealership.domain.model.view.cars.CarViewModel;
 import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
@@ -66,7 +67,13 @@ public class CarController extends BaseController {
 
     @GetMapping("/{brand}")
     public ModelAndView getAllAscendingOrder(@PathVariable(name = "brand") String brand) {
-        List<CarServiceModel> cars = this.carService.findCarsByBrandOrderedByModelAscAndDistanceDesc(brand);
-        return super.view("views/cars/by-brand", cars);
+        List<CarServiceModel> carServiceModels = this.carService.findCarsByBrandOrderedByModelAscAndDistanceDesc(brand);
+        List<CarViewModel> carViewModels = new ArrayList<>();
+        carServiceModels.forEach(serviceModel -> {
+            CarViewModel carViewModel = this.modelMapper.map(serviceModel, CarViewModel.class);
+            carViewModels.add(carViewModel);
+        });
+
+        return super.view("views/cars/by-brand", carViewModels);
     }
 }

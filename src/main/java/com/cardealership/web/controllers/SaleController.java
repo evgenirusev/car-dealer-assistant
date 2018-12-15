@@ -8,6 +8,7 @@ import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
 import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
 import com.cardealership.domain.model.view.sales.CreateReviewViewModel;
 import com.cardealership.domain.model.view.sales.CreateSaleViewModel;
+import com.cardealership.domain.model.view.sales.SaleViewModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.CustomerService;
 import com.cardealership.service.SaleService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,10 +102,24 @@ public class SaleController extends BaseController{
         CustomerServiceModel customerServiceModel = this.customerService
                 .findCustomerById(Long.parseLong(dataForCreatingSaleSerivces.getCustomerId()));
 
-        saleServiceModel.setCarServiceModel(carServiceModel);
-        saleServiceModel.setCustomerServiceModel(customerServiceModel);
+        saleServiceModel.setCar(carServiceModel);
+        saleServiceModel.setCustomer(customerServiceModel);
         saleServiceModel.setDiscount(dataForCreatingSaleSerivces.getDiscount());
         this.saleService.create(saleServiceModel);
         return super.redirect("/");
+    }
+
+    @GetMapping("")
+    public ModelAndView allSales() {
+        List<SaleServiceModel> saleServiceModels = this.saleService.findAll();
+        List<SaleViewModel> saleViewModels = new ArrayList<>();
+        saleServiceModels.forEach(serviceModel -> {
+            SaleViewModel saleViewModel = new SaleViewModel();
+            saleViewModel.setCar(serviceModel.getCar().getBrand());
+            saleViewModel.setCustomer(serviceModel.getCustomer().getName());
+            saleViewModel.setDiscount(serviceModel.getDiscount());
+            saleViewModels.add(saleViewModel);
+        });
+        return super.view("/view/sales/all", saleViewModels);
     }
 }

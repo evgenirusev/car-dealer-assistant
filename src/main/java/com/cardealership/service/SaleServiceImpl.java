@@ -8,6 +8,9 @@ import com.cardealership.repository.SaleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class SaleServiceImpl implements SaleService {
 
@@ -24,5 +27,15 @@ public class SaleServiceImpl implements SaleService {
     public void create(SaleServiceModel saleServiceModel) {
         Sale saleEntity =  this.modelMapper.map(saleServiceModel, Sale.class);
         this.saleRepository.save(saleEntity);
+    }
+
+    @Override
+    public List<SaleServiceModel> findAll() {
+        List<Sale> saleEntities = this.saleRepository.findAll();
+        List<SaleServiceModel> saleModels = new ArrayList<>();
+        saleEntities.forEach(sale -> {
+            saleModels.add(this.modelMapper.map(sale, SaleServiceModel.class));
+        });
+        return saleModels;
     }
 }

@@ -4,29 +4,29 @@ import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
 
 public class SaleServiceModel {
-    private CarServiceModel carServiceModel;
+    private CarServiceModel car;
 
-    private CustomerServiceModel customerServiceModel;
+    private CustomerServiceModel customer;
 
     private Double discount;
 
     public SaleServiceModel() {
     }
 
-    public CarServiceModel getCarServiceModel() {
-        return carServiceModel;
+    public CarServiceModel getCar() {
+        return car;
     }
 
-    public void setCarServiceModel(CarServiceModel carServiceModel) {
-        this.carServiceModel = carServiceModel;
+    public void setCar(CarServiceModel car) {
+        this.car = car;
     }
 
-    public CustomerServiceModel getCustomerServiceModel() {
-        return customerServiceModel;
+    public CustomerServiceModel getCustomer() {
+        return customer;
     }
 
-    public void setCustomerServiceModel(CustomerServiceModel customerServiceModel) {
-        this.customerServiceModel = customerServiceModel;
+    public void setCustomer(CustomerServiceModel customer) {
+        this.customer = customer;
     }
 
     public Double getDiscount() {
