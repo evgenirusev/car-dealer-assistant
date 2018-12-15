@@ -13,19 +13,19 @@ public class Sale {
     @Column(name = "discount")
     private double discount;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "car_id")
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "car_id",referencedColumnName = "id")
     private Car car;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "customer_id")
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "customer_id",referencedColumnName = "id")
     private Customer customer;
 
     public Sale() {
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -33,7 +33,7 @@ public class Sale {
     }
 
     public double getDiscount() {
-        return this.discount;
+        return discount;
     }
 
     public void setDiscount(double discount) {
@@ -41,7 +41,7 @@ public class Sale {
     }
 
     public Car getCar() {
-        return this.car;
+        return car;
     }
 
     public void setCar(Car car) {
@@ -49,7 +49,7 @@ public class Sale {
     }
 
     public Customer getCustomer() {
-        return this.customer;
+        return customer;
     }
 
     public void setCustomer(Customer customer) {

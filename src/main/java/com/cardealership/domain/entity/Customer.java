@@ -2,6 +2,7 @@ package com.cardealership.domain.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "customers")
@@ -19,8 +20,8 @@ public class Customer {
     @Column(name = "is_driver_young")
     private boolean isDriverYoung;
 
-    @OneToOne(mappedBy = "customer")
-    private Sale sale;
+    @OneToMany(mappedBy = "customer")
+    private Set<Sale> sales;
 
     public Customer() {}
 
@@ -56,11 +57,11 @@ public class Customer {
         isDriverYoung = driverYoung;
     }
 
-    public Sale getSale() {
-        return sale;
+    public Set<Sale> getSales() {
+        return sales;
     }
 
-    public void setSale(Sale sale) {
-        this.sale = sale;
+    public void setSales(Set<Sale> sales) {
+        this.sales = sales;
     }
 }

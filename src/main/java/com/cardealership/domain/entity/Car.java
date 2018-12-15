@@ -25,8 +25,8 @@ public class Car {
             inverseJoinColumns = @JoinColumn(name = "part_id",referencedColumnName = "id"))
     private Set<Part> parts;
 
-    @OneToOne(mappedBy = "car")
-    private Sale sale;
+    @OneToMany(mappedBy = "car")
+    private Set<Sale> sales;
 
     public Car() {
     }
@@ -71,11 +71,11 @@ public class Car {
         this.parts = parts;
     }
 
-    public Sale getSale() {
-        return sale;
+    public Set<Sale> getSales() {
+        return sales;
     }
 
-    public void setSale(Sale sale) {
-        this.sale = sale;
+    public void setSales(Set<Sale> sales) {
+        this.sales = sales;
     }
 }
