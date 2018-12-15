@@ -66,7 +66,7 @@ public class CustomerController extends BaseController {
     public ModelAndView getSalesByCustomer(@PathVariable(name = "id") long id) {
         CustomerSalesServiceModel serviceModel = this.customerService.findCustomerSales(id);
         CustomerDetailsViewModel viewModel = this.modelMapper.map(serviceModel, CustomerDetailsViewModel.class);
-        return super.view("views/customers/sales", viewModel);
+        return super.view("/views/customers/sales", viewModel);
     }
 
     @GetMapping("/edit/{id}")

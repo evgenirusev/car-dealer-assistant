@@ -7,6 +7,7 @@
                 <th scope="col">Birth Date</th>
                 <th scope="col">Is Driver Young</th>
                 <th scope="col">Sales summary</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,9 @@
             </td>
             <td>
                 <a th:href="@{/customers/{id}(id=${customer.id})}">Sales summary</a>
+            </td>
+            <td>
+                <a th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a>
             </td>
         </tr>
         </tbody>
