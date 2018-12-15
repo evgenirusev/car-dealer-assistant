@@ -47,7 +47,7 @@ public class CustomerController extends BaseController {
     public ModelAndView customersAscending() {
         CustomerOrderViewModel customerOrderViewModel = new CustomerOrderViewModel();
         customerOrderViewModel.setOrder("ascending");
-        List<CustomerViewModel> customerViewModels = this.customerService.getAllCustomersOrderByBirthDateAscendingOrder();
+        List<CustomerViewModel> customerViewModels = this.customerService.findAllOrderByBirthDateAsc();
         customerOrderViewModel.setCustomerViewModels(customerViewModels);
         return super.view("/views/customers/all", customerOrderViewModel);
     }
@@ -56,7 +56,7 @@ public class CustomerController extends BaseController {
     public ModelAndView customersDescending() {
         CustomerOrderViewModel customerOrderViewModel = new CustomerOrderViewModel();
         customerOrderViewModel.setOrder("descending");
-        List<CustomerViewModel> customerViewModels = this.customerService.getAllCustomersOrderByBirthDateDescendingOrder();
+        List<CustomerViewModel> customerViewModels = this.customerService.findAllOrderByBirthDateDesc();
         customerOrderViewModel.setCustomerViewModels(customerViewModels);
         return super.view("/views/customers/all", customerOrderViewModel);
     }

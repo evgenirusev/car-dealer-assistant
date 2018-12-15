@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registerUser(UserServiceModel userServiceModel) {
+    public void register(UserServiceModel userServiceModel) {
         User user = this.modelMapper.map(userServiceModel, User.class);
 
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
@@ -58,6 +58,6 @@ public class UserServiceImpl implements UserService {
 
         user.setAuthorities(authorities);
 
-        return this.userRepository.save(user) != null;
+        this.userRepository.save(user);
     }
 }

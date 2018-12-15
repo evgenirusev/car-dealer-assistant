@@ -45,7 +45,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Set<SupplierForCreatingPartModel> findAllSuppliers() {
+    public Set<SupplierForCreatingPartModel> findAll() {
         Set<SupplierForCreatingPartModel> supplierForCreatingPartModels = new LinkedHashSet<>();
         this.supplierRepository.findAll().forEach(supplier -> {
             SupplierForCreatingPartModel supplierForCreatingPartModel = new SupplierForCreatingPartModel();
@@ -57,7 +57,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public SupplierServiceModel findSupplierById(Long id) {
+    public SupplierServiceModel findById(Long id) {
         return this.supplierRepository.findSupplierById(id);
     }
 }

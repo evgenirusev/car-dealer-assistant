@@ -24,13 +24,13 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public void createPart(PartServiceModel partServiceModel) {
+    public void craete(PartServiceModel partServiceModel) {
         Part part = this.modelMapper.map(partServiceModel, Part.class);
         this.partRepository.save(part);
     }
 
     @Override
-    public List<PartViewModel> findAllParts() {
+    public List<PartViewModel> findAll() {
         List<PartViewModel> partViewModels = new ArrayList<>();
         this.partRepository.findAll().forEach(part -> {
             PartViewModel partViewModel = this.modelMapper.map(part, PartViewModel.class);
@@ -40,7 +40,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public List<PartsForCreatingCarModel> findAllPartsForCreatingCar() {
+    public List<PartsForCreatingCarModel> findAllForCreatingCar() {
         List<PartsForCreatingCarModel> partsForCreatingCarModels = new ArrayList<>();
         this.partRepository.findAll().forEach(part -> {
             PartsForCreatingCarModel supplierForCreatingPartModel = new PartsForCreatingCarModel();
@@ -52,7 +52,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public PartServiceModel findPartById(Long id) {
+    public PartServiceModel findById(Long id) {
         Part part = this.partRepository.findPartById(id);
         PartServiceModel partModel = this.modelMapper.map(part, PartServiceModel.class);
         Set<CarServiceModel> carServiceModels = new LinkedHashSet<>();

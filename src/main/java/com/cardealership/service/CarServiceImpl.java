@@ -25,7 +25,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarServiceModel findCarByid(Long id) {
+    public CarServiceModel findById(Long id) {
         Car carEntity = this.carRepository.findById(id).orElse(null);
         return this.modelMapper.map(carEntity, CarServiceModel.class);
     }
@@ -38,7 +38,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<CarForCreatingSaleViewModel> findAllCarModelsForCretingSale() {
+    public List<CarForCreatingSaleViewModel> findViewModelsForCreatingSale() {
         List<Car> carEntities = this.carRepository.findAll();
 
         List<CarForCreatingSaleViewModel> carModels = new ArrayList<>();
@@ -52,18 +52,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public double findCarPrice(Long id) {
+    public double findPrice(Long id) {
         return this.carRepository.getCarPrice(id);
     }
 
     @Override
-    public List<CarBrandsViewModel> findAllCarBrands() {
-        List<CarBrandsViewModel> carBrandsViewModels = new ArrayList<>();
-        return null;
-    }
-
-    @Override
-    public List<CarServiceModel> findCarsAsc() {
+    public List<CarServiceModel> findAsc() {
         List<CarServiceModel> carServiceModels = new ArrayList<>();
         List<Car> carEntities = this.carRepository.findAllByOrderByBrandAsc();
 

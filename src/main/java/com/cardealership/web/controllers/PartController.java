@@ -7,7 +7,6 @@ import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 import com.cardealership.service.PartService;
 import com.cardealership.service.SupplierService;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,7 +32,7 @@ public class PartController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView createPart(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
-        Set<SupplierForCreatingPartModel> suppliers = this.supplierService.findAllSuppliers();
+        Set<SupplierForCreatingPartModel> suppliers = this.supplierService.findAll();
         return super.view("/views/parts/create", suppliers);
     }
 
@@ -41,19 +40,19 @@ public class PartController extends BaseController {
     public ModelAndView confirmCreatePart(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
         PartServiceModel partServiceModel = new PartServiceModel();
 
-        SupplierServiceModel supplierServiceModel = this.supplierService.findSupplierById(createPartBindingModel.getSupplierId());
+        SupplierServiceModel supplierServiceModel = this.supplierService.findById(createPartBindingModel.getSupplierId());
 
         partServiceModel.setName(createPartBindingModel.getName());
         partServiceModel.setPrice(createPartBindingModel.getPrice());
         partServiceModel.setSupplier(supplierServiceModel);
 
-        this.partService.createPart(partServiceModel);
+        this.partService.craete(partServiceModel);
         return super.redirect("/");
     }
 
     @GetMapping("/all")
     public ModelAndView allParts() {
-        List<PartViewModel> partViewModels = this.partService.findAllParts();
+        List<PartViewModel> partViewModels = this.partService.findAll();
         return super.view("/views/parts/all", partViewModels);
     }
 }

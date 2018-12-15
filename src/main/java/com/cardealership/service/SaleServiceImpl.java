@@ -21,7 +21,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void createSale(SaleServiceModel saleServiceModel) {
+    public void create(SaleServiceModel saleServiceModel) {
         Sale saleEntity =  this.modelMapper.map(saleServiceModel, Sale.class);
         this.saleRepository.save(saleEntity);
     }

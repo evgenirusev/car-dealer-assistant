@@ -34,7 +34,7 @@ public class SupplierController extends BaseController {
     @PostMapping("/create")
     public ModelAndView confirmCreate(@ModelAttribute CreateSupplierBindingModel createSupplierBindingModel) {
         SupplierServiceModel supplierServiceModel = this.modelMapper.map(createSupplierBindingModel, SupplierServiceModel.class);
-        this.supplierService.createSupplier(supplierServiceModel);
+        this.supplierService.create(supplierServiceModel);
         return super.redirect("/");
     }
 

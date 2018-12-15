@@ -51,10 +51,10 @@ public class SaleController extends BaseController{
         CreateSaleViewModel createSaleViewModel = new CreateSaleViewModel();
         createSaleViewModel.setCreateSaleBindingModel(createSaleBindingModel);
 
-        List<CarForCreatingSaleViewModel> carModels = this.carService.findAllCarModelsForCretingSale();
+        List<CarForCreatingSaleViewModel> carModels = this.carService.findViewModelsForCreatingSale();
         createSaleViewModel.setCarsForCreatingSaleList(carModels);
 
-        List<CustomerForCreatingSaleModel> customerModels = this.customerService.findAllCustomersForCreatingSale();
+        List<CustomerForCreatingSaleModel> customerModels = this.customerService.findAllForCreatingSale();
         createSaleViewModel.setCustomersForCreatingSaleList(customerModels);
 
         this.cache.put("createSaleModel", createSaleViewModel);
@@ -78,7 +78,7 @@ public class SaleController extends BaseController{
                 .findFirst()
                 .orElse(null);
 
-        double carPrice = this.carService.findCarPrice(carViewModel.getId());
+        double carPrice = this.carService.findPrice(carViewModel.getId());
         carViewModel.setPrice(carPrice);
 
         CreateReviewViewModel createReviewViewModel = new CreateReviewViewModel();
@@ -95,7 +95,7 @@ public class SaleController extends BaseController{
         SaleServiceModel saleServiceModel = new SaleServiceModel();
 
         CarServiceModel carServiceModel = this.carService
-                .findCarByid(Long.parseLong(dataForCreatingSaleSerivces.getCarId()));
+                .findById(Long.parseLong(dataForCreatingSaleSerivces.getCarId()));
 
         CustomerServiceModel customerServiceModel = this.customerService
                 .findCustomerById(Long.parseLong(dataForCreatingSaleSerivces.getCustomerId()));
@@ -103,7 +103,7 @@ public class SaleController extends BaseController{
         saleServiceModel.setCarServiceModel(carServiceModel);
         saleServiceModel.setCustomerServiceModel(customerServiceModel);
         saleServiceModel.setDiscount(dataForCreatingSaleSerivces.getDiscount());
-        this.saleService.createSale(saleServiceModel);
+        this.saleService.create(saleServiceModel);
         return super.redirect("/");
     }
 }

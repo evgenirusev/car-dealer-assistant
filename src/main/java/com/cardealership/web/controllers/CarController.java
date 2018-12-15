@@ -37,7 +37,7 @@ public class CarController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView createCarWithParts(@ModelAttribute CreateCarBindingModel createCarBindingModel) {
-        List<PartsForCreatingCarModel> partsForCreatingCarModels = this.partService.findAllPartsForCreatingCar();
+        List<PartsForCreatingCarModel> partsForCreatingCarModels = this.partService.findAllForCreatingCar();
         return super.view("/views/cars/create", partsForCreatingCarModels);
     }
 
@@ -46,7 +46,7 @@ public class CarController extends BaseController {
         CarServiceModel carWithPartsServiceModel = this.modelMapper.map(carBindingModel, CarServiceModel.class);
         Set<PartServiceModel> partModels = new HashSet<>();
         carBindingModel.getPartIds().forEach(partId -> {
-            PartServiceModel partModel = this.partService.findPartById(partId);
+            PartServiceModel partModel = this.partService.findById(partId);
             partModels.add(partModel);
         });
         carWithPartsServiceModel.setParts(partModels);
@@ -57,7 +57,7 @@ public class CarController extends BaseController {
     @GetMapping("/brands")
     public ModelAndView carBrands() {
         List<CarBrandsViewModel> viewModels = new ArrayList<>();
-        List<CarServiceModel> carServiceModels = this.carService.findCarsAsc();
+        List<CarServiceModel> carServiceModels = this.carService.findAsc();
         carServiceModels.forEach(serviceModel -> {
             viewModels.add(this.modelMapper.map(serviceModel, CarBrandsViewModel.class));
         });

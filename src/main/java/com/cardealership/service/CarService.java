@@ -9,13 +9,12 @@ import java.util.List;
 public interface CarService {
     void createCar(CarServiceModel carServiceModel);
 
-    CarServiceModel findCarByid(Long id);
+    CarServiceModel findById(Long id);
 
-    List<CarForCreatingSaleViewModel> findAllCarModelsForCretingSale();
+    // TODO: decouple service layer from presentation layer (MUST RETURN SERVICE MODEL)
+    List<CarForCreatingSaleViewModel> findViewModelsForCreatingSale();
 
-    double findCarPrice(Long id);
+    double findPrice(Long id);
 
-    List<CarBrandsViewModel> findAllCarBrands();
-
-    List<CarServiceModel> findCarsAsc();
+    List<CarServiceModel> findAsc();
 }

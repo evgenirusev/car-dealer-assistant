@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerViewModel> getAllCustomersOrderByBirthDateAscendingOrder() {
+    public List<CustomerViewModel> findAllOrderByBirthDateAsc() {
         List<CustomerViewModel> customerViewModels = new ArrayList<>();
         this.customerRepository.getCustomersByOrderByBirthDateAsc().forEach(
                 customer -> {
@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerViewModel> getAllCustomersOrderByBirthDateDescendingOrder() {
+    public List<CustomerViewModel> findAllOrderByBirthDateDesc() {
         List<CustomerViewModel> customerViewModels = new ArrayList<>();
         this.customerRepository.getCustomersByOrderByBirthDateDesc().forEach(
                 customer -> {
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerForCreatingSaleModel> findAllCustomersForCreatingSale() {
+    public List<CustomerForCreatingSaleModel> findAllForCreatingSale() {
         List<Customer> customerEntities = this.customerRepository.findAll();
         List<CustomerForCreatingSaleModel> customerModels = new ArrayList<>();
         customerEntities.forEach(customerEntity -> {

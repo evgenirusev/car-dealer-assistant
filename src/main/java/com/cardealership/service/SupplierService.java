@@ -6,11 +6,12 @@ import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartMode
 import java.util.Set;
 
 public interface SupplierService {
-    void createSupplier(com.cardealership.domain.model.service.suppliers.SupplierServiceModel supplierServiceModel);
+    void create(SupplierServiceModel supplierServiceModel);
 
-    Set<com.cardealership.domain.model.service.suppliers.SupplierServiceModel> findAllByImporter(boolean isImporter);
+    Set<SupplierServiceModel> findAllByImporter(boolean isImporter);
 
-    Set<SupplierForCreatingPartModel> findAllSuppliers();
+    // TODO: decouple service layer from presentation (MUST RETURN SERVICE MODEL)
+    Set<SupplierForCreatingPartModel> findAll();
 
-    SupplierServiceModel findSupplierById(Long id);
+    SupplierServiceModel findById(Long id);
 }

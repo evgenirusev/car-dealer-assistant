@@ -7,11 +7,13 @@ import com.cardealership.domain.model.view.parts.PartViewModel;
 import java.util.List;
 
 public interface PartService {
-    void createPart(PartServiceModel partServiceModel);
+    void craete(PartServiceModel partServiceModel);
 
-    List<PartViewModel> findAllParts();
+    // TODO: decouple service layer from presentation (MUST RETURN SERVICE MODEL)
+    List<PartViewModel> findAll();
 
-    List<PartsForCreatingCarModel> findAllPartsForCreatingCar();
+    // TODO: decouple service layer from presentation (MUST RETURN SERVICE MODEL)
+    List<PartsForCreatingCarModel> findAllForCreatingCar();
 
-    PartServiceModel findPartById(Long id);
+    PartServiceModel findById(Long id);
 }

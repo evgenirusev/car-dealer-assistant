@@ -9,11 +9,12 @@ import java.util.List;
 public interface CustomerService {
     void createCustomer(CustomerServiceModel customerServiceModel);
 
-    List<CustomerViewModel> getAllCustomersOrderByBirthDateAscendingOrder();
+    List<CustomerViewModel> findAllOrderByBirthDateAsc();
 
-    List<CustomerViewModel> getAllCustomersOrderByBirthDateDescendingOrder();
+    List<CustomerViewModel> findAllOrderByBirthDateDesc();
 
-    List<CustomerForCreatingSaleModel> findAllCustomersForCreatingSale();
+    // TODO: decouple service layer from presentation layer (MUST RETURN SERVICE MODEL)
+    List<CustomerForCreatingSaleModel> findAllForCreatingSale();
 
     CustomerServiceModel findCustomerById(Long id);
 }
