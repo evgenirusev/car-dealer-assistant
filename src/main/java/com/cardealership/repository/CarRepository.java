@@ -19,4 +19,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "WHERE c.id = :carId", nativeQuery = true)
     double getCarPrice(@Param("carId") Long carId);
 
+    List<Car> findAllByOrderByBrandAsc();
 }

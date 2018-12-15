@@ -16,4 +16,6 @@ public interface CarService {
     double findCarPrice(Long id);
 
     List<CarBrandsViewModel> findAllCarBrands();
+
+    List<CarServiceModel> findCarsAsc();
 }

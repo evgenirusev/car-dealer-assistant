@@ -61,4 +61,16 @@ public class CarServiceImpl implements CarService {
         List<CarBrandsViewModel> carBrandsViewModels = new ArrayList<>();
         return null;
     }
+
+    @Override
+    public List<CarServiceModel> findCarsAsc() {
+        List<CarServiceModel> carServiceModels = new ArrayList<>();
+        List<Car> carEntities = this.carRepository.findAllByOrderByBrandAsc();
+
+        carEntities.forEach(entity -> {
+            carServiceModels.add(this.modelMapper.map(entity, CarServiceModel.class));
+        });
+
+        return carServiceModels;
+    }
 }

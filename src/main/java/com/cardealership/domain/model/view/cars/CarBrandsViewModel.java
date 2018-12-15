@@ -3,7 +3,7 @@ package com.cardealership.domain.model.view.cars;
 public class CarBrandsViewModel {
     private Long id;
 
-    private String name;
+    private String brand;
 
     public CarBrandsViewModel() {
     }
@@ -16,11 +16,11 @@ public class CarBrandsViewModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

@@ -1,5 +1,5 @@
-<div class="container">
-    <h2>Suppliers</h2>
+<div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h2>Brands</h2>
     <table class="table">
         <thead>
         <tr>
@@ -11,7 +11,7 @@
         <th:block th:each="car : ${viewModel}">
             <tr>
                 <th th:text="${car.id}"></th>
-                <td th:text="${car.name}"></td>
+                <td><a th:href="@{/cars/{brand}(brand=${car.brand})}" th:text="${car.brand}"></a></td>
             </tr>
         </th:block>
         </tbody>

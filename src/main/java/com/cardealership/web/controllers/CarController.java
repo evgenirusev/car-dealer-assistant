@@ -3,18 +3,17 @@ package com.cardealership.web.controllers;
 import com.cardealership.domain.model.binding.cars.CreateCarBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
+import com.cardealership.domain.model.view.cars.CarBrandsViewModel;
 import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,6 +56,11 @@ public class CarController extends BaseController {
 
     @GetMapping("/brands")
     public ModelAndView carBrands() {
-        return null;
+        List<CarBrandsViewModel> viewModels = new ArrayList<>();
+        List<CarServiceModel> carServiceModels = this.carService.findCarsAsc();
+        carServiceModels.forEach(serviceModel -> {
+            viewModels.add(this.modelMapper.map(serviceModel, CarBrandsViewModel.class));
+        });
+        return super.view("/views/cars/brands", viewModels);
     }
 }
