@@ -1,7 +1,6 @@
 package com.cardealership.domain.entity;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -19,7 +18,7 @@ public class Part {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "supplier_id")
-    private SupplierServiceModel supplier;
+    private Supplier supplier;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "parts_cars",
@@ -54,11 +53,11 @@ public class Part {
         this.price = price;
     }
 
-    public SupplierServiceModel getSupplier() {
+    public Supplier getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(SupplierServiceModel supplier) {
+    public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
 

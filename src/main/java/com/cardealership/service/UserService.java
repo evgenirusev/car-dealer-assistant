@@ -4,5 +4,5 @@ import com.cardealership.domain.model.service.users.UserServiceModel;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
-    void register(UserServiceModel userServiceModel);
+    void registerUser(UserServiceModel userServiceModel);
 }

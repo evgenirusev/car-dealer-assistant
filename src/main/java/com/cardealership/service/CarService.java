@@ -1,7 +1,6 @@
 package com.cardealership.service;
 
 import com.cardealership.domain.model.service.cars.CarServiceModel;
-import com.cardealership.domain.model.view.cars.CarBrandsViewModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
 
 import java.util.List;
@@ -17,4 +16,6 @@ public interface CarService {
     double findPrice(Long id);
 
     List<CarServiceModel> findAsc();
+
+    List<CarServiceModel> findAllBrands(String make);
 }

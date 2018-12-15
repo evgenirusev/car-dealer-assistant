@@ -2,7 +2,6 @@ package com.cardealership.service;
 
 import com.cardealership.domain.entity.Car;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
-import com.cardealership.domain.model.view.cars.CarBrandsViewModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
 import com.cardealership.repository.CarRepository;
 import org.modelmapper.ModelMapper;
@@ -59,12 +58,22 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarServiceModel> findAsc() {
         List<CarServiceModel> carServiceModels = new ArrayList<>();
-        List<Car> carEntities = this.carRepository.findAllByOrderByBrandAsc();
-
-        carEntities.forEach(entity -> {
-            carServiceModels.add(this.modelMapper.map(entity, CarServiceModel.class));
+        List<String> carEntities = this.carRepository.findAllBrands();
+        carEntities.forEach(carName -> {
+            CarServiceModel carServiceModel = new CarServiceModel();
+            carServiceModel.setBrand(carName);
+            carServiceModels.add(carServiceModel);
         });
-
         return carServiceModels;
+    }
+
+    @Override
+    public List<CarServiceModel> findAllBrands(String brand) {
+        List<CarServiceModel> carModels = new ArrayList<>();
+        List<Car> carEntities = this.carRepository.getAllCarsByMakeOrderedByModelAscAndTravelledDistanceDesc(brand);
+        carEntities.forEach(car -> {
+            carModels.add(this.modelMapper.map(car, CarServiceModel.class));
+        });
+        return carModels;
     }
 }

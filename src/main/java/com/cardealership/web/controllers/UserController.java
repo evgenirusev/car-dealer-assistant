@@ -40,7 +40,7 @@ public class UserController extends BaseController {
     @PostMapping("/register")
     public ModelAndView registerConfirm(@ModelAttribute CreateUserBindingModel createUserBindingModel) {
         UserServiceModel userServiceModel = this.modelMapper.map(createUserBindingModel, UserServiceModel.class);
-        this.userService.register(userServiceModel);
+        this.userService.registerUser(userServiceModel);
         return super.redirect("login");
     }
 }

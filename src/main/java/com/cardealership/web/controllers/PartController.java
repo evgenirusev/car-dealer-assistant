@@ -1,8 +1,9 @@
 package com.cardealership.web.controllers;
 
-import com.cardealership.domain.entity.SupplierServiceModel;
+import com.cardealership.domain.entity.Supplier;
 import com.cardealership.domain.model.binding.parts.CreatePartBindingModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
+import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 import com.cardealership.service.PartService;
@@ -40,11 +41,11 @@ public class PartController extends BaseController {
     public ModelAndView confirmCreatePart(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
         PartServiceModel partServiceModel = new PartServiceModel();
 
-        SupplierServiceModel supplierServiceModel = this.supplierService.findById(createPartBindingModel.getSupplierId());
+        SupplierServiceModel supplier = this.supplierService.findById(createPartBindingModel.getSupplierId());
 
         partServiceModel.setName(createPartBindingModel.getName());
         partServiceModel.setPrice(createPartBindingModel.getPrice());
-        partServiceModel.setSupplier(supplierServiceModel);
+        partServiceModel.setSupplier(supplier);
 
         this.partService.craete(partServiceModel);
         return super.redirect("/");

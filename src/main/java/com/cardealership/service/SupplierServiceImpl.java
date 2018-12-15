@@ -1,6 +1,7 @@
 package com.cardealership.service;
 
-import com.cardealership.domain.entity.SupplierServiceModel;
+import com.cardealership.domain.entity.Supplier;
+import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 import com.cardealership.repository.SupplierRepository;
 import org.modelmapper.ModelMapper;
@@ -25,17 +26,17 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public void createSupplier(com.cardealership.domain.model.service.suppliers.SupplierServiceModel supplierServiceModel) {
-        SupplierServiceModel supplierEntity = this.modelMapper.map(supplierServiceModel, SupplierServiceModel.class);
+    public void create(SupplierServiceModel supplierServiceModel) {
+        Supplier supplierEntity = this.modelMapper.map(supplierServiceModel, Supplier.class);
         this.supplierRepository.save(supplierEntity);
     }
 
     @Override
     public Set<com.cardealership.domain.model.service.suppliers.SupplierServiceModel> findAllByImporter(boolean isImporter) {
-        List<SupplierServiceModel> supplierEntities = this.supplierRepository.findAllSuppliersByImporter(isImporter);
+        List<Supplier> supplierEntities = this.supplierRepository.findAllSuppliersByImporter(isImporter);
         Set<com.cardealership.domain.model.service.suppliers.SupplierServiceModel> supplierServiceSet = new LinkedHashSet<>();
 
-        for (SupplierServiceModel supplierEntity : supplierEntities) {
+        for (Supplier supplierEntity : supplierEntities) {
             com.cardealership.domain.model.service.suppliers.SupplierServiceModel supplierService = new com.cardealership.domain.model.service.suppliers.SupplierServiceModel();
             supplierService.setId(supplierEntity.getId());
             supplierService.setName(supplierEntity.getName());
@@ -58,6 +59,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public SupplierServiceModel findById(Long id) {
-        return this.supplierRepository.findSupplierById(id);
+        Supplier supplier = this.supplierRepository.findSupplierById(id);
+        return this.modelMapper.map(supplier, SupplierServiceModel.class);
     }
 }

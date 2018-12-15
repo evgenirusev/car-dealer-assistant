@@ -19,5 +19,12 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "WHERE c.id = :carId", nativeQuery = true)
     double getCarPrice(@Param("carId") Long carId);
 
-    List<Car> findAllByOrderByBrandAsc();
+    @Query(value = "SELECT DISTINCT c.brand\n" +
+            "  FROM cars AS c;", nativeQuery = true)
+    List<String> findAllBrands();
+
+    @Query(value = "SELECT * FROM cars\n" +
+            "WHERE brand=:brand \n" +
+            "ORDER BY model ASC, traveled_distance ASC", nativeQuery = true)
+    List<Car> getAllCarsByMakeOrderedByModelAscAndTravelledDistanceDesc(@Param("brand") String brand);
 }

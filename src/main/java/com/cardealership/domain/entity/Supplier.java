@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "suppliers")
-public class SupplierServiceModel {
+public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +29,7 @@ public class SupplierServiceModel {
         this.parts = parts;
     }
 
-    public SupplierServiceModel() {
+    public Supplier() {
     }
 
     public Long getId() {
