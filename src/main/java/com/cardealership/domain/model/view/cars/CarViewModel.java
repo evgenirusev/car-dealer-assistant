@@ -1,11 +1,21 @@
 package com.cardealership.domain.model.view.cars;
 
 public class CarViewModel {
+    private Long id;
+
     private String brand;
 
     private String model;
 
     private Long travelledDistance;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getBrand() {
         return brand;

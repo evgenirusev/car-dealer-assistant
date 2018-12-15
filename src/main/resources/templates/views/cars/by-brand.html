@@ -6,6 +6,7 @@
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
             <th scope="col">Travelled distance</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -14,6 +15,9 @@
                 <td th:text="*{brand}"></td>
                 <td th:text="*{model}"></td>
                 <td th:text="*{travelledDistance}"></td>
+                <td>
+                    <a th:href="@{/cars/{id}/parts(id=*{id})}">Details</a>
+                </td>
             </tr>
         </th:block>
         </tbody>
