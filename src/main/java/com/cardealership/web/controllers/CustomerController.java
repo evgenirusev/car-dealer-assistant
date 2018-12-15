@@ -1,6 +1,7 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.customers.CreateCustomerBindingModel;
+import com.cardealership.domain.model.binding.customers.EditCustomerBindingModel;
 import com.cardealership.domain.model.service.customers.CustomerSalesServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
 import com.cardealership.domain.model.view.customers.CustomerDetailsViewModel;
@@ -66,5 +67,12 @@ public class CustomerController extends BaseController {
         CustomerSalesServiceModel serviceModel = this.customerService.findCustomerSales(id);
         CustomerDetailsViewModel viewModel = this.modelMapper.map(serviceModel, CustomerDetailsViewModel.class);
         return super.view("views/customers/sales", viewModel);
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editCustomer(@PathVariable("id") Long id) {
+        CustomerServiceModel serviceModel = this.customerService.findCustomerById(id);
+        EditCustomerBindingModel bindingModel = this.modelMapper.map(serviceModel, EditCustomerBindingModel.class);
+        return super.view("/views/customers/edit", bindingModel);
     }
 }
