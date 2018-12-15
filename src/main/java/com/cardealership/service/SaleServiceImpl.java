@@ -38,4 +38,17 @@ public class SaleServiceImpl implements SaleService {
         });
         return saleModels;
     }
+
+    @Override
+    public List<SaleServiceModel> findSalesByCustomerId(Long id) {
+        List<Sale> saleEntities = this.saleRepository.findSalesByCustomer_Id(id);
+        List<SaleServiceModel> saleModels = new ArrayList<>();
+
+        saleEntities.forEach(saleEntity -> {
+            SaleServiceModel saleServiceModel = this.modelMapper.map(saleEntity, SaleServiceModel.class);
+            saleModels.add(saleServiceModel);
+        });
+
+        return saleModels;
+    }
 }

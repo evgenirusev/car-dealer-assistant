@@ -7,10 +7,7 @@ import com.cardealership.domain.model.view.customers.CustomerViewModel;
 import com.cardealership.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
@@ -59,5 +56,11 @@ public class CustomerController extends BaseController {
         List<CustomerViewModel> customerViewModels = this.customerService.findAllOrderByBirthDateDesc();
         customerOrderViewModel.setCustomerViewModels(customerViewModels);
         return super.view("/views/customers/all", customerOrderViewModel);
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView getSalesByCustomer(@PathVariable(name = "id") long id) {
+        // TODO
+        return super.view("views/customers/sales");
     }
 }

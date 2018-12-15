@@ -8,4 +8,6 @@ public interface SaleService {
     void create(SaleServiceModel saleServiceModel);
 
     List<SaleServiceModel> findAll();
+
+    List<SaleServiceModel> findSalesByCustomerId(Long id);
 }
