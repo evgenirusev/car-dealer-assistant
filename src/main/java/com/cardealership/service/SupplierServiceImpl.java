@@ -62,4 +62,11 @@ public class SupplierServiceImpl implements SupplierService {
         Supplier supplier = this.supplierRepository.findSupplierById(id);
         return this.modelMapper.map(supplier, SupplierServiceModel.class);
     }
+
+    @Override
+    public void edit(SupplierServiceModel serviceModel) {
+        Supplier supplier = this.supplierRepository.findById(serviceModel.getId()).orElse(null);
+        this.modelMapper.map(serviceModel, supplier);
+        this.supplierRepository.save(supplier);
+    }
 }

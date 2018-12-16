@@ -65,4 +65,11 @@ public class SupplierController extends BaseController {
         EditSupplierBindingModel bindingModel = this.modelMapper.map(serviceModel, EditSupplierBindingModel.class);
         return super.view("/views/suppliers/edit", bindingModel);
     }
+
+    @PostMapping("/edit/{id}")
+    public ModelAndView editSupplierContifrm(@ModelAttribute EditSupplierBindingModel bindingModel) {
+        SupplierServiceModel serviceModel = this.modelMapper.map(bindingModel, SupplierServiceModel.class);
+        this.supplierService.edit(serviceModel);
+        return super.redirect("/");
+    }
 }

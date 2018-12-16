@@ -14,4 +14,6 @@ public interface SupplierService {
     Set<SupplierForCreatingPartModel> findAll();
 
     SupplierServiceModel findById(Long id);
+
+    void edit(SupplierServiceModel serviceModel);
 }
