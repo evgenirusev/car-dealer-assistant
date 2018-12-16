@@ -16,4 +16,6 @@ public interface SupplierService {
     SupplierServiceModel findById(Long id);
 
     void edit(SupplierServiceModel serviceModel);
+
+    void deleteById(Long id);
 }

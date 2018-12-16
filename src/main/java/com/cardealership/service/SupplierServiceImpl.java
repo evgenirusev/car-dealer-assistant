@@ -69,4 +69,9 @@ public class SupplierServiceImpl implements SupplierService {
         this.modelMapper.map(serviceModel, supplier);
         this.supplierRepository.save(supplier);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        this.supplierRepository.deleteById(id);
+    }
 }

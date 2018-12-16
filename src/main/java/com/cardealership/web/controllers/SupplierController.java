@@ -72,4 +72,17 @@ public class SupplierController extends BaseController {
         this.supplierService.edit(serviceModel);
         return super.redirect("/");
     }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        SupplierServiceModel serviceModel = this.supplierService.findById(id);
+        EditSupplierBindingModel bindingModel = this.modelMapper.map(serviceModel, EditSupplierBindingModel.class);
+        return super.view("views/suppliers/delete", bindingModel);
+    }
+
+    @PostMapping("/delete/{id}")
+    public ModelAndView confirmDelte(@PathVariable("id") Long id) {
+        this.supplierService.deleteById(id);
+        return super.redirect("/");
+    }
 }
