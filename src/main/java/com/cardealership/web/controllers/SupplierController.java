@@ -1,6 +1,7 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.suppliers.CreateSupplierBindingModel;
+import com.cardealership.domain.model.binding.suppliers.EditSupplierBindingModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 import com.cardealership.domain.model.view.suppliers.SuppliersByImporterViewModel;
 import com.cardealership.service.SupplierService;
@@ -56,5 +57,12 @@ public class SupplierController extends BaseController {
             supplierViewModels.add(this.modelMapper.map(supplierServiceModel, SuppliersByImporterViewModel.class));
         });
         return super.view("views/suppliers/all", supplierViewModels);
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editSupplier(@PathVariable long id) {
+        SupplierServiceModel serviceModel = this.supplierService.findById(id);
+        EditSupplierBindingModel bindingModel = this.modelMapper.map(serviceModel, EditSupplierBindingModel.class);
+        return super.view("/views/suppliers/edit", bindingModel);
     }
 }
