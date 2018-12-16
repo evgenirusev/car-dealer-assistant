@@ -3,21 +3,20 @@ package com.cardealership.web.controllers;
 import com.cardealership.domain.model.binding.sale.CreateSaleBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
+import com.cardealership.domain.model.service.sales.SaleDetailsServiceModel;
 import com.cardealership.domain.model.service.sales.SaleServiceModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
 import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
 import com.cardealership.domain.model.view.sales.CreateReviewViewModel;
 import com.cardealership.domain.model.view.sales.CreateSaleViewModel;
+import com.cardealership.domain.model.view.sales.SaleDetailsViewModel;
 import com.cardealership.domain.model.view.sales.SaleViewModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.CustomerService;
 import com.cardealership.service.SaleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -115,11 +114,20 @@ public class SaleController extends BaseController{
         List<SaleViewModel> saleViewModels = new ArrayList<>();
         saleServiceModels.forEach(serviceModel -> {
             SaleViewModel saleViewModel = new SaleViewModel();
+            saleViewModel.setId(serviceModel.getId());
             saleViewModel.setCar(serviceModel.getCar().getBrand());
             saleViewModel.setCustomer(serviceModel.getCustomer().getName());
             saleViewModel.setDiscount(serviceModel.getDiscount());
             saleViewModels.add(saleViewModel);
         });
         return super.view("/views/sales/all", saleViewModels);
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView sale(@PathVariable long id) {
+        SaleDetailsServiceModel serviceModel = this.saleService.findDetailsById(id);
+        SaleDetailsViewModel viewModel = this.modelMapper.map(serviceModel, SaleDetailsViewModel.class);
+        // TODO: view
+        return null;
     }
 }

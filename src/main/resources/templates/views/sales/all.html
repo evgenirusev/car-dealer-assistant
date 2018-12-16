@@ -6,6 +6,7 @@
             <th scope="col">Car brand</th>
             <th scope="col">Customer name</th>
             <th scope="col">Discount</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -14,6 +15,9 @@
                 <td th:text="*{car}"></td>
                 <td th:text="*{customer}"></td>
                 <td th:text="*{discount}"></td>
+                <td>
+                    <a th:href="@{/sales/{id}(id=${sale.id})}">Edit</a>
+                </td>
             </tr>
         </th:block>
         </tbody>

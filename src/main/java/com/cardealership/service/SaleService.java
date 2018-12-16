@@ -1,5 +1,6 @@
 package com.cardealership.service;
 
+import com.cardealership.domain.model.service.sales.SaleDetailsServiceModel;
 import com.cardealership.domain.model.service.sales.SaleServiceModel;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface SaleService {
     List<SaleServiceModel> findAll();
 
     List<SaleServiceModel> findSalesByCustomerId(Long id);
+
+    SaleDetailsServiceModel findDetailsById(Long id);
 }

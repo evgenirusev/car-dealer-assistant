@@ -3,17 +3,16 @@ package com.cardealership.domain.model.service.sales;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
 
-public class SaleServiceModel {
+public class SaleDetailsServiceModel {
     private Long id;
+
+    private Double discount;
+
+    private Double price;
 
     private CarServiceModel car;
 
     private CustomerServiceModel customer;
-
-    private Double discount;
-
-    public SaleServiceModel() {
-    }
 
     public Long getId() {
         return id;
@@ -21,6 +20,14 @@ public class SaleServiceModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 
     public CarServiceModel getCar() {
@@ -39,11 +46,11 @@ public class SaleServiceModel {
         this.customer = customer;
     }
 
-    public Double getDiscount() {
-        return discount;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setDiscount(Double discount) {
-        this.discount = discount;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
