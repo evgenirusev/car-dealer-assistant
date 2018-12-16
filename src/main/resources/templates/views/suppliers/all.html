@@ -5,6 +5,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -12,6 +13,9 @@
             <tr>
                 <th th:text="${supplier.id}"></th>
                 <td th:text="${supplier.name}"></td>
+                <td>
+                    <a th:href="@{/suppliers/edit/{id}(id=${supplier.id})}">Edit</a>
+                </td>
             </tr>
         </th:block>
         </tbody>

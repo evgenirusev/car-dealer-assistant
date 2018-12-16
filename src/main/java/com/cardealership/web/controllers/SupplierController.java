@@ -2,15 +2,15 @@ package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.suppliers.CreateSupplierBindingModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
+import com.cardealership.domain.model.view.suppliers.SuppliersByImporterViewModel;
 import com.cardealership.service.SupplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -41,12 +41,20 @@ public class SupplierController extends BaseController {
     @GetMapping("/local")
     public ModelAndView localSuppliers() {
         Set<SupplierServiceModel> suppliers = this.supplierService.findAllByImporter(false);
-        return super.view("views/suppliers/all", suppliers);
+        List<SuppliersByImporterViewModel> supplierViewModels = new ArrayList<>();
+        suppliers.forEach(supplierServiceModel -> {
+            supplierViewModels.add(this.modelMapper.map(supplierServiceModel, SuppliersByImporterViewModel.class));
+        });
+        return super.view("views/suppliers/all", supplierViewModels);
     }
 
     @GetMapping("/importers")
     public ModelAndView importerSuppliers() {
         Set<SupplierServiceModel> suppliers = this.supplierService.findAllByImporter(true);
-        return super.view("views/suppliers/all", suppliers);
+        List<SuppliersByImporterViewModel> supplierViewModels = new ArrayList<>();
+        suppliers.forEach(supplierServiceModel -> {
+            supplierViewModels.add(this.modelMapper.map(supplierServiceModel, SuppliersByImporterViewModel.class));
+        });
+        return super.view("views/suppliers/all", supplierViewModels);
     }
 }
