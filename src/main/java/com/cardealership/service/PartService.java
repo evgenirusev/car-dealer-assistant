@@ -2,7 +2,6 @@ package com.cardealership.service;
 
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
-import com.cardealership.domain.model.view.parts.PartViewModel;
 
 import java.util.List;
 
@@ -15,4 +14,6 @@ public interface PartService {
     List<PartsForCreatingCarModel> findAllForCreatingCar();
 
     PartServiceModel findById(Long id);
+
+    void edit(PartServiceModel serviceModel);
 }

@@ -65,4 +65,11 @@ public class PartServiceImpl implements PartService {
         partModel.setCars(carServiceModels);
         return partModel;
     }
+
+    @Override
+    public void edit(PartServiceModel serviceModel) {
+        Part part = this.partRepository.findById(serviceModel.getId()).orElse(null);
+        part.setPrice(serviceModel.getPrice());
+        this.partRepository.save(part);
+    }
 }

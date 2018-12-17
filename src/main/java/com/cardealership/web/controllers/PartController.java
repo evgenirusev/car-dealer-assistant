@@ -61,7 +61,6 @@ public class PartController extends BaseController {
             PartViewModel partViewModel = this.modelMapper.map(serviceModel, PartViewModel.class);
             partViewModels.add(partViewModel);
         });
-
         return super.view("/views/parts/all", partViewModels);
     }
 
@@ -71,5 +70,12 @@ public class PartController extends BaseController {
         EditPartBindingModel bindingModel = this.modelMapper.map(serviceModel, EditPartBindingModel.class);
         bindingModel.setSupplierName(serviceModel.getSupplier().getName());
         return super.view("/views/parts/edit", bindingModel);
+    }
+
+    @PostMapping("/edit/{id}")
+    public ModelAndView editPartConfirm(@ModelAttribute EditPartBindingModel bindingModel) {
+        PartServiceModel serviceModel = this.modelMapper.map(bindingModel, PartServiceModel.class);
+        this.partService.edit(serviceModel);
+        return super.redirect("/");
     }
 }
