@@ -6,19 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c44394f-2684-409f-b12f-a811ffcf8c11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/binding/parts/EditPartBindingModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/parts/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/view/parts/DeletePartViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/parts/delete.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardealership/service/PartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardealership/service/PartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardealership/service/PartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardealership/service/PartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/PartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/PartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar-user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/views/parts/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/views/parts/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/all.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/all.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/views/suppliers/edit.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,10 +40,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/PartController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/views/parts/delete.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="77" column="44" lean-forward="true" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+            <state relative-caret-position="85">
+              <caret line="5" column="114" lean-forward="true" selection-start-line="5" selection-start-column="114" selection-end-line="5" selection-end-column="114" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/views/parts/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="5" column="112" lean-forward="true" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="112" />
             </state>
           </provider>
         </entry>
@@ -64,8 +64,8 @@
       <list>
         <option value="CSS File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -112,8 +112,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/service/customers/CustomerServiceModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/service/customers/CustomerServiceWithDetails.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/service/customers/CustomerWithDetailsServiceModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cardealership/domain/entity/Customer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cardealership/domain/entity/Sale.java" />
@@ -162,7 +160,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/views/parts/edit.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/cardealership/service/PartServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cardealership/service/PartService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/view/parts/DeletePartViewModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/PartController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/views/parts/delete.html" />
       </list>
     </option>
   </component>
@@ -240,6 +240,25 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="car-dealership" type="b2602c69:ProjectViewProjectNode" />
+              <item name="car-dealership" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="car-dealership" type="b2602c69:ProjectViewProjectNode" />
+              <item name="car-dealership" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="parts" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -256,7 +275,7 @@
     <property name="SearchEverywhereHistoryKey" value="CarServ&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/CarServiceImpl.java&#10;create-w&#9;FILE&#9;file://C:/car-dealer/src/main/resources/templates/views/cars/create-with-parts.html&#10;CarService&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/CarServiceImpl.java&#10;PartRepo&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/repository/PartRepository.java&#10;Repository&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/repository/SupplierRepository.java&#10;Repos&#9;FILE&#9;jar://C:/Users/Evgeni/.m2/repository/org/springframework/data/spring-data-commons/2.1.2.RELEASE/spring-data-commons-2.1.2.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class&#10;PartServiceIm&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/PartServiceImpl.java&#10;PartSErvice&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/PartService.java&#10;CarServi&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/CarServiceImpl.java&#10;CarContr&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/CarController.java&#10;CarC&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/CarController.java&#10;CarCo&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/CarController.java&#10;CarCon&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/CarController.java&#10;PartSer&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/PartServiceImpl.java&#10;SupplierServ&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/SupplierServiceImpl.java&#10;PartServ&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/PartService.java&#10;SupplierSer&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/SupplierService.java&#10;SupplierForCreatingPartModel&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/view/suppliers/SupplierForCreatingPartModel.java&#10;PartC&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/PartController.java&#10;navbar-use&#9;FILE&#9;file://C:/car-dealer/src/main/resources/templates/fragments/navbar-user.html&#10;CarCont&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/CarController.java&#10;PartContr&#9;PSI&#9;JAVA://com.cardealership.web.controllers.PartController&#10;Part&#9;PSI&#9;JAVA://com.cardealership.domain.entity.Part&#10;PartServic&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/PartServiceImpl.java&#10;PartCont&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/PartController.java&#10;PartServi&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/PartServiceImpl.java&#10;create&#9;FILE&#9;file://C:/car-dealer/src/main/resources/templates/views/parts/create.html&#10;PartCo&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/PartController.java&#10;CreatePartBindingModel&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/binding/parts/CreatePartBindingModel.java&#10;Service&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/CustomerServiceImpl.java&#10;Customer&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/view/customers/CustomerOrderViewModel.java&#10;CustomerView&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/view/customers/CustomerViewModel.java&#10;CustomerRepo&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/repository/CustomerRepository.java&#10;CustomerV&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/view/customers/CustomerViewModel.java&#10;CustomerMo&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/service/customers/CustomerServiceModel.java&#10;CustomerSer&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/CustomerServiceImpl.java&#10;CustomerSe&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/service/customers/CustomerServiceModel.java&#10;CarModel&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/service/cars/CarServiceModel.java&#10;CreateCar&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/model/binding/cars/CreateCarBindingModel.java&#10;CarSer&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/CarServiceImpl.java&#10;Suppli&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/SupplierController.java&#10;SupplierCon&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/SupplierController.java&#10;Car&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/domain/entity/Car.java&#10;CarController&#9;PSI&#9;JAVA://com.cardealership.web.controllers.CarController&#10;SupplierRepos&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/repository/SupplierRepository.java&#10;Suppl&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/SupplierService.java&#10;Supplie&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/SupplierController.java&#10;Supp&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/SupplierController.java&#10;userContr&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/web/controllers/UserController.java&#10;UserSer&#9;FILE&#9;file://C:/car-dealer/src/main/java/com/cardealership/service/UserServiceImpl.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545082200202" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545084686684" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -355,18 +374,18 @@
       <workItem from="1544880127358" duration="23980000" />
       <workItem from="1544972948219" duration="8727000" />
       <workItem from="1545030771948" duration="6351000" />
-      <workItem from="1545076378173" duration="5330000" />
+      <workItem from="1545076378173" duration="6473000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137853000" />
+    <option name="totallyTimeSpent" value="138996000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28008595" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28008595" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -376,7 +395,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32974428" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49641833" weight="0.3176312" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49641833" visible="true" weight="0.3176312" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.33512786" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -458,24 +477,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/service/SupplierServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="68" column="47" lean-forward="true" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
-          <folding>
-            <element signature="e#3164#3165#0" expanded="true" />
-            <element signature="e#3195#3196#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/service/SupplierService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/SupplierController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -727,23 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/view/parts/PartViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-          <folding>
-            <element signature="e#360#361#0" expanded="true" />
-            <element signature="e#385#386#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#808#809#0" expanded="true" />
-            <element signature="e#867#868#0" expanded="true" />
-            <element signature="e#907#908#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/binding/customers/EditCustomerBindingModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -838,20 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/binding/parts/EditPartBindingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/views/parts/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/service/parts/PartServiceModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -883,10 +853,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/view/parts/DeletePartViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#245#246#0" expanded="true" />
+            <element signature="e#279#280#0" expanded="true" />
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#437#438#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#497#498#0" expanded="true" />
+            <element signature="e#539#540#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#612#613#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#703#704#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/binding/parts/EditPartBindingModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/web/controllers/PartController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="77" column="44" lean-forward="true" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+        <state relative-caret-position="354">
+          <caret line="89" column="1" lean-forward="true" selection-start-line="89" selection-start-column="1" selection-end-line="89" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cardealership/domain/model/view/parts/PartViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#360#361#0" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#419#420#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
+            <element signature="e#827#828#0" expanded="true" />
+            <element signature="e#867#868#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/views/parts/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="5" column="112" lean-forward="true" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/views/parts/delete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="114" lean-forward="true" selection-start-line="5" selection-start-column="114" selection-end-line="5" selection-end-column="114" />
         </state>
       </provider>
     </entry>

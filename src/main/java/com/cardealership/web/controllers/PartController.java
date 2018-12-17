@@ -4,6 +4,7 @@ import com.cardealership.domain.model.binding.parts.CreatePartBindingModel;
 import com.cardealership.domain.model.binding.parts.EditPartBindingModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
+import com.cardealership.domain.model.view.parts.DeletePartViewModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 import com.cardealership.service.PartService;
@@ -77,5 +78,13 @@ public class PartController extends BaseController {
         PartServiceModel serviceModel = this.modelMapper.map(bindingModel, PartServiceModel.class);
         this.partService.edit(serviceModel);
         return super.redirect("/");
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        PartServiceModel serviceModel = this.partService.findById(id);
+        DeletePartViewModel viewModel = this.modelMapper.map(serviceModel, DeletePartViewModel.class);
+        viewModel.setSupplierName(serviceModel.getName());
+        return super.view("views/parts/delete", viewModel);
     }
 }
