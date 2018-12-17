@@ -1,6 +1,7 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.parts.CreatePartBindingModel;
+import com.cardealership.domain.model.binding.parts.EditPartBindingModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
@@ -9,10 +10,7 @@ import com.cardealership.service.PartService;
 import com.cardealership.service.SupplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -63,6 +61,15 @@ public class PartController extends BaseController {
             PartViewModel partViewModel = this.modelMapper.map(serviceModel, PartViewModel.class);
             partViewModels.add(partViewModel);
         });
+
         return super.view("/views/parts/all", partViewModels);
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editPart(@PathVariable Long id) {
+        PartServiceModel serviceModel = this.partService.findById(id);
+        EditPartBindingModel bindingModel = this.modelMapper.map(serviceModel, EditPartBindingModel.class);
+        bindingModel.setSupplierName(serviceModel.getSupplier().getName());
+        return super.view("/views/parts/edit", bindingModel);
     }
 }

@@ -7,7 +7,6 @@ import com.cardealership.domain.model.service.customers.CustomerServiceModel;
 import com.cardealership.domain.model.view.customers.CustomerDetailsViewModel;
 import com.cardealership.domain.model.view.customers.CustomerOrderViewModel;
 import com.cardealership.domain.model.view.customers.CustomerViewModel;
-import com.cardealership.domain.model.view.sales.SaleViewModel;
 import com.cardealership.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;

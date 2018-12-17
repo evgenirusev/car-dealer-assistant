@@ -9,13 +9,13 @@
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="supplier : ${viewModel}">
+        <th:block th:each="supplierName : ${viewModel}">
             <tr>
-                <th th:text="${supplier.id}"></th>
-                <td th:text="${supplier.name}"></td>
+                <th th:text="${supplierName.id}"></th>
+                <td th:text="${supplierName.name}"></td>
                 <td>
-                    <a th:href="@{/suppliers/edit/{id}(id=${supplier.id})}">Edit</a>
-                    <a th:href="@{/suppliers/delete/{id}(id=${supplier.id})}">Delete</a>
+                    <a th:href="@{/suppliers/edit/{id}(id=${supplierName.id})}">Edit</a>
+                    <a th:href="@{/suppliers/delete/{id}(id=${supplierName.id})}">Delete</a>
                 </td>
             </tr>
         </th:block>

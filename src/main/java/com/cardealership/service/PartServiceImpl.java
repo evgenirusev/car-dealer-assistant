@@ -35,8 +35,8 @@ public class PartServiceImpl implements PartService {
     public List<PartServiceModel> findAll() {
         List<PartServiceModel> partServiceModels = new ArrayList<>();
         this.partRepository.findAll().forEach(part -> {
-            PartServiceModel partViewModel = this.modelMapper.map(part, PartServiceModel.class);
-            partServiceModels.add(partViewModel);
+            PartServiceModel partServiceModel = this.modelMapper.map(part, PartServiceModel.class);
+            partServiceModels.add(partServiceModel);
         });
         return partServiceModels;
     }
