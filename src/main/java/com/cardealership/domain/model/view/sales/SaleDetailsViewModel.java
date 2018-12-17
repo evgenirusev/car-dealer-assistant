@@ -1,6 +1,6 @@
 package com.cardealership.domain.model.view.sales;
 
-import com.cardealership.domain.model.view.cars.CarViewModel;
+import com.cardealership.domain.model.view.cars.CarWithPartsViewModel;
 import com.cardealership.domain.model.view.customers.CustomerViewModel;
 
 public class SaleDetailsViewModel {
@@ -8,7 +8,7 @@ public class SaleDetailsViewModel {
 
     private Double price;
 
-    private CarViewModel car;
+    private CarWithPartsViewModel car;
 
     private CustomerViewModel customer;
 
@@ -20,11 +20,11 @@ public class SaleDetailsViewModel {
         this.discount = discount;
     }
 
-    public CarViewModel getCar() {
+    public CarWithPartsViewModel getCar() {
         return car;
     }
 
-    public void setCar(CarViewModel car) {
+    public void setCar(CarWithPartsViewModel car) {
         this.car = car;
     }
 

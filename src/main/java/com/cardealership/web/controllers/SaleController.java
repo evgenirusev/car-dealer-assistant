@@ -127,7 +127,6 @@ public class SaleController extends BaseController{
     public ModelAndView sale(@PathVariable long id) {
         SaleDetailsServiceModel serviceModel = this.saleService.findDetailsById(id);
         SaleDetailsViewModel viewModel = this.modelMapper.map(serviceModel, SaleDetailsViewModel.class);
-        // TODO: view
-        return null;
+        return super.view("/views/sales/details", viewModel);
     }
 }
