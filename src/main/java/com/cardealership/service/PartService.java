@@ -9,8 +9,7 @@ import java.util.List;
 public interface PartService {
     void craete(PartServiceModel partServiceModel);
 
-    // TODO: decouple service layer from presentation (MUST RETURN SERVICE MODEL)
-    List<PartViewModel> findAll();
+    List<PartServiceModel> findAll();
 
     // TODO: decouple service layer from presentation (MUST RETURN SERVICE MODEL)
     List<PartsForCreatingCarModel> findAllForCreatingCar();

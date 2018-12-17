@@ -6,6 +6,7 @@
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Supplier name</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -13,7 +14,11 @@
             <tr>
                 <td th:text="*{name}"></td>
                 <td th:text="|$*{price}|"></td>
-                <td th:text="*{supplierName}"></td>
+                <td th:text="*{supplier.name}"></td>
+                <td>
+                    <a th:href="@{/parts/edit/{id}(id=*{id})}">Edit</a>
+                    <a th:href="@{/parts/delete/{id}(id=*{id})}">Delete</a>
+                </td>
             </tr>
         </th:block>
         </tbody>

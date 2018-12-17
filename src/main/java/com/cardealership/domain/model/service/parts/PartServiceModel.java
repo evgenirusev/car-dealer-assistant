@@ -1,6 +1,5 @@
 package com.cardealership.domain.model.service.parts;
 
-import com.cardealership.domain.entity.Supplier;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 

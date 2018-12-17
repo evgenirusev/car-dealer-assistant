@@ -1,15 +1,27 @@
 package com.cardealership.domain.model.view.parts;
 
+import com.cardealership.domain.model.view.suppliers.SupplierViewModel;
+
 public class PartViewModel {
+    private Long id;
+
     private String name;
 
     private String price;
 
     private String quantity;
 
-    private String supplierName;
+    private SupplierViewModel supplier;
 
     public PartViewModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,11 +48,11 @@ public class PartViewModel {
         this.quantity = quantity;
     }
 
-    public String getSupplierName() {
-        return supplierName;
+    public SupplierViewModel getSupplier() {
+        return supplier;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setSupplier(SupplierViewModel supplier) {
+        this.supplier = supplier;
     }
 }

@@ -1,14 +1,13 @@
 package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.parts.CreatePartBindingModel;
-import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
-import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
 import com.cardealership.service.SupplierService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,9 +27,12 @@ public class PartController extends BaseController {
 
     private final PartService partService;
 
-    public PartController(SupplierService supplierService, PartService partService) {
+    private final ModelMapper modelMapper;
+
+    public PartController(SupplierService supplierService, PartService partService, ModelMapper modelMapper) {
         this.supplierService = supplierService;
         this.partService = partService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/create")
@@ -54,7 +57,12 @@ public class PartController extends BaseController {
 
     @GetMapping("/all")
     public ModelAndView allParts() {
-        List<PartViewModel> partViewModels = this.partService.findAll();
+        List<PartServiceModel> partServiceModels = this.partService.findAll();
+        List<PartViewModel> partViewModels = new ArrayList<>();
+        partServiceModels.forEach(serviceModel -> {
+            PartViewModel partViewModel = this.modelMapper.map(serviceModel, PartViewModel.class);
+            partViewModels.add(partViewModel);
+        });
         return super.view("/views/parts/all", partViewModels);
     }
 }

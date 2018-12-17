@@ -32,13 +32,13 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public List<PartViewModel> findAll() {
-        List<PartViewModel> partViewModels = new ArrayList<>();
+    public List<PartServiceModel> findAll() {
+        List<PartServiceModel> partServiceModels = new ArrayList<>();
         this.partRepository.findAll().forEach(part -> {
-            PartViewModel partViewModel = this.modelMapper.map(part, PartViewModel.class);
-            partViewModels.add(partViewModel);
+            PartServiceModel partViewModel = this.modelMapper.map(part, PartServiceModel.class);
+            partServiceModels.add(partViewModel);
         });
-        return partViewModels;
+        return partServiceModels;
     }
 
     @Override
