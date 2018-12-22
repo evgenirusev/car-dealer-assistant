@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" xmlns:th="http://www.thymeleaf.org">
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top" xmlns:th="http://www.thymeleaf.org">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">Car Dealership</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -19,7 +19,6 @@
                     <div class="dropdown-menu" aria-labelledby="customersDropdown">
                         <a class="dropdown-item" th:href="@{/customers/all/ascending}">Customers ascending order</a>
                         <a class="dropdown-item" th:href="@{/customers/all/descending}">Customers descending order</a>
-                        <a class="dropdown-item" th:href="@{/customers/create}">Create customerId</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

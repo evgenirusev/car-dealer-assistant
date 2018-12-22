@@ -8,6 +8,8 @@ public class CreateUserBindingModel {
 
     private String email;
 
+    private boolean isAdmin;
+
     public CreateUserBindingModel() {
     }
 
@@ -33,5 +35,13 @@ public class CreateUserBindingModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

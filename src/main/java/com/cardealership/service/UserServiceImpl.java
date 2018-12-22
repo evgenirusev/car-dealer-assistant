@@ -44,20 +44,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(UserServiceModel userServiceModel) {
         User user = this.modelMapper.map(userServiceModel, User.class);
-
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
-
         Set<UserRole> authorities = new HashSet<>();
-
-        UserRole authority = this.userRoleRepository.getUserRoleByAuthority("USER");
+        UserRole authority = this.userRoleRepository.getUserRoleByAuthority(userServiceModel.isAdmin() ? "ADMIN" : "USER");
         authorities.add(authority);
-
         user.setAuthorities(authorities);
-
         this.userRepository.save(user);
     }
 }

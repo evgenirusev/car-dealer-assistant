@@ -24,9 +24,18 @@ public class InitialDataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
         UserRoleServiceModel userRole = this.userRoleService.findByAuthority("USER");
+        UserRoleServiceModel adminRole = this.userRoleService.findByAuthority("ADMIN");
+
         if (userRole == null) {
             CreateUserRoleBindingModel createUserRoleBindingModel = new CreateUserRoleBindingModel();
             createUserRoleBindingModel.setAuthority("USER");
+            UserRoleServiceModel userRoleServiceModel = this.modelMapper.map(createUserRoleBindingModel, UserRoleServiceModel.class);
+            this.userRoleService.addRole(userRoleServiceModel);
+        }
+
+        if (adminRole == null) {
+            CreateUserRoleBindingModel createUserRoleBindingModel = new CreateUserRoleBindingModel();
+            createUserRoleBindingModel.setAuthority("ADMIN");
             UserRoleServiceModel userRoleServiceModel = this.modelMapper.map(createUserRoleBindingModel, UserRoleServiceModel.class);
             this.userRoleService.addRole(userRoleServiceModel);
         }

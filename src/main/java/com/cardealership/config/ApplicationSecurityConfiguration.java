@@ -38,6 +38,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                     .antMatchers("/", "/users/login", "/users/register", "/css/**", "/javascript/**").permitAll()
+                    .antMatchers("/customers/create", "/cars/create", "/suppliers/create", "/sales/create", "/parts/create", "/logs/all").hasAnyAuthority("ADMIN")
                     .antMatchers("/**").authenticated()
                 .and()
                     .formLogin()

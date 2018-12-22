@@ -10,6 +10,8 @@ public class UserServiceModel {
 
     private String email;
 
+    private boolean admin;
+
     public UserServiceModel() {
     }
 
@@ -43,5 +45,13 @@ public class UserServiceModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

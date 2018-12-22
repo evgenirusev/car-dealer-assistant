@@ -6,10 +6,13 @@
 <body>
 <header>
     <div sec:authorize="isAnonymous()">
-        <th:block th:include="~{fragments/navbar-guest}"/>
+        <th:block th:include="~{fragments/navbar/guest}"/>
     </div>
     <div sec:authorize="hasAuthority('USER')">
-        <th:block th:include="~{fragments/navbar-user}"/>
+        <th:block th:include="~{fragments/navbar/user}"/>
+    </div>
+    <div sec:authorize="hasAuthority('ADMIN')">
+        <th:block th:include="~{fragments/navbar/admin}"/>
     </div>
 </header>
 <main class="mt-5">
