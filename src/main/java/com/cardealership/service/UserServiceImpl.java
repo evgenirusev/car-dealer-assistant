@@ -2,8 +2,8 @@ package com.cardealership.service;
 
 import com.cardealership.domain.entity.User;
 import com.cardealership.domain.entity.UserRole;
+import com.cardealership.domain.model.service.users.UserRoleServiceModel;
 import com.cardealership.domain.model.service.users.UserServiceModel;
-import com.cardealership.factories.UserRoleFactory;
 import com.cardealership.repository.UserRepository;
 import com.cardealership.repository.UserRoleRepository;
 import org.modelmapper.ModelMapper;
@@ -20,20 +20,17 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    private final UserRoleRepository userRoleRepository;
+    private final UserRoleService userRoleService;
 
     private final ModelMapper modelMapper;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private final UserRoleFactory userRoleFactory;
-
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder, UserRoleFactory userRoleFactory) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
-        this.userRoleRepository = userRoleRepository;
+        this.userRoleService = userRoleService;
         this.modelMapper = modelMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userRoleFactory = userRoleFactory;
     }
 
     @Override
@@ -43,16 +40,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUser(UserServiceModel userServiceModel) {
-        User user = this.modelMapper.map(userServiceModel, User.class);
-        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setAccountNonExpired(true);
-        user.setAccountNonLocked(true);
-        user.setCredentialsNonExpired(true);
-        user.setEnabled(true);
+        User userEntity = this.modelMapper.map(userServiceModel, User.class);
+        userEntity.setPassword(this.bCryptPasswordEncoder.encode(userEntity.getPassword()));
+        userEntity.setAccountNonExpired(true);
+        userEntity.setAccountNonLocked(true);
+        userEntity.setCredentialsNonExpired(true);
+        userEntity.setEnabled(true);
         Set<UserRole> authorities = new HashSet<>();
-        UserRole authority = this.userRoleRepository.getUserRoleByAuthority(userServiceModel.isAdmin() ? "ADMIN" : "USER");
-        authorities.add(authority);
-        user.setAuthorities(authorities);
-        this.userRepository.save(user);
+        UserRoleServiceModel roleServiceModel = this.userRoleService.findByAuthority(userServiceModel.isAdmin() ? "ADMIN" : "USER");
+        UserRole role = this.modelMapper.map(roleServiceModel, UserRole.class);
+        authorities.add(role);
+        userEntity.setAuthorities(authorities);
+        this.userRepository.save(userEntity);
     }
 }
