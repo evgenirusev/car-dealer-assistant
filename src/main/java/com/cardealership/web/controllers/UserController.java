@@ -30,12 +30,6 @@ public class UserController extends BaseController {
         this.modelMapper = modelMapper;
     }
 
-
-    @GetMapping("/login")
-    public ModelAndView login() {
-        return super.view("views/users/login");
-    }
-
     @GetMapping("/register")
     public ModelAndView register(@ModelAttribute CreateUserBindingModel createUserBindingModel) {
         return super.view("views/users/register");
@@ -44,8 +38,6 @@ public class UserController extends BaseController {
     @PostMapping("/register")
     public ModelAndView registerConfirm(@Valid @ModelAttribute CreateUserBindingModel createUserBindingModel, BindingResult bindingResult) {
 
-        System.out.println("aaaa");
-
         if (bindingResult.hasErrors()) {
             return super.view("views/users/register", "Register");
         }
@@ -53,5 +45,15 @@ public class UserController extends BaseController {
         UserServiceModel userServiceModel = this.modelMapper.map(createUserBindingModel, UserServiceModel.class);
         this.userService.registerUser(userServiceModel);
         return super.redirect("login");
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login(String error, ModelAndView mav) {
+        mav.addObject("viewName", "/views/users/login");
+        mav.setViewName("layout");
+        if (error != null) {
+            mav.addObject("error", "Wrong username or password");
+        }
+        return mav;
     }
 }
