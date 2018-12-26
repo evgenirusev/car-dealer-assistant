@@ -5,6 +5,9 @@ nav {
 .container {
     margin-top: 100px;
     margin-bottom: 50px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    min-height: 400px;
 }
 
 .clear-button, .clear-button:hover, .clear-button:active {
@@ -12,25 +15,13 @@ nav {
     border-color: orange;
 }
 
-.logs-header {
-    display: inline-flex;
-}
-
-img {
-    width: 100%;
-}
-
-/* Home page */
-
 .home-page {
-    min-height: 700px;
-    /*background-image: url("https://www.jenningsmotorgroup.co.uk/images/standard/asset/middlesbrough-ford-1-full.jpg");*/
-    /*background-image: url("https://groupeparkavenue.com/sites/default/files/assets/dealership/storefronts/bmw-sherbrooke.jpg");*/
+    min-height: 800px;
+    height: 100%;
     background-image: url("http://scenting.com/wp-content/uploads/2016/11/scenting-your-car-dealership.jpg");
-
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .home-page h1, .home-page h4 {

@@ -53,4 +53,14 @@ public class UserServiceImpl implements UserService {
         userEntity.setAuthorities(authorities);
         this.userRepository.save(userEntity);
     }
+
+    @Override
+    public boolean isEmailTaken(String email) {
+        return this.userRepository.findByEmail(email) != null;
+    }
+
+    @Override
+    public boolean isUsernameTaken(String username) {
+        return this.userRepository.getByUsername(username) != null;
+    }
 }
