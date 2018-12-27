@@ -1,8 +1,15 @@
 package com.cardealership.domain.model.binding.sale;
 
+import com.cardealership.constants.ValidationConstants;
+
+import javax.validation.constraints.NotNull;
+
 public class CreateSaleBindingModel {
+
+    @NotNull(message = ValidationConstants.CUSTOMER_REQUIRED)
     private String customerId;
 
+    @NotNull(message = ValidationConstants.CAR_REQUIRED)
     private String carId;
 
     private Double discount;

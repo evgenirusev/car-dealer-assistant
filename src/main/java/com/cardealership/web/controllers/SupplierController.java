@@ -7,9 +7,11 @@ import com.cardealership.domain.model.view.suppliers.SuppliersByImporterViewMode
 import com.cardealership.service.SupplierService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -33,7 +35,12 @@ public class SupplierController extends BaseController {
     }
 
     @PostMapping("/create")
-    public ModelAndView confirmCreate(@ModelAttribute CreateSupplierBindingModel createSupplierBindingModel) {
+    public ModelAndView confirmCreate(@Valid @ModelAttribute CreateSupplierBindingModel createSupplierBindingModel, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return super.view("/views/suppliers/create");
+        }
+
         SupplierServiceModel supplierServiceModel = this.modelMapper.map(createSupplierBindingModel, SupplierServiceModel.class);
         this.supplierService.create(supplierServiceModel);
         return super.redirect("/");

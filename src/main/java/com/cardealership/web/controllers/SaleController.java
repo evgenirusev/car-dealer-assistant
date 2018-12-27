@@ -81,11 +81,13 @@ public class SaleController extends BaseController{
 
         double carPrice = this.carService.findPrice(carViewModel.getId());
         carViewModel.setPrice(carPrice);
-
         CreateReviewViewModel createReviewViewModel = new CreateReviewViewModel();
         createReviewViewModel.setCar(carViewModel);
         createReviewViewModel.setCustomer(customerViewModel);
-        createReviewViewModel.setDiscount(createSaleBindingModel.getDiscount());
+
+        if (createSaleBindingModel.getDiscount() != null) {
+            createReviewViewModel.setDiscount(createSaleBindingModel.getDiscount());
+        }
 
         return super.view("/views/sales/review", createReviewViewModel);
     }

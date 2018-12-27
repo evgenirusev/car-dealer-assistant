@@ -4,7 +4,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <form th:method="post" th:action="@{/sales/create/review}" th:object="${createSaleBindingModel}">
-                <div class="form-group row">
+                <div class="form-group row" th:classappend="${#fields.hasErrors('customerId')} ? 'has-error'">
                     <label for="customerId" class="col-sm-3">Customer</label>
                     <select class="form-control col-sm-9" id="customerId" th:field="*{customerId}">
                         <option th:each="customerModel : ${viewModel.customersForCreatingSaleList}"
@@ -12,8 +12,9 @@
                                 th:text="${customerModel.name}">
                         </option>
                     </select>
+                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('customerId')}" th:text="${error}">Error Message</div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" th:classappend="${#fields.hasErrors('carId')} ? 'has-error'">
                     <label for="carId" class="col-sm-3">Car</label>
                     <select class="form-control col-sm-9" id="carId" th:field="*{carId}">
                         <option th:each="carModel : ${viewModel.carsForCreatingSaleList}"
@@ -21,13 +22,14 @@
                                 th:text="|${carModel.brand} ${carModel.model}|">
                         </option>
                     </select>
+                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('carId')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="form-group row">
                     <label for="discount" class="col-sm-3">Discount</label>
                     <input type="number" class="form-control col-sm-9" id="discount" th:field="*{discount}" placeholder="Enter discount">
                 </div>
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-info">Create</button>
                 </div>
             </form>
         </div>
