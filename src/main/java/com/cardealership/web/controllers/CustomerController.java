@@ -10,9 +10,11 @@ import com.cardealership.domain.model.view.customers.CustomerViewModel;
 import com.cardealership.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,7 +37,12 @@ public class CustomerController extends BaseController {
     }
 
     @PostMapping("/create")
-    public ModelAndView confirmCreateCustomer(@ModelAttribute CreateCustomerBindingModel createCustomerBindingModel) {
+    public ModelAndView confirmCreateCustomer(@Valid @ModelAttribute CreateCustomerBindingModel createCustomerBindingModel, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return super.view("/views/customers/create");
+        }
+
         CustomerServiceModel customerServiceModel = new CustomerServiceModel();
         customerServiceModel.setName(createCustomerBindingModel.getName());
         customerServiceModel.setBirthDate(LocalDate.parse(createCustomerBindingModel.getBirthDate()));

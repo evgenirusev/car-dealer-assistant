@@ -11,4 +11,8 @@ public class ValidationConstants {
     public static final String CAR_BRAND_LENGTH = "Brand should be between 2 and 40 symbols";
     public static final String CAR_MODEL_LENGTH = "Car model should be between 2 and 40 symbols";
     public static final String MINIMUM_AMOUNT_OF_CAR_PARTS = "Car should have atleast 1 part";
+
+    // CUSTOMER
+    public static final String CUSTOMER_NAME_LENGTH = "Customer name should be between 2 and 60 symbols";
+    public static final String CUSTOMER_BIRTH_DATE = "Please specify customer birth date";
 }
