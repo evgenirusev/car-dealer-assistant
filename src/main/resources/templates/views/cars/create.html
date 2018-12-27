@@ -1,33 +1,36 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org">
-    <h1 class="mb-5 text-center">Add carId</h1>
+    <h1 class="mb-5 text-center">Create car</h1>
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <form th:object="${createCarBindingModel}" th:method="post" th:action="@{/cars/create}">
-                <div class="form-group row">
+                <div class="form-group row" th:classappend="${#fields.hasErrors('brand')} ? 'has-error'">
                     <label for="brand" class="col-sm-3">Brand</label>
                     <input type="text" class="form-control col-sm-9" id="brand" th:field="*{brand}" placeholder="Enter brand">
+                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('brand')}" th:text="${error}">Error Message</div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" th:classappend="${#fields.hasErrors('model')} ? 'has-error'">
                     <label for="model" class="col-sm-3">Model</label>
                     <input type="text" class="form-control col-sm-9" id="model" th:field="*{model}" placeholder="Enter model">
+                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('model')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="form-group row">
                     <label for="travelledDistance" class="col-sm-3">Travelled distance</label>
                     <input type="number" class="form-control col-sm-9" id="travelledDistance" th:field="*{travelledDistance}"
                            placeholder="Enter travelled distance">
                 </div>
-                <div class="form-group row">
-                    <label for="parts" class="col-sm-3">Parts</label>
-                    <select multiple class="form-control col-sm-9" id="parts" th:field="*{partIds}">
+                <div class="form-group row" th:classappend="${#fields.hasErrors('partIds')} ? 'has-error'">
+                    <label for="partIds" class="col-sm-3">Parts</label>
+                    <select multiple class="form-control col-sm-9" id="partIds" th:field="*{partIds}">
                         <option th:each="partModel : ${viewModel}"
                                 th:value="${partModel.partId}"
                                 th:text="${partModel.name}">
                         </option>
                     </select>
+                    <div class="text-danger text-center col-sm-9" th:each="error : ${#fields.errors('partIds')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-info">Create</button>
                 </div>
             </form>
         </div>

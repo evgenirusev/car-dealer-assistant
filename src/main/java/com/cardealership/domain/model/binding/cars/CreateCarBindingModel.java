@@ -1,14 +1,21 @@
 package com.cardealership.domain.model.binding.cars;
 
+import com.cardealership.constants.ValidationConstants;
+
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class CreateCarBindingModel {
+
+    @Size(min = 2, max = 40, message = ValidationConstants.CAR_BRAND_LENGTH)
     private String brand;
 
+    @Size(min = 2, max = 40, message = ValidationConstants.CAR_MODEL_LENGTH)
     private String model;
 
     private Long travelledDistance;
 
+    @Size(min = 1, message = ValidationConstants.MINIMUM_AMOUNT_OF_CAR_PARTS)
     private List<Long> partIds;
 
     public CreateCarBindingModel() {

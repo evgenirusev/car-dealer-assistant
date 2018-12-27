@@ -1,6 +1,6 @@
 package com.cardealership.domain.model.binding.users;
 
-import com.cardealership.constants.Constants;
+import com.cardealership.constants.ValidationConstants;
 import com.cardealership.domain.model.binding.users.validation.validations.IsEmailRegistered;
 import com.cardealership.domain.model.binding.users.validation.validations.IsPasswordMatching;
 import com.cardealership.domain.model.binding.users.validation.validations.IsUsernameTaken;
@@ -11,17 +11,17 @@ import javax.validation.constraints.Size;
 
 @IsPasswordMatching
 public class CreateUserBindingModel {
-    @Size(min = 4, max = 20, message = Constants.USERNAME_LENGTH)
+    @Size(min = 4, max = 20, message = ValidationConstants.USERNAME_LENGTH)
     @IsUsernameTaken
     private String username;
 
-    @Size(min = 4, max = 30, message = Constants.PASSWORD_LENGTH)
+    @Size(min = 4, max = 30, message = ValidationConstants.PASSWORD_LENGTH)
     private String password;
 
     private String confirmPassword;
 
-    @NotEmpty(message = Constants.ENTER_VALID_EMAIL)
-    @Email(message = Constants.ENTER_VALID_EMAIL)
+    @NotEmpty(message = ValidationConstants.ENTER_VALID_EMAIL)
+    @Email(message = ValidationConstants.ENTER_VALID_EMAIL)
     @IsEmailRegistered
     private String email;
 

@@ -12,9 +12,11 @@ import com.cardealership.service.PartService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -30,6 +32,8 @@ public class CarController extends BaseController {
 
     private final PartService partService;
 
+    private List<PartsForCreatingCarModel> partsCache;
+
     @Autowired
     public CarController(CarService carService, ModelMapper modelMapper, PartService partService) {
         this.carService = carService;
@@ -39,21 +43,31 @@ public class CarController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView createCarWithParts(@ModelAttribute CreateCarBindingModel createCarBindingModel) {
-        List<PartsForCreatingCarModel> partsForCreatingCarModels = this.partService.findAllForCreatingCar();
-        return super.view("/views/cars/create", partsForCreatingCarModels);
+        List<PartsForCreatingCarModel> partsForCreatingCar = this.partService.findAllForCreatingCar();
+        if (this.partsCache == null) {
+            this.partsCache = partsForCreatingCar;
+        }
+        return super.view("/views/cars/create", partsForCreatingCar);
     }
 
     @PostMapping("/create")
-    public ModelAndView confirmCreateCarWithParts(@ModelAttribute CreateCarBindingModel carBindingModel) {
+    public ModelAndView confirmCreateCarWithParts(@Valid @ModelAttribute CreateCarBindingModel carBindingModel, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return super.view("views/cars/create", this.partsCache, "Create Car");
+        }
+
         CarServiceModel carWithPartsServiceModel = this.modelMapper.map(carBindingModel, CarServiceModel.class);
         Set<PartServiceModel> partModels = new HashSet<>();
         carBindingModel.getPartIds().forEach(partId -> {
             PartServiceModel partModel = this.partService.findById(partId);
             partModels.add(partModel);
         });
+
         carWithPartsServiceModel.setParts(partModels);
         this.carService.createCar(carWithPartsServiceModel);
-        return super.redirect("/");
+        this.partsCache.clear();
+        return super.redirect("/cars/brands");
     }
 
     @GetMapping("/brands")

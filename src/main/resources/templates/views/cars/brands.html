@@ -4,7 +4,7 @@
         <tbody>
         <th:block th:each="car : ${viewModel}">
             <tr>
-                <td><a th:href="@{/cars/{brand}(brand=${car.brand})}" th:text="${car.brand}"></a></td>
+                <td><h3><a th:href="@{/cars/{brand}(brand=${car.brand})}" th:text="${car.brand}"></a></h3></td>
             </tr>
         </th:block>
         </tbody>
