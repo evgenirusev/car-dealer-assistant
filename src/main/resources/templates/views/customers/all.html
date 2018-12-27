@@ -24,7 +24,12 @@
                 <a th:href="@{/customers/{id}(id=${customer.id})}">Sales summary</a>
             </td>
             <td>
-                <a th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <a th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a>
+                </div>
+                <div sec:authorize="hasAuthority('USER')">
+                    <p>Only administrators can perform Actions</p>
+                </div>
             </td>
         </tr>
         </tbody>

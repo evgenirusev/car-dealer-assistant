@@ -14,8 +14,13 @@
                 <th th:text="${supplierName.id}"></th>
                 <td th:text="${supplierName.name}"></td>
                 <td>
-                    <a th:href="@{/suppliers/edit/{id}(id=${supplierName.id})}">Edit</a>
-                    <a th:href="@{/suppliers/delete/{id}(id=${supplierName.id})}">Delete</a>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/suppliers/edit/{id}(id=${supplierName.id})}">Edit</a>
+                        <a th:href="@{/suppliers/delete/{id}(id=${supplierName.id})}">Delete</a>
+                    </div>
+                    <div sec:authorize="hasAuthority('USER')">
+                        <p>Only administrators can perform Actions</p>
+                    </div>
                 </td>
             </tr>
         </th:block>
