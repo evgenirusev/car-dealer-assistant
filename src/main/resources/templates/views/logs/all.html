@@ -1,15 +1,15 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org">
     <h6 class="mb-1">Search By Username:</h6>
-    <div class="logs-header mb-5">
-        <form class="ml-3 form-inline" th:method="post" th:action="@{/logs/search}">
-            <div class="form-group row">
-                <input type="text" class="form-control mr-5" name="user" placeholder="Username...">
+    <div class="logs-header row">
+        <form class="form-inline row col-xs-12 col-sm-12 col-md-6" th:method="post" th:action="@{/logs/search}">
+            <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                <input type="text" class="form-control col-xs-12 col-sm-6 col-md-6" name="user" placeholder="Username...">
             </div>
-            <div>
-                <button type="submit" class="btn btn-primary">Search Logs</button>
+            <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                <button type="submit" class="btn btn-info col-xs-12 col-sm-6 col-md-6">Search Logs</button>
             </div>
         </form>
-        <form class="form-inline ml-5" th:method="post" th:action="@{/logs/clear}">
+        <form class="form-inline mb-2 col-xs-12 col-sm-12 col-md-6" th:method="post" th:action="@{/logs/clear}">
             <button type="submit" class="btn btn-primary clear-button">Clear All Logs</button>
         </form>
     </div>
