@@ -1,5 +1,5 @@
-nav {
-    background-color: #bd2130;
+nav, footer {
+    background-color: #bd2130!important;
 }
 
 .container {
@@ -7,7 +7,7 @@ nav {
     margin-bottom: 50px;
     padding: 20px;
     background-color: #FFFFFF;
-    min-height: 400px;
+    min-height: 500px;
 }
 
 .clear-button, .clear-button:hover, .clear-button:active {
@@ -26,4 +26,8 @@ nav {
 
 .home-page h1, .home-page h4 {
     text-shadow: 2px 2px 2px grey, 2px 2px 2px grey, 2px 2px 2px grey;
+}
+
+.fa-github {
+    font-size: 30px!important;
 }

@@ -40,10 +40,11 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                     .antMatchers("/", "/users/login", "/users/register", "/css/**", "/javascript/**").permitAll()
                     .antMatchers("/customers/create", "/cars/create", "/suppliers/create", "/sales/create", "/parts/create", "/logs/all",
                             "customers/edit/**", "/suppliers/edit/**", "/suppliers/delete/**", "/parts/edit/**", "/parts/delete/**").hasAnyAuthority("ADMIN")
+                    .antMatchers("/users/login", "/users/register").anonymous()
                     .antMatchers("/**").authenticated()
                 .and()
                     .formLogin()
-                    .loginPage("/users/login").permitAll()
+                    .loginPage("/users/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/")
