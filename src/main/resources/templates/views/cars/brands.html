@@ -1,5 +1,5 @@
-<div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h2>Brands</h2>
+<div class="container">
+    <h2 th:text="#{car.brands}"></h2>
     <table class="table">
         <tbody>
         <th:block th:each="car : ${viewModel}">

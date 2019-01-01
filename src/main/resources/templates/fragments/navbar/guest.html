@@ -11,12 +11,20 @@
                     <a class="nav-link text-white" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link text-white" th:href="@{/users/register}">Register</a>
+                    <a class="nav-link text-white" th:href="@{/users/login}" th:text="#{login}"></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link text-white" th:href="@{/users/login}">Login</a>
+                    <a class="nav-link text-white" th:href="@{/users/register}" th:text="#{register}"></a>
                 </li>
             </ul>
+            <div>
+                <select class="form-control" id="languageSelect">
+                    <option value="" th:text="#{lang}"></option>
+                    <option value="en" th:text="#{change.lang.en}"></option>
+                    <option value="de" th:text="#{change.lang.de}"></option>
+                    <option value="fr" th:text="#{change.lang.fr}"></option>
+                </select>
+            </div>
         </div>
     </div>
 </nav>

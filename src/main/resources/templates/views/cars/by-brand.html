@@ -1,12 +1,12 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org">
-    <h1>Cars by brand</h1>
+    <h1 th:text="#{cars.by.brand}"></h1>
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Brand</th>
-            <th scope="col">Model</th>
-            <th scope="col">Travelled distance</th>
-            <th scope="col">Actions</th>
+            <th scope="col" th:text="#{car.brand}"></th>
+            <th scope="col" th:text="#{car.model}"></th>
+            <th scope="col" th:text="#{car.travelled.distance}"></th>
+            <th scope="col" th:text="#{action}"></th>
         </tr>
         </thead>
         <tbody>
@@ -22,5 +22,5 @@
         </th:block>
         </tbody>
     </table>
-    <a class="btn btn-outline-primary" th:href="@{/cars/brands}">Back to all car brands</a>
+    <a class="btn btn-outline-primary" th:href="@{/cars/brands}" th:text="#{cars.back.button}"></a>
 </div>

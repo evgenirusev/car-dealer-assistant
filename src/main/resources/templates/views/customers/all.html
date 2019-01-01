@@ -1,13 +1,18 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org" th:object="${viewModel}">
-    <h1 th:text="|All customers in *{order} order|"></h1>
+    <th:block th:if="*{order} == 'ascending'">
+        <h1 th:text="|All #{customers.ascending.order}|"></h1>
+    </th:block>
+    <th:block th:if="*{order} == 'descending'">
+        <h1 th:text="|All #{customers.descending.order}|"></h1>
+    </th:block>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Birth Date</th>
-                <th scope="col">Is Driver Young</th>
-                <th scope="col">Sales summary</th>
-                <th scope="col">Action</th>
+                <th scope="col" th:text="#{customers.name}">Name</th>
+                <th scope="col" th:text="#{customers.birth.date}">Birth Date</th>
+                <th scope="col" th:text="#{customers.is.driver.young}">Is Driver Young</th>
+                <th scope="col" th:text="#{customers.sales.summary}">Sales summary</th>
+                <th scope="col" th:text="#{action}">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -21,14 +26,14 @@
                 <div th:text="no"></div>
             </td>
             <td>
-                <a th:href="@{/customers/{id}(id=${customer.id})}">Sales summary</a>
+                <a th:href="@{/customers/{id}(id=${customer.id})}" th:text="#{customers.sales.summary}"></a>
             </td>
             <td>
                 <div sec:authorize="hasAuthority('ADMIN')">
-                    <a th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a>
+                    <a th:href="@{/customers/edit/{id}(id=${customer.id})}" th:text="#{action.edit}"></a>
                 </div>
                 <div sec:authorize="hasAuthority('USER')">
-                    <p>Only administrators can perform Actions</p>
+                    <p th:text="#{restricted.to.admin}"></p>
                 </div>
             </td>
         </tr>

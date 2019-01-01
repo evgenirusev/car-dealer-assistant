@@ -3,10 +3,10 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Supplier name</th>
-            <th scope="col">Actions</th>
+            <th scope="col" th:text="#{parts.name}"></th>
+            <th scope="col" th:text="#{parts.price}"></th>
+            <th scope="col" th:text="#{supplier.name}"></th>
+            <th scope="col" th:text="#{action}"></th>
         </tr>
         </thead>
         <tbody>
@@ -17,11 +17,11 @@
                 <td th:text="*{supplier.name}"></td>
                 <td>
                     <div sec:authorize="hasAuthority('ADMIN')">
-                        <a th:href="@{/parts/edit/{id}(id=*{id})}">Edit</a>
-                        <a th:href="@{/parts/delete/{id}(id=*{id})}">Delete</a>
+                        <a th:href="@{/parts/edit/{id}(id=*{id})}" th:text="#{action.edit}"></a>
+                        <a th:href="@{/parts/delete/{id}(id=*{id})}" th:text="#{action.delete}"></a>
                     </div>
                     <div sec:authorize="hasAuthority('USER')">
-                        <p>Only administrators can perform Actions</p>
+                        <p th:text="#{restricted.to.admin}"></p>
                     </div>
                 </td>
             </tr>

@@ -37,7 +37,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                    .antMatchers("/", "/users/login", "/users/register", "/css/**", "/javascript/**").permitAll()
+                    .antMatchers("/", "/users/login", "/users/register", "/css/**", "/js/**").permitAll()
                     .antMatchers("/customers/create", "/cars/create", "/suppliers/create", "/sales/create", "/parts/create", "/logs/all",
                             "customers/edit/**", "/suppliers/edit/**", "/suppliers/delete/**", "/parts/edit/**", "/parts/delete/**").hasAnyAuthority("ADMIN")
                     .antMatchers("/users/login", "/users/register").anonymous()
