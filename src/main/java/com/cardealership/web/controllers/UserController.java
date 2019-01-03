@@ -2,18 +2,16 @@ package com.cardealership.web.controllers;
 
 import com.cardealership.domain.model.binding.users.CreateUserBindingModel;
 import com.cardealership.domain.model.service.users.UserServiceModel;
+import com.cardealership.service.RecaptchaService;
 import com.cardealership.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.naming.Binding;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -24,10 +22,13 @@ public class UserController extends BaseController {
 
     private final ModelMapper modelMapper;
 
+    private final RecaptchaService recaptchaService;
+
     @Autowired
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, ModelMapper modelMapper, RecaptchaService recaptchaService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.recaptchaService = recaptchaService;
     }
 
     @GetMapping("/register")
@@ -36,10 +37,17 @@ public class UserController extends BaseController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerConfirm(@Valid @ModelAttribute CreateUserBindingModel createUserBindingModel, BindingResult bindingResult) {
+    public ModelAndView registerConfirm(@Valid @ModelAttribute CreateUserBindingModel createUserBindingModel,
+                                        BindingResult bindingResult,
+                                        @RequestParam(name = "g-recaptcha-response") String gRecaptchaResponse,
+                                        HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
             return super.view("views/users/register", "Register");
+        }
+
+        if (!this.recaptchaService.verifyRecaptcha(request.getRemoteAddr(), gRecaptchaResponse).equals("success")) {
+            return super.redirect("/register");
         }
 
         UserServiceModel userServiceModel = this.modelMapper.map(createUserBindingModel, UserServiceModel.class);
