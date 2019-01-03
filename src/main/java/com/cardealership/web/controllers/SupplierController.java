@@ -43,7 +43,7 @@ public class SupplierController extends BaseController {
 
         SupplierServiceModel supplierServiceModel = this.modelMapper.map(createSupplierBindingModel, SupplierServiceModel.class);
         this.supplierService.create(supplierServiceModel);
-        return super.redirect("/");
+        return super.redirect("/suppliers/local");
     }
 
     @GetMapping("/local")
@@ -77,7 +77,10 @@ public class SupplierController extends BaseController {
     public ModelAndView editSupplierContifrm(@ModelAttribute EditSupplierBindingModel bindingModel) {
         SupplierServiceModel serviceModel = this.modelMapper.map(bindingModel, SupplierServiceModel.class);
         this.supplierService.edit(serviceModel);
-        return super.redirect("/");
+        if (serviceModel.isImporter()) {
+            return super.redirect("/suppliers/importer");
+        }
+        return super.redirect("/suppliers/local");
     }
 
     @GetMapping("/delete/{id}")

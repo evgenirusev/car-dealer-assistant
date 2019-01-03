@@ -47,7 +47,7 @@ public class CustomerController extends BaseController {
         customerServiceModel.setName(createCustomerBindingModel.getName());
         customerServiceModel.setBirthDate(LocalDate.parse(createCustomerBindingModel.getBirthDate()));
         this.customerService.createCustomer(customerServiceModel);
-        return super.redirect("/");
+        return super.redirect("/customers/all/ascending");
     }
 
     @GetMapping("/all/ascending")
@@ -81,7 +81,7 @@ public class CustomerController extends BaseController {
         serviceModel.setBirthDate(LocalDate.parse(customerBindingModel.getBirthDate()));
         serviceModel.setName(customerBindingModel.getName());
         this.customerService.editCustomer(serviceModel, id);
-        return super.redirect("/");
+        return super.redirect("/customers/all/ascending");
     }
 
     @GetMapping("/edit/{id}")

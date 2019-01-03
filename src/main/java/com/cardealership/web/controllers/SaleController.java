@@ -107,7 +107,7 @@ public class SaleController extends BaseController{
         saleServiceModel.setCustomer(customerServiceModel);
         saleServiceModel.setDiscount(dataForCreatingSaleSerivces.getDiscount());
         this.saleService.create(saleServiceModel);
-        return super.redirect("/");
+        return super.redirect("/sales");
     }
 
     @GetMapping("")
