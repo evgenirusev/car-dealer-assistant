@@ -103,6 +103,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void editCustomer(CustomerServiceModel customerServiceModel, Long id) {
         Customer customer = this.customerRepository.findById(id).get();
         this.modelMapper.map(customerServiceModel, customer);
+        customer.setId(id);
         this.customerRepository.save(customer);
     }
 }

@@ -54,12 +54,12 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                     .logoutRequestMatcher(new AntPathRequestMatcher("/users/logout"))
                     .permitAll()
                 .and()
-                .rememberMe()
-                .rememberMeParameter("remember-me-new")
-                .key("KEY")
-                .userDetailsService(this.userService)
-                .rememberMeCookieName("48e07001-3043-4ae8-85b9-6d5b4767975b")
-                .tokenValiditySeconds(2400);
+                    .rememberMe()
+                    .rememberMeParameter("remember-me-new")
+                    .key("48e07001-3043-4ae8-85b9-6d5b4767975b")
+                    .userDetailsService(this.userService)
+                    .rememberMeCookieName("SPRING_SECURITY_REMEMBER_ME_COOKIE")
+                    .tokenValiditySeconds(2400);
 
     }
 }

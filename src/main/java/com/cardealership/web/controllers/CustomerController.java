@@ -75,17 +75,19 @@ public class CustomerController extends BaseController {
         return super.view("/views/customers/sales", viewModel);
     }
 
+    @PostMapping("/edit/{id}")
+    public ModelAndView editConfirm(@ModelAttribute EditCustomerBindingModel customerBindingModel, @PathVariable("id") Long id) {
+        CustomerServiceModel serviceModel = new CustomerServiceModel();
+        serviceModel.setBirthDate(LocalDate.parse(customerBindingModel.getBirthDate()));
+        serviceModel.setName(customerBindingModel.getName());
+        this.customerService.editCustomer(serviceModel, id);
+        return super.redirect("/");
+    }
+
     @GetMapping("/edit/{id}")
     public ModelAndView editCustomer(@PathVariable("id") Long id) {
         CustomerServiceModel serviceModel = this.customerService.findCustomerById(id);
         EditCustomerBindingModel bindingModel = this.modelMapper.map(serviceModel, EditCustomerBindingModel.class);
         return super.view("/views/customers/edit", bindingModel);
-    }
-
-    @PostMapping("/edit/{id}")
-    public ModelAndView editConfirm(@ModelAttribute EditCustomerBindingModel customerBindingModel, @PathVariable("id") Long id) {
-        CustomerServiceModel serviceModel = this.modelMapper.map(customerBindingModel, CustomerServiceModel.class);
-        this.customerService.editCustomer(serviceModel, id);
-        return super.redirect("/");
     }
 }
