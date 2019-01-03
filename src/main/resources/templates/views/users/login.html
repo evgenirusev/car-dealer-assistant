@@ -14,6 +14,13 @@
                     <input type="password" class="form-control col-sm-9" id="password" placeholder="Password..." name="password"
                            required>
                 </div>
+                <div class="form-check text-center">
+                    <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">
+                        Remember Me
+                    </label>
+                </div>
+                <hr>
                 <th:block th:if="${error != null}">
                     <div class="alert alert-dismissible alert-danger">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>

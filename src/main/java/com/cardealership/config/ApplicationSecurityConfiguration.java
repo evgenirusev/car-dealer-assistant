@@ -52,6 +52,14 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                     .logout()
                     .logoutSuccessUrl("/")
                     .logoutRequestMatcher(new AntPathRequestMatcher("/users/logout"))
-                    .permitAll();
+                    .permitAll()
+                .and()
+                .rememberMe()
+                .rememberMeParameter("remember-me-new")
+                .key("KEY")
+                .userDetailsService(this.userService)
+                .rememberMeCookieName("48e07001-3043-4ae8-85b9-6d5b4767975b")
+                .tokenValiditySeconds(2400);
+
     }
 }
