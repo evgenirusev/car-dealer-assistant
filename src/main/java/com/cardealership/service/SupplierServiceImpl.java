@@ -6,8 +6,10 @@ import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartMode
 import com.cardealership.repository.SupplierRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,15 +48,13 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Set<SupplierForCreatingPartModel> findAll() {
-        Set<SupplierForCreatingPartModel> supplierForCreatingPartModels = new LinkedHashSet<>();
-        this.supplierRepository.findAll().forEach(supplier -> {
-            SupplierForCreatingPartModel supplierForCreatingPartModel = new SupplierForCreatingPartModel();
-            supplierForCreatingPartModel.setName(supplier.getName());
-            supplierForCreatingPartModel.setSupplierId(supplier.getId());
-            supplierForCreatingPartModels.add(supplierForCreatingPartModel);
+    public List<SupplierServiceModel> findAll() {
+        List<SupplierServiceModel> supplierServiceModels = new ArrayList<>();
+        this.supplierRepository.findAll().forEach(entity -> {
+            SupplierServiceModel supplierServiceModel = this.modelMapper.map(entity, SupplierServiceModel.class);
+            supplierServiceModels.add(supplierServiceModel);
         });
-        return supplierForCreatingPartModels;
+        return supplierServiceModels;
     }
 
     @Override

@@ -6,11 +6,12 @@ import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.view.cars.CarBrandsViewModel;
 import com.cardealership.domain.model.view.cars.CarViewModel;
 import com.cardealership.domain.model.view.cars.CarWithPartsViewModel;
-import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
+import com.cardealership.domain.model.view.parts.PartsForCreatingCarViewModel;
 import com.cardealership.service.CarService;
 import com.cardealership.service.PartService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class CarController extends BaseController {
 
     private final PartService partService;
 
-    private List<PartsForCreatingCarModel> partsCache;
+    private List<PartsForCreatingCarViewModel> partsCache;
 
     @Autowired
     public CarController(CarService carService, ModelMapper modelMapper, PartService partService) {
@@ -43,10 +44,21 @@ public class CarController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView createCarWithParts(@ModelAttribute CreateCarBindingModel createCarBindingModel) {
-        List<PartsForCreatingCarModel> partsForCreatingCar = this.partService.findAllForCreatingCar();
+        List<PartsForCreatingCarViewModel> partsForCreatingCar = new ArrayList<>();
+        List<PartServiceModel> partServiceModels = this.partService.findAll();
+
+        if (!partServiceModels.isEmpty()) {
+            partServiceModels.forEach(partServiceModel -> {
+                PartsForCreatingCarViewModel partsForCreatingCarViewModel
+                        = this.modelMapper.map(partServiceModel, PartsForCreatingCarViewModel.class);
+                partsForCreatingCar.add(partsForCreatingCarViewModel);
+            });
+        }
+
         if (this.partsCache == null) {
             this.partsCache = partsForCreatingCar;
         }
+
         return super.view("/views/cars/create", partsForCreatingCar);
     }
 

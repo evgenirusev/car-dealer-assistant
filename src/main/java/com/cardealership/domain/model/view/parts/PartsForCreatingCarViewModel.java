@@ -1,12 +1,12 @@
 package com.cardealership.domain.model.view.parts;
 
-public class PartsForCreatingCarModel {
+public class PartsForCreatingCarViewModel {
 
     private Long partId;
 
     private String name;
 
-    public PartsForCreatingCarModel() {
+    public PartsForCreatingCarViewModel() {
     }
 
     public Long getPartId() {

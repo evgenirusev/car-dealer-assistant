@@ -3,8 +3,6 @@ package com.cardealership.service;
 import com.cardealership.domain.entity.Part;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
-import com.cardealership.domain.model.view.parts.PartsForCreatingCarModel;
-import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.repository.PartRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -39,18 +37,6 @@ public class PartServiceImpl implements PartService {
             partServiceModels.add(partServiceModel);
         });
         return partServiceModels;
-    }
-
-    @Override
-    public List<PartsForCreatingCarModel> findAllForCreatingCar() {
-        List<PartsForCreatingCarModel> partsForCreatingCarModels = new ArrayList<>();
-        this.partRepository.findAll().forEach(part -> {
-            PartsForCreatingCarModel supplierForCreatingPartModel = new PartsForCreatingCarModel();
-            supplierForCreatingPartModel.setName(part.getName());
-            supplierForCreatingPartModel.setPartId(part.getId());
-            partsForCreatingCarModels.add(supplierForCreatingPartModel);
-        });
-        return partsForCreatingCarModels;
     }
 
     @Override

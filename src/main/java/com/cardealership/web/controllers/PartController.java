@@ -4,12 +4,12 @@ import com.cardealership.domain.model.binding.parts.CreatePartBindingModel;
 import com.cardealership.domain.model.binding.parts.EditPartBindingModel;
 import com.cardealership.domain.model.service.parts.PartServiceModel;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
-import com.cardealership.domain.model.view.parts.DeletePartViewModel;
 import com.cardealership.domain.model.view.parts.PartViewModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 import com.cardealership.service.PartService;
 import com.cardealership.service.SupplierService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,8 +36,16 @@ public class PartController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView createPart(@ModelAttribute CreatePartBindingModel createPartBindingModel) {
-        Set<SupplierForCreatingPartModel> suppliers = this.supplierService.findAll();
-        return super.view("/views/parts/create", suppliers);
+        List<SupplierForCreatingPartModel> supplierViewModels = new ArrayList<>();
+        List<SupplierServiceModel> supplierServiceModels = this.supplierService.findAll();
+        if (!supplierServiceModels.isEmpty()) {
+            supplierServiceModels.forEach(supplierService -> {
+                SupplierForCreatingPartModel supplierForCreatingPartModel
+                        = this.modelMapper.map(supplierService, SupplierForCreatingPartModel.class);
+                supplierViewModels.add(supplierForCreatingPartModel);
+            });
+        }
+        return super.view("/views/parts/create", supplierViewModels);
     }
 
     @PostMapping("/create")

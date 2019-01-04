@@ -58,7 +58,7 @@ public class CustomerController extends BaseController {
 
         List<CustomerViewModel> customerViewModels = new ArrayList<>();
         List<CustomerServiceModel> customerServiceModels = this.customerService.findAllOrderByBirthDateAsc();
-        if (customerServiceModels != null) {
+        if (!customerServiceModels.isEmpty()) {
             customerServiceModels.forEach(customerServiceModel -> {
                 CustomerViewModel customerViewModel = this.modelMapper.map(customerServiceModel, CustomerViewModel.class);
                 customerViewModels.add(customerViewModel);
@@ -76,7 +76,7 @@ public class CustomerController extends BaseController {
 
         List<CustomerViewModel> customerViewModels = new ArrayList<>();
         List<CustomerServiceModel> customerServiceModels = this.customerService.findAllOrderByBirthDateDesc();
-        if (customerServiceModels != null) {
+        if (!customerServiceModels.isEmpty()) {
             customerServiceModels.forEach(customerServiceModel -> {
                 CustomerViewModel customerViewModel = this.modelMapper.map(customerServiceModel, CustomerViewModel.class);
                 customerViewModels.add(customerViewModel);

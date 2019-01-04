@@ -10,7 +10,5 @@ public interface SaleService {
 
     List<SaleServiceModel> findAll();
 
-    List<SaleServiceModel> findSalesByCustomerId(Long id);
-
     SaleDetailsServiceModel findDetailsById(Long id);
 }

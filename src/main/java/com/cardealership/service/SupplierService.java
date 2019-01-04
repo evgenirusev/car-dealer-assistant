@@ -3,6 +3,7 @@ package com.cardealership.service;
 import com.cardealership.domain.model.service.suppliers.SupplierServiceModel;
 import com.cardealership.domain.model.view.suppliers.SupplierForCreatingPartModel;
 
+import java.util.List;
 import java.util.Set;
 
 public interface SupplierService {
@@ -10,8 +11,7 @@ public interface SupplierService {
 
     Set<SupplierServiceModel> findAllByImporter(boolean isImporter);
 
-    // TODO: decouple service layer from presentation (MUST RETURN SERVICE MODEL)
-    Set<SupplierForCreatingPartModel> findAll();
+    List<SupplierServiceModel> findAll();
 
     SupplierServiceModel findById(Long id);
 
