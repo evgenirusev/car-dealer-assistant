@@ -1,8 +1,9 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org">
     <h1 class="mb-4 text-center" th:text="#{login}"></h1>
     <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-3"></div>
+        <div class="col-md-7">
+            <hr class="hr-2 bg-red">
             <form th:method="post" th:action="@{/users/login}">
                 <div class="form-group row">
                     <label for="username" class="col-sm-3">Username:</label>
@@ -16,11 +17,10 @@
                 </div>
                 <div class="form-check text-center">
                     <input class="form-check-input" type="checkbox" value="" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">
+                    <label class="form-check-label mb-3" for="rememberMe">
                         Remember Me
                     </label>
                 </div>
-                <hr>
                 <th:block th:if="${error != null}">
                     <div class="alert alert-dismissible alert-danger">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>

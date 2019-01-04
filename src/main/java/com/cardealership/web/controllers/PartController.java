@@ -51,7 +51,7 @@ public class PartController extends BaseController {
         partServiceModel.setSupplier(supplier);
 
         this.partService.craete(partServiceModel);
-        return super.redirect("/");
+        return super.redirect("/parts/all");
     }
 
     @GetMapping("/all")
@@ -77,14 +77,6 @@ public class PartController extends BaseController {
     public ModelAndView editPartConfirm(@ModelAttribute EditPartBindingModel bindingModel) {
         PartServiceModel serviceModel = this.modelMapper.map(bindingModel, PartServiceModel.class);
         this.partService.edit(serviceModel);
-        return super.redirect("/");
-    }
-
-    @GetMapping("/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") Long id) {
-        PartServiceModel serviceModel = this.partService.findById(id);
-        DeletePartViewModel viewModel = this.modelMapper.map(serviceModel, DeletePartViewModel.class);
-        viewModel.setSupplierName(serviceModel.getName());
-        return super.view("views/parts/delete", viewModel);
+        return super.redirect("/parts/all");
     }
 }

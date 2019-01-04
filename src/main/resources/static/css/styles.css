@@ -1,12 +1,23 @@
-nav, footer {
+body {
+    background: url("https://auth.tesla.com//images/login-semi-hangar.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-red {
     background-color: #bd2130!important;
+}
+
+.hr-2 {
+    height: 2px;
 }
 
 .container {
     margin-top: 100px;
     margin-bottom: 50px;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: rgba(255,255,255, .94);
+    border-radius: 25px;
     min-height: 500px;
 }
 

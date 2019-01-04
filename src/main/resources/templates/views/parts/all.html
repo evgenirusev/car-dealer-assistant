@@ -18,7 +18,6 @@
                 <td>
                     <div sec:authorize="hasAuthority('ADMIN')">
                         <a th:href="@{/parts/edit/{id}(id=*{id})}" th:text="#{action.edit}"></a>
-                        <a th:href="@{/parts/delete/{id}(id=*{id})}" th:text="#{action.delete}"></a>
                     </div>
                     <div sec:authorize="hasAuthority('USER')">
                         <p th:text="#{restricted.to.admin}"></p>

@@ -3,6 +3,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <h1 class="mb-5 text-center" th:text="#{register}"></h1>
+            <hr class="hr-2 bg-red">
             <form th:object="${createUserBindingModel}" class="mx-auto" th:method="post" th:action="@{/users/register}">
                 <div class="form-group" th:classappend="${#fields.hasErrors('username')} ? 'has-error'">
                     <label for="username">Username</label>
