@@ -1,13 +1,13 @@
 package com.cardealership.domain.model.view.sales;
 
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
-import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
+import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleViewModel;
 
 public class CreateReviewViewModel {
 
     CarForCreatingSaleViewModel car;
 
-    CustomerForCreatingSaleModel customer;
+    CustomerForCreatingSaleViewModel customer;
 
     private double discount;
 
@@ -22,11 +22,11 @@ public class CreateReviewViewModel {
         this.car = car;
     }
 
-    public CustomerForCreatingSaleModel getCustomer() {
+    public CustomerForCreatingSaleViewModel getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CustomerForCreatingSaleModel customer) {
+    public void setCustomer(CustomerForCreatingSaleViewModel customer) {
         this.customer = customer;
     }
 

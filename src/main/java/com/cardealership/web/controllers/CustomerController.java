@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -54,7 +55,16 @@ public class CustomerController extends BaseController {
     public ModelAndView customersAscending() {
         CustomerOrderViewModel customerOrderViewModel = new CustomerOrderViewModel();
         customerOrderViewModel.setOrder("ascending");
-        List<CustomerViewModel> customerViewModels = this.customerService.findAllOrderByBirthDateAsc();
+
+        List<CustomerViewModel> customerViewModels = new ArrayList<>();
+        List<CustomerServiceModel> customerServiceModels = this.customerService.findAllOrderByBirthDateAsc();
+        if (customerServiceModels != null) {
+            customerServiceModels.forEach(customerServiceModel -> {
+                CustomerViewModel customerViewModel = this.modelMapper.map(customerServiceModel, CustomerViewModel.class);
+                customerViewModels.add(customerViewModel);
+            });
+        }
+
         customerOrderViewModel.setCustomerViewModels(customerViewModels);
         return super.view("/views/customers/all", customerOrderViewModel);
     }
@@ -63,7 +73,16 @@ public class CustomerController extends BaseController {
     public ModelAndView customersDescending() {
         CustomerOrderViewModel customerOrderViewModel = new CustomerOrderViewModel();
         customerOrderViewModel.setOrder("descending");
-        List<CustomerViewModel> customerViewModels = this.customerService.findAllOrderByBirthDateDesc();
+
+        List<CustomerViewModel> customerViewModels = new ArrayList<>();
+        List<CustomerServiceModel> customerServiceModels = this.customerService.findAllOrderByBirthDateDesc();
+        if (customerServiceModels != null) {
+            customerServiceModels.forEach(customerServiceModel -> {
+                CustomerViewModel customerViewModel = this.modelMapper.map(customerServiceModel, CustomerViewModel.class);
+                customerViewModels.add(customerViewModel);
+            });
+        }
+
         customerOrderViewModel.setCustomerViewModels(customerViewModels);
         return super.view("/views/customers/all", customerOrderViewModel);
     }

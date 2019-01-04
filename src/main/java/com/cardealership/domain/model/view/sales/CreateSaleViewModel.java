@@ -2,7 +2,7 @@ package com.cardealership.domain.model.view.sales;
 
 import com.cardealership.domain.model.binding.sale.CreateSaleBindingModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
-import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
+import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleViewModel;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class CreateSaleViewModel {
 
     private List<CarForCreatingSaleViewModel> carsForCreatingSaleList;
 
-    private List<CustomerForCreatingSaleModel> customersForCreatingSaleList;
+    private List<CustomerForCreatingSaleViewModel> customersForCreatingSaleList;
 
     public CreateSaleViewModel() {
     }
@@ -32,11 +32,11 @@ public class CreateSaleViewModel {
         this.carsForCreatingSaleList = carsForCreatingSaleList;
     }
 
-    public List<CustomerForCreatingSaleModel> getCustomersForCreatingSaleList() {
+    public List<CustomerForCreatingSaleViewModel> getCustomersForCreatingSaleList() {
         return customersForCreatingSaleList;
     }
 
-    public void setCustomersForCreatingSaleList(List<CustomerForCreatingSaleModel> customersForCreatingSaleList) {
+    public void setCustomersForCreatingSaleList(List<CustomerForCreatingSaleViewModel> customersForCreatingSaleList) {
         this.customersForCreatingSaleList = customersForCreatingSaleList;
     }
 }

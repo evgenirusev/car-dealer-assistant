@@ -30,24 +30,22 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<CarServiceModel> findAll() {
+        List<CarServiceModel> carServiceModels = new ArrayList<>();
+
+        this.carRepository.findAll().forEach(carEntity -> {
+            CarServiceModel carServiceModel = this.modelMapper.map(carEntity, CarServiceModel.class);
+            carServiceModels.add(carServiceModel);
+        });
+
+        return carServiceModels;
+    }
+
+    @Override
     public void createCar(CarServiceModel carServiceModel) {
         ModelMapper modelMapper = new ModelMapper();
         Car car = modelMapper.map(carServiceModel, Car.class);
         this.carRepository.save(car);
-    }
-
-    @Override
-    public List<CarForCreatingSaleViewModel> findViewModelsForCreatingSale() {
-        List<Car> carEntities = this.carRepository.findAll();
-
-        List<CarForCreatingSaleViewModel> carModels = new ArrayList<>();
-
-        carEntities.forEach(carEntity -> {
-            CarForCreatingSaleViewModel carModel = this.modelMapper.map(carEntity, CarForCreatingSaleViewModel.class);
-            carModels.add(carModel);
-        });
-
-        return carModels;
     }
 
     @Override

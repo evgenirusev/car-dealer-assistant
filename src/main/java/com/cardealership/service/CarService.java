@@ -10,12 +10,11 @@ public interface CarService {
 
     CarServiceModel findById(Long id);
 
-    // TODO: decouple service layer from presentation layer (MUST RETURN SERVICE MODEL)
-    List<CarForCreatingSaleViewModel> findViewModelsForCreatingSale();
+    List<CarServiceModel> findAll();
 
     double findPrice(Long id);
 
     List<CarServiceModel> findAsc();
 
-    List<CarServiceModel> findCarsByBrandOrderedByModelAscAndDistanceDesc(String make);
+    List<CarServiceModel> findCarsByBrandOrderedByModelAscAndDistanceDesc(String brand);
 }

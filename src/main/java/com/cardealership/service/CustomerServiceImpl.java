@@ -3,7 +3,6 @@ package com.cardealership.service;
 import com.cardealership.domain.entity.Customer;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerSalesServiceModel;
-import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
 import com.cardealership.domain.model.view.customers.CustomerViewModel;
 import com.cardealership.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
@@ -40,37 +39,25 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerViewModel> findAllOrderByBirthDateAsc() {
-        List<CustomerViewModel> customerViewModels = new ArrayList<>();
+    public List<CustomerServiceModel> findAllOrderByBirthDateAsc() {
+        List<CustomerServiceModel> customerServiceModels = new ArrayList<>();
         this.customerRepository.getCustomersByOrderByBirthDateAsc().forEach(
                 customer -> {
-                    customerViewModels.add(this.modelMapper.map(customer, CustomerViewModel.class));
+                    customerServiceModels.add(this.modelMapper.map(customer, CustomerServiceModel.class));
                 }
         );
-        return customerViewModels;
+        return customerServiceModels;
     }
 
     @Override
-    public List<CustomerViewModel> findAllOrderByBirthDateDesc() {
-        List<CustomerViewModel> customerViewModels = new ArrayList<>();
+    public List<CustomerServiceModel> findAllOrderByBirthDateDesc() {
+        List<CustomerServiceModel> customerServiceModels = new ArrayList<>();
         this.customerRepository.getCustomersByOrderByBirthDateDesc().forEach(
                 customer -> {
-                    customerViewModels.add(this.modelMapper.map(customer, CustomerViewModel.class));
+                    customerServiceModels.add(this.modelMapper.map(customer, CustomerServiceModel.class));
                 }
         );
-        return customerViewModels;
-    }
-
-    @Override
-    public List<CustomerForCreatingSaleModel> findAllForCreatingSale() {
-        List<Customer> customerEntities = this.customerRepository.findAll();
-        List<CustomerForCreatingSaleModel> customerModels = new ArrayList<>();
-        customerEntities.forEach(customerEntity -> {
-            CustomerForCreatingSaleModel customerModel
-                    = this.modelMapper.map(customerEntity, CustomerForCreatingSaleModel.class);
-            customerModels.add(customerModel);
-        });
-        return customerModels;
+        return customerServiceModels;
     }
 
     @Override

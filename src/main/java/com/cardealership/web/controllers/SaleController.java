@@ -6,7 +6,7 @@ import com.cardealership.domain.model.service.customers.CustomerServiceModel;
 import com.cardealership.domain.model.service.sales.SaleDetailsServiceModel;
 import com.cardealership.domain.model.service.sales.SaleServiceModel;
 import com.cardealership.domain.model.view.cars.CarForCreatingSaleViewModel;
-import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleModel;
+import com.cardealership.domain.model.view.customers.CustomerForCreatingSaleViewModel;
 import com.cardealership.domain.model.view.sales.CreateReviewViewModel;
 import com.cardealership.domain.model.view.sales.CreateSaleViewModel;
 import com.cardealership.domain.model.view.sales.SaleDetailsViewModel;
@@ -52,10 +52,26 @@ public class SaleController extends BaseController{
         CreateSaleViewModel createSaleViewModel = new CreateSaleViewModel();
         createSaleViewModel.setCreateSaleBindingModel(createSaleBindingModel);
 
-        List<CarForCreatingSaleViewModel> carModels = this.carService.findViewModelsForCreatingSale();
+        List<CarForCreatingSaleViewModel> carModels = new ArrayList<>();
+        List<CarServiceModel> carServiceModels = this.carService.findAll();
+        if (carServiceModels != null) {
+            carServiceModels.forEach(carServiceModel -> {
+                CarForCreatingSaleViewModel carViewModel = this.modelMapper.map(carServiceModel, CarForCreatingSaleViewModel.class);
+                carModels.add(carViewModel);
+            });
+        }
+
         createSaleViewModel.setCarsForCreatingSaleList(carModels);
 
-        List<CustomerForCreatingSaleModel> customerModels = this.customerService.findAllForCreatingSale();
+        List<CustomerForCreatingSaleViewModel> customerModels = new ArrayList<>();
+        List<CustomerServiceModel> customerServiceModels = this.customerService.findAllOrderByBirthDateAsc();
+        if (customerServiceModels != null) {
+            customerServiceModels.forEach(customerServiceModel -> {
+                CustomerForCreatingSaleViewModel customerViewModel = this.modelMapper.map(customerServiceModel, CustomerForCreatingSaleViewModel.class);
+                customerModels.add(customerViewModel);
+            });
+        }
+
         createSaleViewModel.setCustomersForCreatingSaleList(customerModels);
 
         this.cache.put("createSaleModel", createSaleViewModel);
@@ -73,7 +89,7 @@ public class SaleController extends BaseController{
                 .findFirst()
                 .orElse(null);
 
-        CustomerForCreatingSaleModel customerViewModel = cachedSaleModel.getCustomersForCreatingSaleList()
+        CustomerForCreatingSaleViewModel customerViewModel = cachedSaleModel.getCustomersForCreatingSaleList()
                 .stream()
                 .filter(customer -> String.valueOf(customer.getId()).equals(createSaleBindingModel.getCustomerId()))
                 .findFirst()

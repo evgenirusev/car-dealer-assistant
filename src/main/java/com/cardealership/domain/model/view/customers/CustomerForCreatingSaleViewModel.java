@@ -1,13 +1,13 @@
 package com.cardealership.domain.model.view.customers;
 
-public class CustomerForCreatingSaleModel {
+public class CustomerForCreatingSaleViewModel {
     private Long id;
 
     private String name;
 
     private boolean young;
 
-    public CustomerForCreatingSaleModel() {
+    public CustomerForCreatingSaleViewModel() {
     }
 
     public Long getId() {
