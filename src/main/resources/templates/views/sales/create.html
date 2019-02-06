@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <form th:method="post" th:action="@{/sales/create/review}" th:object="${createSaleBindingModel}">
+            <form th:method="post" method="post" th:action="@{/sales/create/review}" th:object="${createSaleBindingModel}">
                 <div class="form-group row" th:classappend="${#fields.hasErrors('customerId')} ? 'has-error'">
                     <label for="customerId" class="col-sm-3">Customer</label>
                     <select class="form-control col-sm-9" id="customerId" th:field="*{customerId}">
@@ -12,7 +12,7 @@
                                 th:text="${customerModel.name}">
                         </option>
                     </select>
-                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('customerId')}" th:text="${error}">Error Message</div>
+                    <div class="text-danger offset-sm-3" th:each="error : ${#fields.errors('customerId')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="form-group row" th:classappend="${#fields.hasErrors('carId')} ? 'has-error'">
                     <label for="carId" class="col-sm-3">Car</label>
@@ -22,7 +22,7 @@
                                 th:text="|${carModel.brand} ${carModel.model}|">
                         </option>
                     </select>
-                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('carId')}" th:text="${error}">Error Message</div>
+                    <div class="text-danger offset-sm-3" th:each="error : ${#fields.errors('carId')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="form-group row">
                     <label for="discount" class="col-sm-3">Discount</label>

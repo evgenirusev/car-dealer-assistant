@@ -1,5 +1,6 @@
 package com.cardealership.web.controllers;
 
+import com.cardealership.domain.model.binding.cars.CreateCarBindingModel;
 import com.cardealership.domain.model.binding.sale.CreateSaleBindingModel;
 import com.cardealership.domain.model.service.cars.CarServiceModel;
 import com.cardealership.domain.model.service.customers.CustomerServiceModel;
@@ -16,9 +17,11 @@ import com.cardealership.service.CustomerService;
 import com.cardealership.service.SaleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,7 +82,12 @@ public class SaleController extends BaseController{
     }
 
     @PostMapping("/create/review")
-    public ModelAndView createSaleReview(@ModelAttribute CreateSaleBindingModel createSaleBindingModel) {
+    public ModelAndView createSaleReview(@Valid @ModelAttribute CreateSaleBindingModel createSaleBindingModel, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return super.view("views/sales/create", this.cache.get("createSaleModel"));
+        }
+
         this.cache.put("dataForSaleService", createSaleBindingModel);
         CreateSaleViewModel cachedSaleModel = (CreateSaleViewModel) this.cache.get("createSaleModel");
 

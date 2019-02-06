@@ -20,6 +20,6 @@ public class ValidationConstants {
     public static final String SUPPLIER_NAME_LENGTH = "Supplier name should be between 2 and 60 symbols";
 
     // SALE
-    public static final String CUSTOMER_REQUIRED = "Customer participating in the sale required";
+    public static final String CUSTOMER_REQUIRED = "Customer participating in the sale is required";
     public static final String CAR_REQUIRED = "Car to be sold required";
 }
