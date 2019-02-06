@@ -7,12 +7,12 @@
                 <div class="form-group row" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
                     <label for="name" class="col-sm-3">Name</label>
                     <input type="text" class="form-control col-sm-9" id="name" th:field="*{name}" placeholder="Enter name">
-                    <div class="text-danger text-center col-sm-12" th:each="error : ${#fields.errors('name')}" th:text="${error}">Error Message</div>
+                    <div class="text-danger text-center offset-sm-3" th:each="error : ${#fields.errors('name')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="form-group row" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
                     <label for="birthDate" class="col-sm-3">Date of birth</label>
                     <input type="date" class="form-control col-sm-9" id="birthDate" th:field="*{birthDate}" placeholder="Enter date of birth">
-                    <div class="text-danger text-center col-sm-12" th:each="error : ${#fields.errors('birthDate')}" th:text="${error}">Error Message</div>
+                    <div class="text-danger text-center offset-sm-3" th:each="error : ${#fields.errors('birthDate')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-info">Create</button>

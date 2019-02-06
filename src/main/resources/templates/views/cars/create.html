@@ -7,12 +7,12 @@
                 <div class="form-group row" th:classappend="${#fields.hasErrors('brand')} ? 'has-error'">
                     <label for="brand" class="col-sm-3">Brand</label>
                     <input type="text" class="form-control col-sm-9" id="brand" th:field="*{brand}" placeholder="Enter brand">
-                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('brand')}" th:text="${error}">Error Message</div>
+                    <div class="text-danger offset-sm-3" th:each="error : ${#fields.errors('brand')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="form-group row" th:classappend="${#fields.hasErrors('model')} ? 'has-error'">
                     <label for="model" class="col-sm-3">Model</label>
                     <input type="text" class="form-control col-sm-9" id="model" th:field="*{model}" placeholder="Enter model">
-                    <div class="text-danger col-sm-9" th:each="error : ${#fields.errors('model')}" th:text="${error}">Error Message</div>
+                    <div class="text-danger offset-sm-3" th:each="error : ${#fields.errors('model')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="form-group row">
                     <label for="travelledDistance" class="col-sm-3">Travelled distance</label>
@@ -27,7 +27,7 @@
                                 th:text="${partModel.name}">
                         </option>
                     </select>
-                    <div class="text-danger text-center col-sm-9" th:each="error : ${#fields.errors('partIds')}" th:text="${error}">Error Message</div>
+                    <div class="text-danger offset-3" th:each="error : ${#fields.errors('partIds')}" th:text="${error}">Error Message</div>
                 </div>
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-info">Create</button>
